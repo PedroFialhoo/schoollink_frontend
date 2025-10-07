@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/login/Login";
-import HomeAluno from "../pages/aluno/HomeAluno";
+import AlunoLayout from "../layouts/AlunoLayout";
+import Home from "../pages/aluno/home/Home";
+import Notas from "../pages/aluno/notas/Notas";
 
 const Router = createBrowserRouter([
     {
@@ -9,7 +11,17 @@ const Router = createBrowserRouter([
     },
     {
         path: "/aluno",
-        element: <HomeAluno /> 
+        element: <AlunoLayout /> ,
+        children: [
+            {
+                path: "home",
+                element: <Home />
+            },
+            {
+                path: "notas",
+                element: <Notas />
+            }
+        ]
     }
 ])
 

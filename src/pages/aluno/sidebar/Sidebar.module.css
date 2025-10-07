@@ -1,9 +1,3 @@
-.layout {
-  display: grid;
-  grid-template-columns: 190px 1fr; 
-  min-height: 100vh; 
-}
-
 .sidebar {
     width: 75px;
     height: 100vh;
@@ -12,9 +6,6 @@
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
-    position: fixed; 
-    left: 0;
-    top: 0;
     overflow: hidden;
     transition: width 0.5s;
 }
@@ -83,18 +74,22 @@ li:hover span, li:hover i{
     color: #FFD24D;
 }
 
-.sideLi.active {
-    background-color: #FFD24D;
-    border-radius: 10px;
-    width: 90%;
-    margin: 0 auto;
+.active {
+  background-color: #FFD24D;
+  border-radius: 10px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 
-.sidebar:hover .sideLi.active {
-    width: 99%;
+.sidebar:hover .active {
+  width: 99%;
 }
 
-.sideLi.active span, .sideLi.active i{
-    color: #365697;
+.active span,
+.active i {
+  color: #365697;
 }
+
 
