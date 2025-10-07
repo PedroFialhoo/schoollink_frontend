@@ -1,0 +1,48 @@
+.side{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    gap: 20px;
+}
+
+.logo{
+    width: 250px;
+}
+
+.loginForm{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 60%;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+input, .loginBtn{
+    border: 1px solid #37415150;
+    border-radius: 40px;
+}
+
+input{
+    width: 90%;
+    height: 50px;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 50px; 
+    background-color: #ececec;
+}
+
+.loginBtn{
+    width: 25%;
+    height: 50px;
+    background-color: #FFD24D;
+}
+
+.loginBtn:hover{
+    background-color: #D9940F;
+}
+
+input:hover{
+    background-color: #d6d6d6;
+}
