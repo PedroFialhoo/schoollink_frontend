@@ -13,7 +13,7 @@ function LoginForm(){
 
     return(
         <div className={styles.side}>
-            <img src="src\assets\images\logo.png" className={styles.logo} alt=""/>
+            <img src="/src/assets/images/logo.png" className={styles.logo} alt=""/>
             <form className={styles.loginForm}>
                 <div className={styles.formGroup}>
                     <input type="text" className={styles.email} name="email" placeholder="Email" required/>                    

@@ -1,6 +1,10 @@
+import Sidebar from "./components/Sidebar";
+
 function HomeAluno(){
     return(
-        <h1>Aluno</h1>
+        <>
+            <Sidebar />
+        </>
     )
 }
 
