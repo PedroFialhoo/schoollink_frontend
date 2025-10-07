@@ -14,7 +14,7 @@ function Sidebar() {
                         }
                     >
                         <i className="bi bi-house-fill"></i>
-                        <span>Home</span>
+                        <span className={styles.sideText}>Home</span>
                     </NavLink>
                 </li>
 
@@ -26,7 +26,7 @@ function Sidebar() {
                         }
                     >
                         <i className="bi bi-list-columns-reverse"></i>
-                        <span>Notas</span>
+                        <span className={styles.sideText}>Notas</span>
                     </NavLink>
                 </li>
 
@@ -38,7 +38,7 @@ function Sidebar() {
                         }
                     >
                         <i className="bi bi-clipboard2-check-fill"></i>
-                        <span>Presença</span>
+                        <span className={styles.sideText}>Presença</span>
                     </NavLink>
                 </li>
 
@@ -50,7 +50,7 @@ function Sidebar() {
                         }
                     >
                         <i className="bi bi-person-workspace"></i>
-                        <span>Registro de Aulas</span>
+                        <span className={styles.sideText}>Registro de Aulas</span>
                     </NavLink>
                 </li>
 
@@ -62,7 +62,7 @@ function Sidebar() {
                         }
                     >
                         <i className="bi bi-clock-fill"></i>
-                        <span>Horários</span>
+                        <span className={styles.sideText}>Horários</span>
                     </NavLink>
                 </li>
 
@@ -74,19 +74,19 @@ function Sidebar() {
                         }
                     >
                         <i className="bi bi-gear-fill"></i>
-                        <span>Configurações</span>
+                        <span className={styles.sideText}>Configurações</span>
                     </NavLink>
                 </li>
 
                 <li>
                     <NavLink
-                        to="/"
+                        to="/aluno/sair"
                         className={({ isActive }) =>
                             `${styles.sideOp} ${isActive ? styles.active : ""}`
                         }
                     >
                         <i className="bi bi-box-arrow-right"></i>
-                        <span>Sair</span>
+                        <span className={styles.sideText}>Sair</span>
                     </NavLink>
                 </li>
             </ul>

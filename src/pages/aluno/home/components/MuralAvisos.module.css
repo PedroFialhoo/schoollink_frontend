@@ -1,0 +1,101 @@
+.muralContainer {
+    background-color: #ffffff; 
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 60px; 
+    width: 90%;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
+    border: 1px solid #E9ECEF; 
+    position: relative;
+}
+
+.titulo {
+    position: absolute;
+    top: -20px; 
+    left: 24px;
+    background-color: #7998D6; 
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 100px; /* Formato de pílula */
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 15px rgba(74, 145, 226, 0.432); 
+}
+
+.conteudoAvisos {
+    max-height: 410px; 
+    overflow-y: auto;   
+    padding-right: 10px; 
+}
+
+.listaAvisos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.aviso {
+    background-color: #F8F9FA; 
+    border-radius: 12px;
+    padding: 16px 20px;
+    border: 1px solid #E9ECEF;
+    transition: all 0.25s ease-in-out; 
+}
+
+.aviso:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.144);
+    border-color: #DEE2E6;
+}
+
+.professor {
+    display: block; 
+    font-size: 0.9rem;
+    font-weight: 700; 
+    color: #343A40;
+    margin-bottom: 8px;
+}
+
+.mensagem {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057; 
+    margin: 0;
+}
+
+.semAvisos {
+    text-align: center;
+    color: #6c757d;
+    padding: 40px 0;
+}
+
+
+/* --- Estilização da Barra de Rolagem --- */
+
+/* Chrome, Edge, Safari */
+.conteudoAvisos::-webkit-scrollbar {
+    width: 8px;
+}
+
+.conteudoAvisos::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.conteudoAvisos::-webkit-scrollbar-thumb {
+    background-color: #D9940F; 
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+.conteudoAvisos::-webkit-scrollbar-thumb:hover {
+    background-color: #AAB3BF; 
+}
+
+/* Firefox */
+.conteudoAvisos {
+    scrollbar-width: thin;
+    scrollbar-color: #D9940F transparent;
+}
