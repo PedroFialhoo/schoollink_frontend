@@ -1,0 +1,87 @@
+/* Lembre-se de importar uma fonte como a 'Inter' no seu CSS global */
+
+.painelContainer {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    margin: 30vh auto;
+    width: 90%;
+    max-width: 380px; /* Mais estreito, ideal para um painel de confirmação */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E9ECEF;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.usuarioInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border: 3px solid #F1F3F5;
+}
+
+.usuarioNome {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #212529;
+}
+
+.mensagem {
+    margin: 0;
+    font-size: 1rem;
+    color: #6C757D;
+}
+
+.botoesAcao {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
+    gap: 12px;
+}
+
+/* Estilo base para os botões */
+.botao {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+
+/* Botão de Cancelar (Secundário) */
+.botaoCancelar {
+    background-color: #F1F3F5;
+    color: #495057;
+    border: 1px solid #DEE2E6;
+}
+
+.botaoCancelar:hover {
+    background-color: #E9ECEF;
+    border-color: #CED4DA;
+}
+
+/* Botão de Sair (Primário / Destrutivo) */
+.botaoSair {
+    background-color: #FA5252; /* Tom de vermelho para indicar ação de "saída/perigo" */
+    color: #ffffff;
+}
+
+.botaoSair:hover {
+    background-color: #F03E3E; /* Vermelho um pouco mais escuro no hover */
+    box-shadow: 0 4px 15px rgba(250, 82, 82, 0.3);
+}

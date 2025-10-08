@@ -1,5 +1,13 @@
 .layout {
-  display: grid;
-  grid-template-columns: 190px 1fr; 
-  min-height: 100vh; 
+  display: flex;
+  min-height: 100vh;
+  align-items: flex-start;     
+  justify-content: flex-start; 
+}
+
+.conteudo {
+  flex: 1;                       
+  padding: 20px 40px;           
+  display: flex;
+  justify-content: center;        
 }

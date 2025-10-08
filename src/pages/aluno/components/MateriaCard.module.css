@@ -1,0 +1,43 @@
+
+
+.card {
+    width: 15vw;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    text-align: center;
+
+    background-color: #365697;
+    border-radius: 16px;
+    border: 1px solid #E9ECEF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.card:hover,
+.card:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border-color: #DEE2E6;
+    outline: none; 
+}
+
+
+.nomeMateria {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+}
+
+.nomeProfessor {
+    font-size: 0.85rem;
+    color: #cdcdcd;
+    margin: 0;
+}

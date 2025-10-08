@@ -1,5 +1,5 @@
 .sidebar {
-    width: 68px;
+    width: 70px;
     height: 100vh; 
     background-color: #365697;
     display: flex;
@@ -14,7 +14,7 @@
 
 
 .sidebar:hover{
-    width: 182px;
+    width: 192px;
 }
 
 .logo{

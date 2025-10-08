@@ -7,7 +7,8 @@ import Presenca from "../pages/aluno/presenca/Presenca";
 import Aulas from "../pages/aluno/aulas/Aulas";
 import Horarios from "../pages/aluno/horarios/Horarios";
 import Config from "../pages/aluno/config/Config";
-import Sair from "../pages/aluno/sair/Sair";
+import Logout from "../pages/logout/Logout";
+import CarregarDisciplinas from "../pages/aluno/components/CarregarDisciplinas";
 
 const Router = createBrowserRouter([
     {
@@ -24,15 +25,15 @@ const Router = createBrowserRouter([
             },
             {
                 path: "notas",
-                element: <Notas />
+                element: <CarregarDisciplinas />
             },
             {
                 path: "presenca",
-                element: <Presenca />
+                element: <CarregarDisciplinas />
             },
             {
                 path: "registro-aulas",
-                element: <Aulas />
+                element: <CarregarDisciplinas />
             },
             {
                 path: "horarios",
@@ -44,7 +45,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "sair",
-                element: <Sair />
+                element: <Logout />
             }
         ]        
     }

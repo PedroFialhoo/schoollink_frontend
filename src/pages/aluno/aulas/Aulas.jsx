@@ -1,7 +1,8 @@
-function Aulas(){
-    return(
-        <h1>Aulas</h1>
-    )
+function Aulas() {
+
+    return (
+        <h1>aula</h1>
+    );
 }
 
-export default Aulas
+export default Aulas;

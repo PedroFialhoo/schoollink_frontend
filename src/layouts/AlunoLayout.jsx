@@ -6,7 +6,7 @@ function AlunoLayout() {
   return (
     <div className={styles.layout}>
       <Sidebar className={styles.sidebar} />
-      <div>
+      <div className={styles.conteudo}>
         <Outlet />
       </div>
     </div>

@@ -1,0 +1,30 @@
+.paginaContainer {
+    width: 90%;
+    max-width: 1200px; 
+    padding: 20px;
+    background-color: #ffffff; 
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
+    border: 1px solid #E9ECEF; 
+    position: relative;
+    margin: 100px auto;
+}
+
+.titulo {
+    position: absolute;
+    top: -20px; 
+    left: 24px;
+    background-color: #7998D6; 
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 100px; /* Formato de pílula */
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 15px rgba(74, 145, 226, 0.432); 
+}
+
+.gridMaterias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+}
