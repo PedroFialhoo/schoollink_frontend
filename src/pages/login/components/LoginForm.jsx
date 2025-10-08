@@ -63,12 +63,12 @@ function LoginForm() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                </div>
+                </div>                
+                <span className={styles.message}>{message}</span>
                 <button type="button" className={styles.loginBtn} onClick={login}>
                     Entrar
                 </button>
             </form>
-            <p className={styles.Message}>{message}</p>
         </div>
     );
 }

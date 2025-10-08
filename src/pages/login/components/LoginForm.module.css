@@ -43,6 +43,18 @@ input{
     background-color: #D9940F;
 }
 
-input:hover{
+.email:hover, .password:hover{
     background-color: #d6d6d6;
+}
+
+.email:focus, .password:focus{
+    border: 1px solid #000000;
+    outline: none;
+}
+
+.message{
+    color: red;
+    font-size: 14px;
+    margin: -10px 0 2px 20px;
+    height: 14px;
 }
