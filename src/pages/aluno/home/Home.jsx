@@ -1,5 +1,6 @@
 import MuralAvisos from "./components/MuralAvisos";
 import styles from "./Home.module.css";
+import { useLocation } from "react-router-dom";
 
 function Home() {
   // Exemplo de dados — futuramente você pode puxar do backend
@@ -56,9 +57,12 @@ function Home() {
   }
 ];
 
+  const location = useLocation();
+  const dados = location.state;
+
   return (
     <div className={styles.home}>
-      <h1 className={styles.welcome}>Bem-vindo, <span>Aluno</span>!</h1>      
+      <h1 className={styles.welcome}>Bem-vindo, <span className={styles.nome}>{dados.nome}</span>!</h1>      
       <MuralAvisos avisos={avisos} />
     </div>
   );

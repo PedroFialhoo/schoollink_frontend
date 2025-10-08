@@ -2,3 +2,7 @@
     text-align: center;
     margin: 20px 0 0 -95px ;
 }
+
+.nome{
+    text-transform: capitalize;
+}

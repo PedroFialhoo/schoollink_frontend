@@ -8,32 +8,35 @@ function LoginForm() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
-    async function login() {
-        try {
-            const response = await fetch("http://localhost:8080/auth/login/usuario", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            const data = await response.json();
-
-            if (response.status === 200) {
-                // Login bem-sucedido
-                navigate("/aluno");
-            } else if (response.status === 401) {
-                // Login falhou
-                setMessage(data.message || "Email ou senha inválidos");
+    function login() {
+        fetch("http://localhost:8080/auth/login/usuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+        })
+        .then(response => {
+            return response.json().then(data => ({
+                status: response.status,
+                body: data
+            }));
+        })
+        .then(({ status, body }) => {
+            if (status === 200) {
+                navigate("/aluno/home", { state: body });
+            } else if (status === 401) {
+                setMessage(body.message || "Email ou senha inválidos");
             } else {
                 setMessage("Erro inesperado. Tente novamente.");
             }
-        } catch (error) {
+        })
+        .catch(error => {
             setMessage("Erro ao tentar logar. Tente novamente.");
             console.error(error);
-        }
+        });
     }
+
 
     return (
         <div className={styles.side}>
