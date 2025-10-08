@@ -1,13 +1,10 @@
-/* Lembre-se de importar uma fonte como a 'Inter' no seu CSS global */
-
 .painelContainer {
-    font-family: 'Inter', sans-serif;
     background-color: #ffffff;
     border-radius: 16px;
     padding: 24px;
     margin: 30vh auto;
     width: 90%;
-    max-width: 380px; /* Mais estreito, ideal para um painel de confirmação */
+    max-width: 380px; 
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid #E9ECEF;
     text-align: center;
@@ -47,11 +44,10 @@
 
 .botoesAcao {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
-    gap: 12px;
+    grid-template-columns: 1fr 1fr; 
+    gap: 16px;
 }
 
-/* Estilo base para os botões */
 .botao {
     border: none;
     padding: 12px 20px;
@@ -63,7 +59,6 @@
     width: 100%;
 }
 
-/* Botão de Cancelar (Secundário) */
 .botaoCancelar {
     background-color: #F1F3F5;
     color: #495057;
@@ -75,13 +70,12 @@
     border-color: #CED4DA;
 }
 
-/* Botão de Sair (Primário / Destrutivo) */
 .botaoSair {
-    background-color: #FA5252; /* Tom de vermelho para indicar ação de "saída/perigo" */
+    background-color: #FA5252; 
     color: #ffffff;
 }
 
 .botaoSair:hover {
-    background-color: #F03E3E; /* Vermelho um pouco mais escuro no hover */
+    background-color: #ff1515;
     box-shadow: 0 4px 15px rgba(250, 82, 82, 0.3);
 }

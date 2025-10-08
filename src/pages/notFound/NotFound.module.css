@@ -1,0 +1,67 @@
+.container {
+
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo {
+    max-width: 150px;
+    margin-bottom: 40px;
+}
+
+.errorCode {
+    font-size: clamp(6rem, 25vw, 12rem); 
+    font-weight: 900;
+    color: #1A3A6A;
+    line-height: 1;
+    margin: 0;
+    text-shadow: 
+        -2px -2px 0 #fff,  
+         2px -2px 0 #fff,
+        -2px  2px 0 #fff,
+         2px  2px 0 #fff,
+         4px  4px 0 #D9940F;
+}
+
+.title {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: #1A3A6A;
+    margin-bottom: 16px;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #6C757D;
+    max-width: 450px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.homeButton {
+    background-color: #1A3A6A;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 100px; 
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.homeButton:hover {
+    background-color: #fff;
+    color: #1A3A6A;
+    border: 2px solid #1A3A6A;
+    box-shadow: 0 8px 20px rgba(26, 58, 106, 0.2);
+    transform: translateY(-3px);
+}

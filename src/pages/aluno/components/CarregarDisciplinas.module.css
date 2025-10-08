@@ -1,7 +1,7 @@
 .paginaContainer {
     width: 90%;
     max-width: 1200px; 
-    padding: 20px;
+    padding: 30px;
     background-color: #ffffff; 
     border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
@@ -14,8 +14,8 @@
     position: absolute;
     top: -20px; 
     left: 24px;
-    background-color: #7998D6; 
-    color: #ffffff;
+    background-color: #FFD24D; 
+    color: #5e5e5e;
     padding: 6px 16px;
     border-radius: 100px; /* Formato de pílula */
     font-size: 1rem;

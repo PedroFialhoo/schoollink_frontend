@@ -17,7 +17,7 @@ function CarregarDisciplinas() {
 
     return (
         <div className={styles.paginaContainer}>
-            <h1 className={styles.titulo}>Disciplinas</h1>
+            <h1 className={styles.titulo}>📚 Disciplinas</h1>
             <div className={styles.gridMaterias}>
                 {materias.map(materia => (
                     <MateriaCard 

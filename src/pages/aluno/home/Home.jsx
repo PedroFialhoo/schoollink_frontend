@@ -2,7 +2,7 @@ import MuralAvisos from "./components/MuralAvisos";
 import styles from "./Home.module.css";
 import { useLocation } from "react-router-dom";
 
-function Home() {
+function HomeAluno() {
   const avisos = [
   {
     id: 1,
@@ -67,4 +67,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeAluno;
