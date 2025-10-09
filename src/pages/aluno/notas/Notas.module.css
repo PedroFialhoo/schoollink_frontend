@@ -1,0 +1,122 @@
+.painelContainer {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    margin: 26px auto;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
+    width: 70%;
+}
+
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    cursor: pointer;
+    list-style: none; /* Remove o marcador padrão */
+}
+
+.cabecalho::-webkit-details-marker {
+    display: none; /* Remove o marcador no Chrome/Safari */
+}
+
+.nomeMateria {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #343A40;
+}
+
+.mediaFinalContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #6c757d;
+}
+
+.mediaTag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* --- Cores Dinâmicas para as Notas/Médias --- */
+.aprovado { background-color: #20C997; } /* Verde */
+.atencao { background-color: #D9940F; } /* Dourado */
+.reprovado { background-color: #FA5252; } /* Vermelho */
+
+.nota{
+    padding: 2px 7px;
+    border-radius: 20px;
+}
+
+.corpoDetalhes {
+    padding: 0 24px 24px 24px;
+    border-top: 1px solid #f1f3f5;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 24px;
+    justify-content: center;
+}
+
+.periodoCard {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    width: 300px;
+}
+
+.periodoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.periodoHeader h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #495057;
+}
+
+.listaNotas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.listaNotas li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+.listaNotas li:last-child {
+    border-bottom: none;
+}
+.listaNotas li span:first-child {
+    color: #6c757d;
+}
+.listaNotas li span:last-child {
+    font-weight: 700;
+}
+
+.arrow {
+    margin-top: 10px;
+    color: #6c757d;
+}
+
+.mensagemErro {
+    text-align: center;
+    color: #FA5252;
+    font-weight: 200;
+    margin-top: 40px;
+    font-size: 2rem;
+}

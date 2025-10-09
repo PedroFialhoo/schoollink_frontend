@@ -1,3 +1,4 @@
+import { Outlet, Link } from "react-router-dom";
 import MateriaCard from "../components/MateriaCard";
 import styles from "./CarregarDisciplinas.module.css"; // Importando o CSS Module
 
@@ -16,16 +17,23 @@ function CarregarDisciplinas() {
     ];
 
     return (
+        <div>
         <div className={styles.paginaContainer}>
             <h1 className={styles.titulo}>📚 Disciplinas</h1>
             <div className={styles.gridMaterias}>
-                {materias.map(materia => (
-                    <MateriaCard 
-                        key={materia.id} 
-                        materia={materia} 
-                    />
+                {materias.map((materia) => (
+                    <Link 
+                    key={materia.id} 
+                    to={`materia/${materia.id}`} 
+                    className={styles.linkMateria}
+                    >
+                    <MateriaCard materia={materia} />
+                    </Link>
                 ))}
             </div>
+        </div>
+        
+        <Outlet/>
         </div>
     );
 }

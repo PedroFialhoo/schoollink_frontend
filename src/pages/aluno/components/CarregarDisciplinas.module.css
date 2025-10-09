@@ -6,7 +6,7 @@
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
     border: 1px solid #E9ECEF; 
     position: relative;
-    margin: 100px auto;
+    margin: 50px auto 0;
 }
 
 .titulo {
@@ -16,7 +16,7 @@
     background-color: #FFD24D; 
     color: #5e5e5e;
     padding: 6px 16px;
-    border-radius: 100px; /* Formato de pílula */
+    border-radius: 100px; 
     font-size: 1rem;
     font-weight: 500;
     box-shadow: 0 2px 15px rgba(74, 145, 226, 0.432); 
@@ -26,4 +26,9 @@
     display: flex;
     flex-flow: row wrap;
     gap: 4px;
+}
+
+.linkMateria {
+    text-decoration: none; 
+    color: inherit;
 }
