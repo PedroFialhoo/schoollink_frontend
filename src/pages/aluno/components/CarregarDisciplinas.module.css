@@ -1,5 +1,4 @@
 .paginaContainer {
-    width: 90%;
     max-width: 1200px; 
     padding: 30px;
     background-color: #ffffff; 
@@ -24,7 +23,7 @@
 }
 
 .gridMaterias {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 24px;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 4px;
 }

@@ -1,7 +1,11 @@
 import styles from './NotFound.module.css';
 import logo from '../../assets/images/logo.png';
+import { useNavigate } from 'react-router-dom';
 
 function NotFound() {
+
+    const navigate = useNavigate()
+
     return (
         <div className={styles.container}>
             <img src={logo} alt="Logo SchoolLink" className={styles.logo} />
@@ -11,9 +15,9 @@ function NotFound() {
             <p className={styles.description}>
                 Oops! Parece que o link que você seguiu está quebrado ou a página foi removida.
             </p>
-            <a href="/" className={styles.homeButton}>
-                Voltar para o Início
-            </a>
+            <button onClick={() => navigate(-1)} className={styles.homeButton}>
+                Voltar
+            </button>
         </div>
     );
 }
