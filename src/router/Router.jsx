@@ -11,6 +11,13 @@ import Logout from "../components/logout/Logout";
 import CarregarDisciplinas from "../pages/aluno/components/CarregarDisciplinas";
 import ProfessorLayout from "../layouts/ProfessorLayout";
 import NotFound from "../pages/notFound/NotFound";
+import AdminLayout from "../layouts/AdminLayout";
+import Cadastrar from "../pages/admin/cadastrar/Cadastrar";
+import Aluno from "../pages/admin/cadastrar/components/Aluno";
+import Professor from "../pages/admin/cadastrar/components/Professor";
+import Admin from "../pages/admin/cadastrar/components/Admin";
+// import HomeAdmin from "../pages/admin/home/Home";
+// import ConfigAdmin from "../pages/admin/config/Config";
 
 const Router = createBrowserRouter([
   {
@@ -72,6 +79,32 @@ const Router = createBrowserRouter([
     path: "/professor",
     element: <ProfessorLayout />,
     children: [      
+      {
+        path: "sair",
+        element: <Logout />,
+      },
+    ],
+  },{
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      // {
+      //   path: "home",
+      //   element: <HomeAdmin />,
+      // },
+      {
+        path: "cadastrar",
+        element: <Cadastrar />,
+        children: [
+          { path: "aluno", element: <Aluno /> },
+          { path: "professor", element: <Professor /> },
+          { path: "administrador", element: <Admin /> },
+        ],
+      },
+      // {
+      //   path: "configuracoes",
+      //   element: <ConfigAdmin />,
+      // },
       {
         path: "sair",
         element: <Logout />,

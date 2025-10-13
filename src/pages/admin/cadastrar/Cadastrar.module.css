@@ -1,0 +1,45 @@
+.cadastrar{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.containerCadastrar {
+    background-color: #ffffff; 
+    border-radius: 16px;
+    padding: 24px;
+    margin: 60px auto; 
+    min-width: 100%;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
+    border: 1px solid #E9ECEF; 
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.titulo {
+    position: absolute;
+    top: -20px; 
+    left: 24px;
+    background-color: #FFD24D; 
+    color: #5e5e5e;
+    padding: 6px 16px;
+    border-radius: 100px; /* Formato de pílula */
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 15px rgba(74, 145, 226, 0.432); 
+}
+
+.entidades {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    margin-top: 40px; 
+}
+
+.link{
+    text-decoration: none;
+}
