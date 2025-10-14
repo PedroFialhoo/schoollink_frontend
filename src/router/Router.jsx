@@ -13,9 +13,10 @@ import ProfessorLayout from "../layouts/ProfessorLayout";
 import NotFound from "../pages/notFound/NotFound";
 import AdminLayout from "../layouts/AdminLayout";
 import Cadastrar from "../pages/admin/cadastrar/Cadastrar";
-import Aluno from "../pages/admin/cadastrar/components/Aluno";
-import Professor from "../pages/admin/cadastrar/components/Professor";
-import Admin from "../pages/admin/cadastrar/components/Admin";
+import CadastrarAluno from "../pages/admin/cadastrar/components/CadastrarAluno";
+import CadastrarProfessor from "../pages/admin/cadastrar/components/CadastrarProfessor";
+import CadastrarAdmin from "../pages/admin/cadastrar/components/CadastrarAdmin";
+import Editar from "../pages/admin/editar/Editar";
 // import HomeAdmin from "../pages/admin/home/Home";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
@@ -96,10 +97,19 @@ const Router = createBrowserRouter([
         path: "cadastrar",
         element: <Cadastrar />,
         children: [
-          { path: "aluno", element: <Aluno /> },
-          { path: "professor", element: <Professor /> },
-          { path: "administrador", element: <Admin /> },
+          { path: "aluno", element: <CadastrarAluno /> },
+          { path: "professor", element: <CadastrarProfessor /> },
+          { path: "administrador", element: <CadastrarAdmin /> },
         ],
+      },
+      {
+        path: "editar",
+        element: <Editar />,
+        // children: [
+        //   { path: "aluno", element: <CadastrarAluno /> },
+        //   { path: "professor", element: <CadastrarProfessor /> },
+        //   { path: "administrador", element: <CadastrarAdmin /> },
+        // ],
       },
       // {
       //   path: "configuracoes",

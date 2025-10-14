@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styles from './Aluno.module.css';
+import styles from './CadastrarAluno.module.css';
 
-function Aluno() {
+function CadastrarAluno() {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -144,4 +144,4 @@ function Aluno() {
     );
 }
 
-export default Aluno;
+export default CadastrarAluno;

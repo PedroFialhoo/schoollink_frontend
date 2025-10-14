@@ -1,8 +1,6 @@
-import { useState } from "react";
 import styles from "./LoginSideBar.module.css";
 
-function Sidebar() {
-  const [userType, setUserType] = useState("aluno");
+function LoginSideBar({ userType, setUserType }) {
 
   const handleSelect = (type) => {
     setUserType(type);
@@ -10,7 +8,11 @@ function Sidebar() {
 
   return (
     <div className={`${styles.side} ${styles[userType]}`}>
-      <h1 className={styles.selectOp}>{userType === "admin" ? "Administrador" : userType.charAt(0).toUpperCase() + userType.slice(1)}</h1>
+      <h1 className={styles.selectOp}>
+        {userType === "admin" 
+          ? "Administrador" 
+          : userType.charAt(0).toUpperCase() + userType.slice(1)}
+      </h1>
 
       <button
         className={`${styles.option} ${userType === "aluno" ? styles.optionSelect : ""} ${styles.aluno}`}
@@ -36,4 +38,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default LoginSideBar;

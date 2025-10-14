@@ -2,14 +2,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 
-function LoginForm() {
+function LoginForm({ userType }) {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    const endpoints = {
+        aluno: "http://localhost:8080/auth/login/usuario",
+        professor: "http://localhost:8080/auth/login/professor",
+        admin: "http://localhost:8080/auth/login/admin",
+        }
+    const endpoint = endpoints[userType]
 
     function login() {
-        fetch("http://localhost:8080/auth/login/usuario", {
+        fetch(endpoint, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",                
@@ -35,7 +41,7 @@ function LoginForm() {
         .catch(error => {
             setMessage("Erro ao tentar logar. Tente novamente.");
             console.error(error);
-        });
+        });      
     }
 
 

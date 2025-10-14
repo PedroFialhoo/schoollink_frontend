@@ -1,11 +1,11 @@
-.cadastrar{
+.container{
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
-.containerCadastrar {
+.subcontainer {
     background-color: #ffffff; 
     border-radius: 16px;
     padding: 24px;
