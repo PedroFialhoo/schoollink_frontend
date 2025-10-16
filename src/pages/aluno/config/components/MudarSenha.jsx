@@ -1,3 +1,4 @@
+import PasswordInput from '../../../../components/passwordInput/passwordInput';
 import styles from './MudarSenha.module.css';
 import { useState } from 'react';
 
@@ -46,15 +47,15 @@ function MudarSenha() {
             <form className={styles.senhaForm}>
                 <div className={styles.inputGroup}>
                     <label htmlFor="senha-atual">Senha Atual</label>
-                    <input type="text" id="senha-atual" value={senhaAtual} onChange={(e) => setSenhaAtual(e.target.value)} />
+                    <PasswordInput id="senha-atual" value={senhaAtual} onChange={(e) => setSenhaAtual(e.target.value)} />
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor="nova-senha">Nova Senha</label>
-                    <input type="text" id="nova-senha" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} />
+                    <PasswordInput id="nova-senha" value={novaSenha} onChange={(e) => setNovaSenha(e.target.value)} />
                 </div>
                 <div className={styles.inputGroup}>
                     <label htmlFor="confirmar-senha">Confirmar Nova Senha</label>
-                    <input type="text" id="confirmar-senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
+                    <PasswordInput id="confirmar-senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
                 </div>
 
                 <button className={`${styles.botao} ${styles.botaoSalvar}`} onClick={handleSubmit}> 

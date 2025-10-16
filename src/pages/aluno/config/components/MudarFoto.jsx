@@ -11,7 +11,6 @@ function MudarFoto({ avatarUrl, nome, email }) {
 
     return (
         
-        <div className={styles.settingsGrid}>
             <div className={styles.settingsCard}>
                 <h2 className={styles.cardTitulo}>Foto de Perfil</h2>
                 <div className={styles.perfilContainer}>
@@ -31,7 +30,6 @@ function MudarFoto({ avatarUrl, nome, email }) {
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 
