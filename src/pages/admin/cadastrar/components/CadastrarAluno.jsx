@@ -1,37 +1,58 @@
 import { useState } from 'react';
-import styles from './CadastrarAluno.module.css';
+import styles from './Cadastrar.module.css';
+import Endereco from './Endereco';
 
 function CadastrarAluno() {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [matricula, setMatricula] = useState("");
+    const [dataMatricula, setDataMatricula] = useState("");
     const [statusMatricula, setStatusMatricula] = useState("");
+    const [nomeResponsavel, setNomeResponsavel] = useState("");
     const [telefone, setTelefone] = useState("");
+    const [telefoneResponsavel, setTelefoneResponsavel] = useState("");
+    const [cep, setCep] = useState("");
+    const [pais, setPais] = useState("");
+    const [estado, setEstado] = useState("");
+    const [cidade, setCidade] = useState("");
+    const [rua, setRua] = useState("");
+    const [numero, setNumero] = useState("");
+
     const [mensagem, setMensagem] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!nome || !email || !senha || !matricula || !statusMatricula || !telefone) {
-            setMensagem("Preencha todos os campos.");
+        if (!nome || !email || !senha) {
+            setMensagem("Preencha pelo menos os campos nome, email e senha.");
             return;
         }
-        const aluno = { nome, email, senha, matricula, statusMatricula, telefone };
+
+        const aluno = {
+            nome,
+            email,
+            senha,
+            matricula,
+            dataMatricula,
+            statusMatricula,
+            telefone,
+            nomeResponsavel,
+            telefoneResponsavel,
+            endereco: {
+                cep,
+                pais,
+                estado,
+                cidade,
+                rua,
+                numero
+            }
+        };
 
         fetch("http://localhost:8080/aluno/cadastrar", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                nome: nome,
-                email: email,
-                senha: senha,
-                matricula: matricula,
-                statusMatricula: statusMatricula,
-                telefone: telefone
-            }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(aluno),
         })
         .then(response => {
             if (response.ok) {
@@ -48,12 +69,21 @@ function CadastrarAluno() {
             console.error(error);
         });
 
-        setEmail("");
         setNome("");
+        setEmail("");
         setSenha("");
         setMatricula("");
+        setDataMatricula("");
         setStatusMatricula("");
         setTelefone("");
+        setNomeResponsavel("");
+        setTelefoneResponsavel("");
+        setCep("");
+        setPais("");
+        setEstado("");
+        setCidade("");
+        setRua("");
+        setNumero("");
     };
 
     return (
@@ -101,6 +131,16 @@ function CadastrarAluno() {
                 </div>
 
                 <div className={styles.inputGroup}>
+                    <label htmlFor="dataMatricula">Data de Matrícula</label>
+                    <input
+                        type="text"
+                        id="dataMatricula"
+                        value={dataMatricula}
+                        onChange={(e) => setDataMatricula(e.target.value)}
+                    />
+                </div>
+
+                <div className={styles.inputGroup}>
                     <label htmlFor="statusMatricula">Status da Matrícula</label>
                     <select
                         id="statusMatricula"
@@ -123,6 +163,35 @@ function CadastrarAluno() {
                         onChange={(e) => setTelefone(e.target.value)}
                     />
                 </div>
+
+                <div className={styles.inputGroup}>
+                    <label htmlFor="nomeResponsavel">Nome responsável</label>
+                    <input
+                        type="text"
+                        id="nomeResponsavel"
+                        value={nomeResponsavel}
+                        onChange={(e) => setNomeResponsavel(e.target.value)}
+                    />
+                </div>
+
+                <div className={styles.inputGroup}>
+                    <label htmlFor="telefoneResponsavel">Telefone responsável</label>
+                    <input
+                        type="tel"
+                        id="telefoneResponsavel"
+                        value={telefoneResponsavel}
+                        onChange={(e) => setTelefoneResponsavel(e.target.value)}
+                    />
+                </div>
+
+                <Endereco
+                    cep={cep} setCep={setCep}
+                    pais={pais} setPais={setPais}
+                    estado={estado} setEstado={setEstado}
+                    cidade={cidade} setCidade={setCidade}
+                    rua={rua} setRua={setRua}
+                    numero={numero} setNumero={setNumero}
+                />
 
                 {mensagem && (
                     <p
