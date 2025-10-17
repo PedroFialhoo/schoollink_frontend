@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
-import PasswordInput from "../../../components/passwordInput/passwordInput";
+import PasswordInput from "../../../components/passwordInput/PasswordInput";
 
 function LoginForm({ userType }) {
     const navigate = useNavigate();
@@ -14,7 +14,6 @@ function LoginForm({ userType }) {
         admin: "http://localhost:8080/auth/login/admin",
         }
     const endpoint = endpoints[userType]
-    const [eyeState, setEyeState] = useState(true);
 
     function login() {
         fetch(endpoint, {
@@ -46,10 +45,6 @@ function LoginForm({ userType }) {
         });      
     }
 
-    function eyeClick(eyeState){
-        setEyeState(!eyeState)
-    }
-
     return (
         <div className={styles.side}>
             <img src="/src/assets/images/logo.png" className={styles.logo} alt="" />
@@ -65,7 +60,8 @@ function LoginForm({ userType }) {
                         required
                     />
                 </div>
-                <PasswordInput className={`styles.formGroup styles.password`}
+                <PasswordInput 
+                        className={`${styles.formGroup} ${styles.password}`}
                         name="password"
                         placeholder="Senha"
                         value={password}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import styles from './Cadastrar.module.css';
+import styles from './Cadastrar.module.css'
+import FormAdmin from '../../components/forms/FormAdmin';
 
 function CadastrarAdmin() {
 
@@ -24,25 +25,10 @@ function CadastrarAdmin() {
         <div className={styles.settingsCard}>
             <h2 className={styles.cardTitulo}>Cadastrar Administrador</h2>
                 <form className={styles.cadastroForm} onSubmit={handleSubmit}>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="email">Email</label>
-                        <input
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="senha">Senha</label>
-                        <input
-                            type="password"
-                            id="senha"
-                            value={senha}
-                            onChange={(e) => setSenha(e.target.value)}
-                        />
-                    </div>
+                    <FormAdmin
+                        email={email} setEmail={setEmail}
+                        senha={senha} setSenha={setSenha}
+                    />
 
                     {mensagem && (
                         <p

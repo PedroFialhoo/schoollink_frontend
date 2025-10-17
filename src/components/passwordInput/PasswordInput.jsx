@@ -13,6 +13,7 @@ function PasswordInput(props){
         <div className={styles.container}>
             <input
                 type={eyeState ? "password" : "text"}
+                className={props.className}
                 {...props}
             />
             <i onClick={() => eyeClick(eyeState)} className={`bi ${eyeState ? "bi-eye" : "bi-eye-slash"} ${styles.eye}`}></i>

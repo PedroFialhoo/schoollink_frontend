@@ -1,4 +1,4 @@
-import styles from './Cadastrar.module.css';
+import styles from './Form.module.css';
 
 function Endereco({
     cep, setCep,

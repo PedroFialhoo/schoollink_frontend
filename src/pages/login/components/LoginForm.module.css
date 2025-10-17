@@ -48,7 +48,7 @@ input{
 }
 
 .email:focus, .password:focus{
-    border: 1px solid #000000;
+    border: 1px solid #747474;
     outline: none;
 }
 
@@ -58,3 +58,4 @@ input{
     margin: -10px 0 2px 20px;
     height: 14px;
 }
+

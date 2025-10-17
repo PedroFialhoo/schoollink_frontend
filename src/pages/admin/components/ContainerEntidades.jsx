@@ -7,6 +7,10 @@ function ContainerEntidades({ titulo }){
             {type: "aluno" },
             {type: "professor" },
             {type: "administrador" },
+            {type: "funcionário" },
+            {type: "turma" },
+            {type: "disciplina" },
+            {type: "horário" },
         ];
 
     return(
