@@ -29,63 +29,62 @@ function CadastrarAluno() {
       setMensagem("Preencha pelo menos os campos nome, email e senha.");
       return;
     }
+        const aluno = {
+            nome,
+            email,
+            senha,
+            // matricula,
+            // dataMatricula,
+            // statusMatricula,
+            // telefone,
+            // nomeResponsavel,
+            // telefoneResponsavel,
+            // endereco: {
+            //     cep,
+            //     pais,
+            //     estado,
+            //     cidade,
+            //     rua,
+            //     numero
+            // }
+        };
 
-    const aluno = {
-      nome,
-      email,
-      senha,
-      matricula,
-      dataMatricula,
-      statusMatricula,
-      telefone,
-      nomeResponsavel,
-      telefoneResponsavel,
-      endereco: {
-        cep,
-        pais,
-        estado,
-        cidade,
-        rua,
-        numero,
-      },
+        fetch("http://localhost:8080/aluno/cadastrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(aluno),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+        })
+        .then(data => {
+            setMensagem(data.mensagem || "Aluno cadastrado com sucesso!");
+        })
+        .catch(error => {
+            setMensagem("Erro ao tentar cadastrar. Tente novamente.");
+            console.error(error);
+        });
+
+        setNome("");
+        setEmail("");
+        setSenha("");
+        setMatricula("");
+        setDataMatricula("");
+        setStatusMatricula("");
+        setTelefone("");
+        setNomeResponsavel("");
+        setTelefoneResponsavel("");
+        setCep("");
+        setPais("");  
+        setEstado("");
+        setCidade("");
+        setRua("");
+        setNumero("");
     };
-
-    fetch("http://localhost:8080/aluno/cadastrar", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(aluno),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error(`Erro HTTP: ${response.status}`);
-        }
-      })
-      .then((data) => {
-        setMensagem(data.mensagem || "Aluno cadastrado com sucesso!");
-      })
-      .catch((error) => {
-        setMensagem("Erro ao tentar cadastrar. Tente novamente.");
-        console.error(error);
-      });
-
-    setNome("");
-    setEmail("");
-    setSenha("");
-    setMatricula("");
-    setDataMatricula("");
-    setStatusMatricula("");
-    setTelefone("");
-    setNomeResponsavel("");
-    setTelefoneResponsavel("");
-    setCep("");
-    setPais("");
-    setEstado("");
-    setCidade("");
-    setRua("");
-    setNumero("");
-  };
 
   return (
     <div className={styles.settingsCard}>
@@ -138,7 +137,7 @@ function CadastrarAluno() {
         </button>
       </form>
     </div>
-  );
+  )
 }
 
 export default CadastrarAluno;
