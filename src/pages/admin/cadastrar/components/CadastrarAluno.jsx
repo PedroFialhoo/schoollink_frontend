@@ -89,7 +89,7 @@ function CadastrarAluno() {
   return (
     <div className={styles.settingsCard}>
       <h2 className={styles.cardTitulo}>Cadastrar Aluno</h2>
-      <form className={styles.cadastroForm} onSubmit={handleSubmit}>
+      <form className={styles.cadastroForm} onSubmit={handleSubmit} noValidate>
         <FormAluno
           nome={nome} setNome={setNome}
           email={email} setEmail={setEmail}
