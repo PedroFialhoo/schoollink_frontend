@@ -33,20 +33,20 @@ function CadastrarAluno() {
             nome,
             email,
             senha,
-            matricula,
-            dataMatricula,
-            statusMatricula,
-            telefone,
-            nomeResponsavel,
-            telefoneResponsavel,
-            endereco: {
-                cep,
-                pais,
-                estado,
-                cidade,
-                rua,
-                numero
-            }
+            // matricula,
+            // dataMatricula,
+            // statusMatricula,
+            // telefone,
+            // nomeResponsavel,
+            // telefoneResponsavel,
+            // endereco: {
+            //     cep,
+            //     pais,
+            //     estado,
+            //     cidade,
+            //     rua,
+            //     numero
+            // }
         };
 
         fetch("http://localhost:8080/aluno/cadastrar", {
