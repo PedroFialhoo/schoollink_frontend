@@ -10,7 +10,7 @@ function CadastrarProfessor() {
   const [telefone, setTelefone] = useState("");
   const [dataContratacao, setDataContratacao] = useState("");
   const [formacaoAcademica, setFormacaoAcademica] = useState("");
-  const [disciplinas, setDisciplinas] = useState("");
+  const [disciplinas, setDisciplinas] = useState([]);
   const [registroProfissional, setRegistroProfissional] = useState("");
   const [cargaHorariaSemanal, setCargaHorariaSemanal] = useState("");
   const [turno, setTurno] = useState("");
@@ -31,6 +31,46 @@ function CadastrarProfessor() {
       setMensagem("Preencha pelo menos os campos nome, email e senha.");
       return;
     }
+    const professor = {
+        nome,
+        email,
+        senha,
+        disciplinaIds: disciplinas.map(id => Number(id)),
+        // telefone,
+        // dataContratacao,
+        // formacaoAcademica,
+        // disciplinas,
+        // registroProfissional,
+        // cargaHorariaSemanal,
+        // turno,
+        // salario,
+        // cep,
+        // pais,
+        // estado,
+        // cidade,
+        // rua,
+        // numero
+    };
+    
+    fetch("http://localhost:8080/professor/cadastrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(professor),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+        })
+        .then(data => {
+            setMensagem(data.mensagem || "Professor cadastrado com sucesso!");
+        })
+        .catch(error => {
+            setMensagem("Erro ao tentar cadastrar. Tente novamente.");
+            console.error(error);
+        });
 
     setNome("");
     setEmail("");
@@ -47,12 +87,13 @@ function CadastrarProfessor() {
     setCidade("");
     setRua("");
     setNumero("");
+    setDisciplinas([]);
   };
 
   return (
     <div className={styles.settingsCard}>
       <h2 className={styles.cardTitulo}>Cadastrar Professor </h2>
-      <form className={styles.cadastroForm} onSubmit={handleSubmit}>
+      <form className={styles.cadastroForm} onSubmit={handleSubmit} noValidate>
         <FormProfessor
           nome={nome}
           setNome={setNome}

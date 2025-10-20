@@ -9,7 +9,7 @@ function LoginForm({ userType }) {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const endpoints = {
-        aluno: "http://localhost:8080/auth/login/usuario",
+        aluno: "http://localhost:8080/auth/login/aluno",
         professor: "http://localhost:8080/auth/login/professor",
         admin: "http://localhost:8080/auth/login/admin",
         }
@@ -32,7 +32,7 @@ function LoginForm({ userType }) {
         })
         .then(({ status, body }) => {
             if (status === 200) {
-                navigate("/aluno/home", { state: body });
+                navigate(`/${userType}/home`, { state: body });
             } else if (status === 401) {
                 setMessage(body.message || "Email ou senha inválidos");
             } else {

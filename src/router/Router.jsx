@@ -17,6 +17,7 @@ import CadastrarAluno from "../pages/admin/cadastrar/components/CadastrarAluno";
 import CadastrarProfessor from "../pages/admin/cadastrar/components/CadastrarProfessor";
 import CadastrarAdmin from "../pages/admin/cadastrar/components/CadastrarAdmin";
 import Editar from "../pages/admin/editar/Editar";
+import CadastrarDisciplina from "../pages/admin/cadastrar/components/CadastrarDisciplina";
 // import HomeAdmin from "../pages/admin/home/Home";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
@@ -100,6 +101,7 @@ const Router = createBrowserRouter([
           { path: "aluno", element: <CadastrarAluno /> },
           { path: "professor", element: <CadastrarProfessor /> },
           { path: "administrador", element: <CadastrarAdmin /> },
+          { path: "disciplina", element: <CadastrarDisciplina /> },
         ],
       },
       {

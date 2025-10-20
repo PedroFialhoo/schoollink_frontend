@@ -1,6 +1,8 @@
 import styles from './Form.module.css';
 import PasswordInput from '../../../../components/passwordInput/PasswordInput';
 import InputMask from 'react-input-mask';
+import Select from 'react-select';
+import { useEffect, useState } from 'react';
 
 function FormProfessor({
     nome, setNome,
@@ -15,6 +17,28 @@ function FormProfessor({
     turno, setTurno,    
     salario, setSalario
 }) {
+    const [opcoesDisciplinas, setOpcoesDisciplinas] = useState([]);
+    const handleDisciplinasChange = (selected) => {
+        setDisciplinas(selected ? selected.map(op => op.value) : []);
+    };
+
+
+   useEffect(() => {
+    fetch("http://localhost:8080/disciplina/buscar-todas")
+        .then(response => response.json())
+        .then(data => {
+        const disciplinasFormatadas = data.map(d => ({
+            value: d.id,
+            label: d.nome
+        }));
+        setOpcoesDisciplinas(disciplinasFormatadas);
+        })
+        .catch(error => {
+        console.error("Erro ao buscar disciplinas:", error);
+        });
+    }, []);
+
+
     return (
         <>
             <div className={styles.inputGroup}>
@@ -88,15 +112,14 @@ function FormProfessor({
                 />
             </div>
 
-            <div className={styles.inputGroup}>
+            <div >
                 <label htmlFor="disciplinas">Disciplinas que Leciona</label>
-                <input
-                    type="text"
-                    id="disciplinas"
-                    value={disciplinas}
-                    onChange={(e) => setDisciplinas(e.target.value)}
-                    placeholder="Ex: Matemática, Física"
-                    required
+                <Select
+                id="disciplinas"
+                isMulti
+                options={opcoesDisciplinas}
+                value={opcoesDisciplinas.filter(op => disciplinas.includes(op.value))}
+                onChange={handleDisciplinasChange}
                 />
             </div>
 

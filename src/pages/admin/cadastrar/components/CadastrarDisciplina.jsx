@@ -1,32 +1,28 @@
 import { useState } from 'react';
 import styles from './Cadastrar.module.css'
-import FormAdmin from '../../components/forms/FormAdmin';
+import FormDisciplina from '../../components/forms/FormDisciplina';
 
-function CadastrarAdmin() {
+function CadastrarDisciplina() {
 
-    
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    
+    const [nome, setNome] = useState("");    
     const [mensagem, setMensagem] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!email || !senha) {
+        if (!nome) {
             setMensagem("Preencha todos os campos.");
             return;
         }
 
-        const admin = {
-            email,
-            senha,
+        const disciplina = {
+            nome,
         };
 
-        fetch("http://localhost:8080/admin/cadastrar", {
+        fetch("http://localhost:8080/disciplina/cadastrar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(admin),
+            body: JSON.stringify(disciplina),
         })
         .then(response => {
             if (response.ok) {
@@ -36,7 +32,7 @@ function CadastrarAdmin() {
             }
         })
         .then(data => {
-            setMensagem(data.mensagem || "Administrador cadastrado com sucesso!");
+            setMensagem(data.mensagem || "Disciplina cadastrada com sucesso!");
         })
         .catch(error => {
             setMensagem("Erro ao tentar cadastrar. Tente novamente.");
@@ -49,11 +45,10 @@ function CadastrarAdmin() {
 
   return (
         <div className={styles.settingsCard}>
-            <h2 className={styles.cardTitulo}>Cadastrar Administrador</h2>
+            <h2 className={styles.cardTitulo}>Cadastrar Disciplina</h2>
                 <form className={styles.cadastroForm} onSubmit={handleSubmit}>
-                    <FormAdmin
-                        email={email} setEmail={setEmail}
-                        senha={senha} setSenha={setSenha}
+                    <FormDisciplina
+                        nome={nome} setNome={setNome}
                     />
 
                     {mensagem && (
@@ -76,4 +71,4 @@ function CadastrarAdmin() {
     )
 }
 
-export default CadastrarAdmin;
+export default CadastrarDisciplina;
