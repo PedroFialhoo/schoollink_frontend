@@ -4,7 +4,7 @@
     padding: 24px 32px;
     border: 1px solid #E9ECEF;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    width: 90%;
+    width: 100%;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
 }
 
@@ -14,7 +14,7 @@
     color: #343A40;
     margin: 0 0 24px 0;
     padding-bottom: 16px;
-    border-bottom: 1px solid #F1F3F5;
+    border-bottom: 1px solid #a1a1a1;
 }
 
 .cadastroForm {

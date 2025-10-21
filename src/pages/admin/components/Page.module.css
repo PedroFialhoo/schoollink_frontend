@@ -1,7 +1,8 @@
 .pagina{
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
     align-items: center;
     justify-content: center;
     width: 100%;
+    gap: 10px;
 }

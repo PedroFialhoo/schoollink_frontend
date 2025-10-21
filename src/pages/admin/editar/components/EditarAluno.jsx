@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./Editar.module.css";
 import Endereco from "../../components/forms/Endereco";
 import FormAluno from "../../components/forms/FormAluno";
+import BuscarEntidade from "../../components/buscar/BuscarEntidade";
 
 function EditarAluno() {
   const [nome, setNome] = useState("");
@@ -20,27 +21,43 @@ function EditarAluno() {
   const [rua, setRua] = useState("");
   const [numero, setNumero] = useState("");
   const [mensagem, setMensagem] = useState("");
+  const [searchActive, setSearchActive] = useState("desactive");
 
-    useEffect(() => {
-        fetch("http://localhost:8080/aluno/buscarAluno/6")
-            .then(response => response.json())
-            .then(data => {
-                setNome(data.user.nome);
-                setSenha(data.user.senha);
-                setMatricula(data.matricula);
-                setDataMatricula(data.dataMatricula);
-                setStatusMatricula(data.statusMatricula);
-                setTelefone(data.user.telefone);
-                setNomeResponsavel(data.nomeResponsavel);
-                setTelefoneResponsavel(data.telefoneResponsavel);
-                setCep(data.endereco.cep);
-                setPais(data.endereco.pais);
-                setEstado(data.endereco.estado);
-                setCidade(data.endereco.cidade);
-                setRua(data.endereco.rua);
-                setNumero(data.endereco.numero);
-            });
-    }, []);
+  const handleResultadoBusca = (dados) => {
+      if (dados.length === 0) return;
+
+      const aluno = dados[0]; // só um resultado
+
+      setNome(aluno.user?.nome || "");
+      setEmail(aluno.user?.email || "");
+      setSenha(""); // não podemos mostrar a senha real
+      setMatricula(aluno.matricula || "");
+      setDataMatricula(aluno.dataMatricula || "");
+      setStatusMatricula(aluno.statusMatricula || "");
+      setTelefone(aluno.user?.telefone || "");
+      setNomeResponsavel(aluno.nomeResponsavel || "");
+      setTelefoneResponsavel(aluno.telefoneResponsavel || "");
+
+      // Endereço
+      if (aluno.endereco) {
+          setCep(aluno.endereco?.cep || "");
+          setPais(aluno.endereco?.pais || "");
+          setEstado(aluno.endereco?.estado || "");
+          setCidade(aluno.endereco?.cidade || "");
+          setRua(aluno.endereco?.rua || "");
+          setNumero(aluno.endereco?.numero || "");
+      } else {
+          setCep("");
+          setPais("");  
+          setEstado("");
+          setCidade("");
+          setRua("");
+          setNumero("");
+      }
+
+      setSearchActive("desactive"); // fecha popup
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,56 +119,72 @@ function EditarAluno() {
     };
 
   return (
-    <div className={styles.settingsCard}>
-      <h2 className={styles.cardTitulo}>Editar Aluno</h2>
-      <form className={styles.cadastroForm} onSubmit={handleSubmit} noValidate>
-        <FormAluno
-          nome={nome} setNome={setNome}
-          email={email} setEmail={setEmail} emailMode="disabled"
-          senha={senha} setSenha={setSenha}
-          matricula={matricula} setMatricula={setMatricula}
-          dataMatricula={dataMatricula} setDataMatricula={setDataMatricula}
-          statusMatricula={statusMatricula} setStatusMatricula={setStatusMatricula}
-          telefone={telefone} setTelefone={setTelefone}
-          nomeResponsavel={nomeResponsavel} setNomeResponsavel={setNomeResponsavel}
-          telefoneResponsavel={telefoneResponsavel} setTelefoneResponsavel={setTelefoneResponsavel}
-        />
+    <>
+      <div className={styles.settingsCard}>
+        <div className={styles.card}>
+          <h2 className={styles.cardTitulo}>Editar Aluno</h2>
+          <button className={`${styles.botao} ${styles.botaoSalvar}`} onClick={() => setSearchActive(searchActive === "desactive" ? "active" : "desactive")}>Buscar aluno</button>
+        </div>
+        
+        <form className={styles.cadastroForm} onSubmit={handleSubmit} noValidate>
+          <FormAluno
+            nome={nome} setNome={setNome}
+            email={email} setEmail={setEmail} emailMode="disabled"
+            senha={senha} setSenha={setSenha}
+            matricula={matricula} setMatricula={setMatricula}
+            dataMatricula={dataMatricula} setDataMatricula={setDataMatricula}
+            statusMatricula={statusMatricula} setStatusMatricula={setStatusMatricula}
+            telefone={telefone} setTelefone={setTelefone}
+            nomeResponsavel={nomeResponsavel} setNomeResponsavel={setNomeResponsavel}
+            telefoneResponsavel={telefoneResponsavel} setTelefoneResponsavel={setTelefoneResponsavel}
+          />
 
-        <Endereco
-          cep={cep}
-          setCep={setCep}
-          pais={pais}
-          setPais={setPais}
-          estado={estado}
-          setEstado={setEstado}
-          cidade={cidade}
-          setCidade={setCidade}
-          rua={rua}
-          setRua={setRua}
-          numero={numero}
-          setNumero={setNumero}
-        />
+          <Endereco
+            cep={cep}
+            setCep={setCep}
+            pais={pais}
+            setPais={setPais}
+            estado={estado}
+            setEstado={setEstado}
+            cidade={cidade}
+            setCidade={setCidade}
+            rua={rua}
+            setRua={setRua}
+            numero={numero}
+            setNumero={setNumero}
+          />
 
-        {mensagem && (
-          <p
-            className={
-              mensagem.includes("sucesso")
-                ? styles.mensagemSucesso
-                : styles.mensagemErro
-            }
+          {mensagem && (
+            <p
+              className={
+                mensagem.includes("sucesso")
+                  ? styles.mensagemSucesso
+                  : styles.mensagemErro
+              }
+            >
+              {mensagem}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className={`${styles.botao} ${styles.botaoSalvar}`}
           >
-            {mensagem}
-          </p>
-        )}
-
-        <button
-          type="submit"
-          className={`${styles.botao} ${styles.botaoSalvar}`}
-        >
-          Cadastrar
-        </button>
-      </form>
-    </div>
+            Salvar
+          </button>
+        </form>
+      </div>
+      {searchActive === "active" && (
+      <div className={styles.blackShield}>
+        <BuscarEntidade
+                entidade = "aluno"
+                searchActive={searchActive}
+                setSearchActive={setSearchActive}
+                onResultado={handleResultadoBusca}
+            />
+      </div>
+    )}
+    </>
   )
 }
 

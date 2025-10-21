@@ -4,12 +4,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    align-self: flex-start;
 }
 .subcontainer {
     background-color: #ffffff; 
     border-radius: 16px;
     padding: 24px;
-    margin: 60px auto; 
+    margin: 20px auto; 
     min-width: 100%;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
     border: 1px solid #E9ECEF; 

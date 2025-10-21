@@ -1,0 +1,161 @@
+/* --- Container Principal (O "Card" do Pop-up) --- */
+.popupContainer {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid #E9ECEF;
+    padding: 24px 32px;
+    max-width: 500px;
+    width: 90%;
+    margin: 40px auto; /* Para fins de exemplo. Em um modal real, isso seria centralizado */
+    position: relative;
+    z-index: 10;
+    max-height: 90%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+
+/* --- Formulário de Busca --- */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.formGroup label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.formGroup input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: #fff;
+}
+
+.formGroup input:focus {
+    outline: none;
+    border-color: #1A3A6A; /* Azul da marca */
+    box-shadow: 0 0 0 3px rgba(26, 58, 106, 0.2);
+}
+
+/* --- Botão de Busca --- */
+.botaoBuscar {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    margin-top: 8px;
+    background-color: #1A3A6A; /* Azul da marca */
+    color: white;
+}
+
+.botaoBuscar:hover {
+    background-color: #152e55;
+    box-shadow: 0 4px 15px rgba(26, 58, 106, 0.3);
+}
+
+.botaoBuscar:disabled {
+    background-color: #CED4DA;
+    color: #868E96;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- Mensagem de Erro --- */
+.erro {
+    color: #c92a2a;
+    background-color: #fff5f5;
+    border: 1px solid #ffc9c9;
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin: 16px 0 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* --- Lista de Resultados --- */
+.resultados {
+    margin: 24px auto;
+    border-top: 1px solid #f1f3f5;
+    padding-top: 16px;
+}
+
+/* Título (h4) */
+.resultados h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #495057;
+    margin: 0 0 12px 0;
+}
+
+.resultados ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Limita a altura para o pop-up não ficar gigante */
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 5px; /* Espaço para a barra de rolagem */
+}
+
+.resultados li {
+    background-color: #f8f9fa;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    font-size: 0.95rem;
+    color: #495057;
+}
+
+.resultados li strong {
+    color: #1A3A6A; /* Azul da marca */
+    font-weight: 700;
+}
+
+.card{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0 0 24px 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #a1a1a1;
+}
+
+.botaoFechar {
+    border: none;
+    padding: 7px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-top: 8px;
+    background-color: #1A3A6A; /* Azul da marca */
+    color: white;
+}
+
+.botaoFechar:hover {
+    background-color: #152e55;
+    box-shadow: 0 4px 15px rgba(26, 58, 106, 0.3);
+}

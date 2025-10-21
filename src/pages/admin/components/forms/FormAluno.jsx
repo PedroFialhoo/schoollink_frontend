@@ -33,6 +33,7 @@ function FormAluno({
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="off"
         />
       </div>
 
@@ -42,6 +43,7 @@ function FormAluno({
           id="senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
+          autoComplete="new-password"
         />
       </div>
 
