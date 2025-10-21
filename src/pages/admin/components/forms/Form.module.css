@@ -37,3 +37,7 @@
     border-color: #1A3A6A; /* Azul da marca SchoolLink */
     box-shadow: 0 0 0 3px rgba(26, 58, 106, 0.2);
 }
+
+.disabled{
+   display: none; 
+}

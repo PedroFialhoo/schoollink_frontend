@@ -1,0 +1,85 @@
+.settingsCard {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px 32px;
+    border: 1px solid #E9ECEF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 90%;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
+}
+
+.cardTitulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #343A40;
+    margin: 0 0 24px 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #F1F3F5;
+}
+
+.cadastroForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 24px;
+}
+.mensagemErro,
+.mensagemSucesso {
+    /* Faz o elemento ocupar as duas colunas */
+    grid-column: 1 / -1;
+    font-size: 0.9rem;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 0;
+}
+
+.mensagemErro {
+    color: #c92a2a;
+    background-color: #fff5f5;
+    border: 1px solid #ffc9c9;
+}
+
+.mensagemSucesso {
+    color: #187f5d;
+    background-color: #e6fcf5;
+    border: 1px solid #b3f4e2;
+}
+
+.botao {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: auto; /* Para não ocupar a largura toda */
+    justify-self: start; /* Alinha o botão à esquerda da célula do grid */
+}
+
+.botaoSalvar {
+    /* Faz o botão ocupar as duas colunas */
+    grid-column: 1 / -1;
+    background-color: #1A3A6A; /* Azul da marca */
+    color: white;
+}
+
+.botaoSalvar:hover {
+    background-color: #152e55;
+    box-shadow: 0 4px 15px rgba(26, 58, 106, 0.3);
+}
+
+
+/* --- Responsividade para telas menores --- */
+@media (max-width: 768px) {
+    .cadastroForm {
+        /* Muda para uma coluna única */
+        grid-template-columns: 1fr;
+    }
+
+    .mensagemErro,
+    .mensagemSucesso,
+    .botaoSalvar {
+        /* Garante que continue ocupando a largura total */
+        grid-column: 1 / -1;
+    }
+}

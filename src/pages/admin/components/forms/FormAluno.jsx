@@ -5,7 +5,7 @@ import InputMask from 'react-input-mask';
 
 function FormAluno({
   nome, setNome,
-  email, setEmail,
+  email, setEmail, emailMode,
   senha, setSenha,
   matricula, setMatricula,
   dataMatricula, setDataMatricula,
@@ -26,7 +26,7 @@ function FormAluno({
         />
       </div>
 
-      <div className={styles.inputGroup}>
+      <div className={`${styles.inputGroup} ${emailMode === 'disabled' ? styles.disabled : ''}`}>
         <label htmlFor="email">Email</label>
         <input
           type="email"

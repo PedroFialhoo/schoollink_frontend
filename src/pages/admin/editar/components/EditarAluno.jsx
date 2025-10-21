@@ -1,9 +1,9 @@
-import { useState } from "react";
-import styles from "./Cadastrar.module.css";
+import { useEffect, useState } from "react";
+import styles from "./Editar.module.css";
 import Endereco from "../../components/forms/Endereco";
 import FormAluno from "../../components/forms/FormAluno";
 
-function CadastrarAluno() {
+function EditarAluno() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -19,24 +19,39 @@ function CadastrarAluno() {
   const [cidade, setCidade] = useState("");
   const [rua, setRua] = useState("");
   const [numero, setNumero] = useState("");
-
   const [mensagem, setMensagem] = useState("");
+
+    useEffect(() => {
+        fetch("http://localhost:8080/aluno/buscarAluno/6")
+            .then(response => response.json())
+            .then(data => {
+                setNome(data.user.nome);
+                setSenha(data.user.senha);
+                setMatricula(data.matricula);
+                setDataMatricula(data.dataMatricula);
+                setStatusMatricula(data.statusMatricula);
+                setTelefone(data.user.telefone);
+                setNomeResponsavel(data.nomeResponsavel);
+                setTelefoneResponsavel(data.telefoneResponsavel);
+                setCep(data.endereco.cep);
+                setPais(data.endereco.pais);
+                setEstado(data.endereco.estado);
+                setCidade(data.endereco.cidade);
+                setRua(data.endereco.rua);
+                setNumero(data.endereco.numero);
+            });
+    }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!nome || !email || !senha) {
-      setMensagem("Preencha pelo menos os campos nome, email e senha.");
-      return;
-    }
         const aluno = {
             nome,
             email,
             senha,
-            matricula,
+            // matricula,
             // dataMatricula,
-            statusMatricula,
-            telefone,
+            // statusMatricula,
+            // telefone,
             // nomeResponsavel,
             // telefoneResponsavel,
             // endereco: {
@@ -88,11 +103,11 @@ function CadastrarAluno() {
 
   return (
     <div className={styles.settingsCard}>
-      <h2 className={styles.cardTitulo}>Cadastrar Aluno</h2>
+      <h2 className={styles.cardTitulo}>Editar Aluno</h2>
       <form className={styles.cadastroForm} onSubmit={handleSubmit} noValidate>
         <FormAluno
           nome={nome} setNome={setNome}
-          email={email} setEmail={setEmail}
+          email={email} setEmail={setEmail} emailMode="disabled"
           senha={senha} setSenha={setSenha}
           matricula={matricula} setMatricula={setMatricula}
           dataMatricula={dataMatricula} setDataMatricula={setDataMatricula}
@@ -140,4 +155,4 @@ function CadastrarAluno() {
   )
 }
 
-export default CadastrarAluno;
+export default EditarAluno
