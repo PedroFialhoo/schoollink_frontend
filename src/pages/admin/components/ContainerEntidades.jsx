@@ -7,7 +7,7 @@ function ContainerEntidades({ titulo }){
             {type: "aluno" },
             {type: "professor" },
             {type: "administrador" },
-            {type: "funcionário" },
+            {type: "funcionario" },
             {type: "turma" },
             {type: "disciplina" },
             {type: "horário" },

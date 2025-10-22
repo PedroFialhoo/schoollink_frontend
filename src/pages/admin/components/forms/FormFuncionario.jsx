@@ -1,46 +1,18 @@
 import styles from './Form.module.css';
-import PasswordInput from '../../../../components/passwordInput/PasswordInput';
 import InputMask from 'react-input-mask';
-import Select from 'react-select';
-import { useEffect, useState } from 'react';
 
-function FormProfessor({
+function FormFuncionario({
     nome, setNome,
     email, setEmail,
-    senha, setSenha,
     cpf, setCpf,
     dataNascimento, setDataNascimento,
     genero, setGenero,
     telefone, setTelefone,
     dataContratacao, setDataContratacao,
-    formacaoAcademica, setFormacaoAcademica,
-    disciplinas, setDisciplinas,
-    registroProfissional, setRegistroProfissional,
     cargaHorariaSemanal, setCargaHorariaSemanal,
     turno, setTurno,    
     salario, setSalario
 }) {
-    const [opcoesDisciplinas, setOpcoesDisciplinas] = useState([]);
-    const handleDisciplinasChange = (selected) => {
-        setDisciplinas(selected ? selected.map(op => op.value) : []);
-    };
-
-
-   useEffect(() => {
-    fetch("http://localhost:8080/disciplina/buscar-todas")
-        .then(response => response.json())
-        .then(data => {
-        const disciplinasFormatadas = data.map(d => ({
-            value: d.id,
-            label: d.nome
-        }));
-        setOpcoesDisciplinas(disciplinasFormatadas);
-        })
-        .catch(error => {
-        console.error("Erro ao buscar disciplinas:", error);
-        });
-    }, []);
-
 
     return (
         <>
@@ -61,15 +33,6 @@ function FormProfessor({
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                />
-            </div>
-
-            <div className={styles.inputGroup}>
-                <label htmlFor="senha">Senha</label>
-                <PasswordInput
-                    id="senha"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
                 />
             </div>
 
@@ -140,41 +103,6 @@ function FormProfessor({
             </div>
 
             <div className={styles.inputGroup}>
-                <label htmlFor="formacaoAcademica">Formação Acadêmica</label>
-                <input
-                    type="text"
-                    id="formacaoAcademica"
-                    value={formacaoAcademica}
-                    onChange={(e) => setFormacaoAcademica(e.target.value)}
-                    placeholder="Ex: Licenciatura em Matemática"
-                    required
-                />
-            </div>
-
-            <div >
-                <label htmlFor="disciplinas">Disciplinas que Leciona</label>
-                <Select
-                id="disciplinas"
-                isMulti
-                options={opcoesDisciplinas}
-                value={opcoesDisciplinas.filter(op => disciplinas.includes(op.value))}
-                onChange={handleDisciplinasChange}
-                />
-            </div>
-
-            <div className={styles.inputGroup}>
-                <label htmlFor="registroProfissional">Registro Profissional</label>
-                <input
-                    type="text"
-                    id="registroProfissional"
-                    value={registroProfissional}
-                    onChange={(e) => setRegistroProfissional(e.target.value)}
-                    placeholder="Ex: CREA, OAB..."
-                    required
-                />
-            </div>
-
-            <div className={styles.inputGroup}>
                 <label htmlFor="cargaHorariaSemanal">Carga Horária Semanal (h)</label>
                 <input
                     type="number"
@@ -220,4 +148,4 @@ function FormProfessor({
     );
 }
 
-export default FormProfessor
+export default FormFuncionario

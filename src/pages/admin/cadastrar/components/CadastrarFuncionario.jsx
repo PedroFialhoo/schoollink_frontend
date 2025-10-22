@@ -1,20 +1,16 @@
 import { useState } from "react";
 import styles from "./Cadastrar.module.css";
 import Endereco from "../../components/forms/Endereco";
-import FormProfessor from "../../components/forms/FormProfessor";
+import FormFuncionario from "../../components/forms/FormFuncionario";
 
-function CadastrarProfessor() {
+function CadastrarFuncionario() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
   const [cpf, setCpf] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [genero, setGenero] = useState("");
   const [telefone, setTelefone] = useState("");
   const [dataContratacao, setDataContratacao] = useState("");
-  const [formacaoAcademica, setFormacaoAcademica] = useState("");
-  const [disciplinas, setDisciplinas] = useState([]);
-  const [registroProfissional, setRegistroProfissional] = useState("");
   const [cargaHorariaSemanal, setCargaHorariaSemanal] = useState("");
   const [turno, setTurno] = useState("");
   const [salario, setSalario] = useState("");
@@ -30,24 +26,19 @@ function CadastrarProfessor() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!nome || !email || !senha) {
-      setMensagem("Preencha pelo menos os campos nome, email e senha.");
+    if (!nome || !email ) {
+      setMensagem("Preencha pelo menos os campos nome e email.");
       return;
     }
-    const professor = {
-      userDto: {
-            nome: nome,
-            email: email,
-            senha: senha,
-            cpf: cpf,
-            telefone: telefone,
-            dataNascimento: dataNascimento, 
-            genero: genero
-          },        
-        disciplinaIds: disciplinas.map(id => Number(id)),
+    const funcionario = {
+      
+        nome: nome,
+        email: email,
+        cpf: cpf,
+        telefone: telefone,
+        dataNascimento: dataNascimento, 
+        genero: genero,             
         dataContratacao: dataContratacao, 
-        formacaoAcademica: formacaoAcademica,
-        registroProfissional: registroProfissional,
         cargaHorariaSemanal: cargaHorariaSemanal,
         turno: turno, 
         salario: salario, 
@@ -61,10 +52,10 @@ function CadastrarProfessor() {
           }
     };
     
-    fetch("http://localhost:8080/professor/cadastrar", {
+    fetch("http://localhost:8080/funcionario/cadastrar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(professor),
+            body: JSON.stringify(funcionario),
         })
         .then(response => {
             if (response.ok) {
@@ -74,7 +65,7 @@ function CadastrarProfessor() {
             }
         })
         .then(data => {
-            setMensagem(data.mensagem || "Professor cadastrado com sucesso!");
+            setMensagem(data.mensagem || "Funcionario cadastrado com sucesso!");
         })
         .catch(error => {
             setMensagem("Erro ao tentar cadastrar. Tente novamente.");
@@ -83,14 +74,11 @@ function CadastrarProfessor() {
 
     setNome("");
     setEmail("");
-    setSenha("");
     setCpf("");
     setDataNascimento("");
     setGenero("");
     setTelefone("");            
     setDataContratacao("");     
-    setFormacaoAcademica("");   
-    setRegistroProfissional("");
     setCargaHorariaSemanal(""); 
     setTurno("");               
     setSalario("");             
@@ -100,25 +88,20 @@ function CadastrarProfessor() {
     setCidade("");
     setRua("");
     setNumero("");
-    setDisciplinas([]);
   };
 
   return (
     <div className={styles.settingsCard}>
-      <h2 className={styles.cardTitulo}>Cadastrar Professor </h2>
+      <h2 className={styles.cardTitulo}>Cadastrar Funcionário</h2>
       <form className={styles.cadastroForm} onSubmit={handleSubmit} noValidate>
-        <FormProfessor
+        <FormFuncionario
           nome={nome} setNome={setNome}
           email={email} setEmail={setEmail}
-          senha={senha} setSenha={setSenha}
           cpf={cpf} setCpf={setCpf}
           genero={genero} setGenero={setGenero}
           dataNascimento={dataNascimento} setDataNascimento={setDataNascimento}
           telefone={telefone} setTelefone={setTelefone}
           dataContratacao={dataContratacao} setDataContratacao={setDataContratacao}
-          formacaoAcademica={formacaoAcademica} setFormacaoAcademica={setFormacaoAcademica}
-          disciplinas={disciplinas} setDisciplinas={setDisciplinas}
-          registroProfissional={registroProfissional} setRegistroProfissional={setRegistroProfissional}
           cargaHorariaSemanal={cargaHorariaSemanal} setCargaHorariaSemanal={setCargaHorariaSemanal}
           turno={turno} setTurno={setTurno}
           salario={salario} setSalario={setSalario}
@@ -162,4 +145,4 @@ function CadastrarProfessor() {
   );
 }
 
-export default CadastrarProfessor;
+export default CadastrarFuncionario;
