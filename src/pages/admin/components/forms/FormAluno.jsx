@@ -7,6 +7,9 @@ function FormAluno({
   nome, setNome,
   email, setEmail, emailMode,
   senha, setSenha,
+  cpf, setCpf,
+  dataNascimento, setDataNascimento,
+  genero, setGenero,
   matricula, setMatricula,
   dataMatricula, setDataMatricula,
   statusMatricula, setStatusMatricula,
@@ -48,6 +51,42 @@ function FormAluno({
       </div>
 
       <div className={styles.inputGroup}>
+        <label htmlFor="cpf">CPF</label>
+        <InputMask
+          id="cpf"
+          mask="999.999.999-99"
+          value={cpf}
+          onChange={(e) => setCpf(e.target.value)}
+          placeholder="Digite o CPF"
+        >
+        </InputMask>
+      </div>
+
+      <div className={styles.inputGroup}>
+        <label htmlFor="dataNascimento">Data de Nascimento</label>
+        <input
+          type="date"
+          id="dataNascimento"
+          value={dataNascimento}
+          onChange={(e) => setDataNascimento(e.target.value)}
+        />
+      </div>
+
+      <div className={styles.inputGroup}>
+        <label htmlFor="genero">Genero</label>
+        <select
+          id="genero"
+          value={genero}
+          onChange={(e) => setGenero(e.target.value)}
+        >
+          <option value="">Selecione...</option>
+          <option value="MASCULINO">Masculino</option>
+          <option value="FEMININO">Feminino</option>
+          <option value="OUTRO">Outro</option>
+        </select>
+      </div>
+
+      <div className={styles.inputGroup}>
         <label htmlFor="matricula">Matrícula</label>
         <input
           type="text"
@@ -60,7 +99,7 @@ function FormAluno({
       <div className={styles.inputGroup}>
         <label htmlFor="dataMatricula">Data de Matrícula</label>
         <input
-          type="text"
+          type="date"
           id="dataMatricula"
           value={dataMatricula}
           onChange={(e) => setDataMatricula(e.target.value)}
@@ -75,9 +114,8 @@ function FormAluno({
           onChange={(e) => setStatusMatricula(e.target.value)}
         >
           <option value="">Selecione...</option>
-          <option value="Ativa">Ativa</option>
-          <option value="Trancada">Trancada</option>
-          <option value="Cancelada">Cancelada</option>
+          <option value="ATIVA">Ativa</option>
+          <option value="INATIVA">INATIVA</option>
         </select>
       </div>
 

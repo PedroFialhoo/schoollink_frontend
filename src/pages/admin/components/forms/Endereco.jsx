@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import styles from './Form.module.css';
+import InputMask from "react-input-mask";
+
 
 function Endereco({
     cep, setCep,
@@ -7,17 +10,42 @@ function Endereco({
     cidade, setCidade,
     rua, setRua,
     numero, setNumero
-}) {
+})    
+{    
+    useEffect(() => {
+    if (cep && cep.replace(/\D/g, "").length === 8) { 
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Erro ao buscar CEP");
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (!data.erro) {
+            setRua(data.logradouro || "");
+            setCidade(data.localidade || "");
+            setEstado(data.uf || "");
+            setPais("Brasil");
+          } else {
+            console.error("CEP não encontrado");
+          }
+        })
+        .catch(error => console.error("Erro via CEP:", error));
+    }
+  }, [cep]);
+
     return (
         <>
             <div className={styles.inputGroup}>
                 <label htmlFor="cep">CEP</label>
-                <input
-                    type="text"
-                    id="cep"
+                <InputMask
+                    mask="99999-999"
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}
-                />
+                    placeholder="Digite o CEP"
+                    >
+                </InputMask>
             </div>
 
             <div className={styles.inputGroup}>

@@ -7,6 +7,9 @@ function CadastrarAluno() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [dataNascimento, setDataNascimento] = useState("");
+  const [genero, setGenero] = useState("");
   const [matricula, setMatricula] = useState("");
   const [dataMatricula, setDataMatricula] = useState("");
   const [statusMatricula, setStatusMatricula] = useState("");
@@ -30,24 +33,30 @@ function CadastrarAluno() {
       return;
     }
         const aluno = {
-            nome,
-            email,
-            senha,
-            matricula,
-            // dataMatricula,
-            statusMatricula,
-            telefone,
-            // nomeResponsavel,
-            // telefoneResponsavel,
-            // endereco: {
-            //     cep,
-            //     pais,
-            //     estado,
-            //     cidade,
-            //     rua,
-            //     numero
-            // }
-        };
+          userDto: {
+            nome: nome,
+            email: email,
+            senha: senha,
+            cpf: cpf,
+            telefone: telefone,
+            dataNascimento: dataNascimento, 
+            genero: genero
+          },
+          matricula: matricula,
+          dataMatricula: dataMatricula, 
+          statusMatricula: statusMatricula, 
+          nomeResponsavel: nomeResponsavel,
+          telefoneResponsavel: telefoneResponsavel,
+          enderecoDto: {
+            cep: cep,
+            pais: pais,
+            estado: estado,
+            cidade: cidade,
+            rua: rua,
+            numero: numero
+          }
+        }
+        console.log("Telefone:", telefone, "Gênero:", genero, "DataNascimento:", dataNascimento);
 
         fetch("http://localhost:8080/aluno/cadastrar", {
             method: "POST",
@@ -72,6 +81,9 @@ function CadastrarAluno() {
         setNome("");
         setEmail("");
         setSenha("");
+        setCpf("");
+        setDataNascimento("");
+        setGenero("");
         setMatricula("");
         setDataMatricula("");
         setStatusMatricula("");
@@ -94,6 +106,9 @@ function CadastrarAluno() {
           nome={nome} setNome={setNome}
           email={email} setEmail={setEmail}
           senha={senha} setSenha={setSenha}
+          cpf={cpf} setCpf={setCpf}
+          genero={genero} setGenero={setGenero}
+          dataNascimento={dataNascimento} setDataNascimento={setDataNascimento}
           matricula={matricula} setMatricula={setMatricula}
           dataMatricula={dataMatricula} setDataMatricula={setDataMatricula}
           statusMatricula={statusMatricula} setStatusMatricula={setStatusMatricula}

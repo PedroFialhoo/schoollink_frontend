@@ -21,7 +21,7 @@ function EditarAluno() {
   const [rua, setRua] = useState("");
   const [numero, setNumero] = useState("");
   const [mensagem, setMensagem] = useState("");
-  const [searchActive, setSearchActive] = useState("desactive");
+  const [searchActive, setSearchActive] = useState("active");
 
   const handleResultadoBusca = (dados) => {
       if (dados.length === 0) return;
@@ -30,7 +30,7 @@ function EditarAluno() {
 
       setNome(aluno.user?.nome || "");
       setEmail(aluno.user?.email || "");
-      setSenha(""); // não podemos mostrar a senha real
+      setSenha(""); 
       setMatricula(aluno.matricula || "");
       setDataMatricula(aluno.dataMatricula || "");
       setStatusMatricula(aluno.statusMatricula || "");
