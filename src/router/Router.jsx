@@ -20,6 +20,7 @@ import Editar from "../pages/admin/editar/Editar";
 import CadastrarDisciplina from "../pages/admin/cadastrar/components/CadastrarDisciplina";
 import EditarAluno from "../pages/admin/editar/components/EditarAluno";
 import CadastrarFuncionario from "../pages/admin/cadastrar/components/CadastrarFuncionario";
+import RegistrarAula from "../pages/professor/registrar-aula/RegistrarAula";
 // import HomeAdmin from "../pages/admin/home/Home";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
@@ -82,7 +83,11 @@ const Router = createBrowserRouter([
   },{
     path: "/professor",
     element: <ProfessorLayout />,
-    children: [      
+    children: [   
+      {
+        path: "registrar-aula",
+        element: <RegistrarAula />,
+      },   
       {
         path: "sair",
         element: <Logout />,

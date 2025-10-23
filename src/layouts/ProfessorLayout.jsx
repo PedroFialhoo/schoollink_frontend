@@ -7,7 +7,7 @@ function ProfessorLayout() {
     { to: "/professor/home", icon: "bi bi-house-fill", label: "Home" },
     { to: "/professor/notas", icon: "bi bi-list-columns-reverse", label: "Registrar Nota" },
     { to: "/professor/presenca", icon: "bi bi-clipboard2-check-fill", label: "Registrar Presença" },
-    { to: "/professor/registro-aulas", icon: "bi bi-person-workspace", label: "Registrar Aula" },
+    { to: "/professor/registrar-aula", icon: "bi bi-person-workspace", label: "Registrar Aula" },
     { to: "/professor/configuracoes", icon: "bi bi-gear-fill", label: "Configurações" },
     { to: "/professor/sair", icon: "bi bi-box-arrow-right", label: "Sair" },
   ]
