@@ -50,8 +50,8 @@ function ContainerAulas() {
             <div className={styles.gridMaterias}>
                 {materias.map((materia) => (
                     <Link 
-                    key={materia.id} 
-                    to={`materia/${materia.id}`} 
+                    key={materia.idDisciplina} 
+                    to={`materia/${materia.idDisciplina}`} 
                     className={styles.linkMateria}
                     >
                     <MateriaCard materia={materia} />

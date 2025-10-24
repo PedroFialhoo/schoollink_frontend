@@ -39,8 +39,7 @@ function CadastrarDisciplina() {
             console.error(error);
         });
 
-        setEmail("");
-        setSenha("");
+        setNome("");
     }
 
   return (

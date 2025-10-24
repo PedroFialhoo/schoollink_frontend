@@ -1,0 +1,112 @@
+
+.tarefaCard {
+  border-radius: 12px;
+  padding: 24px 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E9ECEF; 
+  background-color: #ffffff;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 16px 0;
+}
+
+.cardTitulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #343A40;
+  margin: 0;
+}
+
+/* --- Estilos do Toggle Switch --- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #CED4DA;
+  transition: .3s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #1A3A6A; /* Azul da marca */
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #1A3A6A;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
+/* --- Fim do Toggle --- */
+
+
+/* --- Campo de Descrição --- */
+.descricaoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #F1F3F5;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.descricaoContainer label {
+  font-weight: 500;
+  color: #495047;
+}
+
+.descricaoContainer textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid #CED4DA;
+  border-radius: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #fff;
+  resize: vertical;
+}
+
+.descricaoContainer textarea:focus {
+  outline: none;
+  border-color: #1A3A6A;
+  box-shadow: 0 0 0 3px rgba(26, 58, 106, 0.2);
+}

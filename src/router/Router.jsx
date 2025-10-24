@@ -21,6 +21,8 @@ import CadastrarDisciplina from "../pages/admin/cadastrar/components/CadastrarDi
 import EditarAluno from "../pages/admin/editar/components/EditarAluno";
 import CadastrarFuncionario from "../pages/admin/cadastrar/components/CadastrarFuncionario";
 import RegistrarAula from "../pages/professor/registrar-aula/RegistrarAula";
+import HomeProfessor from "../pages/professor/home/HomeProfessor";
+import RegistroContainer from "../pages/professor/registrar-aula/RegistroContainer/RegistroContainer";
 // import HomeAdmin from "../pages/admin/home/Home";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
@@ -83,10 +85,20 @@ const Router = createBrowserRouter([
   },{
     path: "/professor",
     element: <ProfessorLayout />,
-    children: [   
+    children: [  
+      {
+        path: "home",
+        element: <HomeProfessor />,
+      }, 
       {
         path: "registrar-aula",
-        element: <RegistrarAula />,
+        element: <RegistrarAula />
+        ,children: [
+          {
+            path: "materia/:id",
+            element: <RegistroContainer />,
+          },
+        ],
       },   
       {
         path: "sair",
@@ -99,7 +111,7 @@ const Router = createBrowserRouter([
     children: [
       // {
       //   path: "home",
-      //   element: <HomeAdmin />,
+      //   element: <HomeProfessor />,
       // },
       {
         path: "cadastrar",

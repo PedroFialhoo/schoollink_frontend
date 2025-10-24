@@ -48,7 +48,7 @@ function CadastrarProfessor() {
         dataContratacao: dataContratacao, 
         formacaoAcademica: formacaoAcademica,
         registroProfissional: registroProfissional,
-        cargaHorariaSemanal: cargaHorariaSemanal,
+        cargaHorariaSem: cargaHorariaSemanal,
         turno: turno, 
         salario: salario, 
         enderecoDto: {
