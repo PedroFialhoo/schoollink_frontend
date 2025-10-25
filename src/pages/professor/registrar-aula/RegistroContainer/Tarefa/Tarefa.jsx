@@ -1,4 +1,3 @@
-// src/components/Tarefa/Tarefa.jsx
 import styles from './Tarefa.module.css';
 
 function Tarefa({ teveTarefa, onToggleTarefa, descricao, onDescricaoChange }) {

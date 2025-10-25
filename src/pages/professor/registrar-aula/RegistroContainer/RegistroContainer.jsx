@@ -5,6 +5,15 @@ import "react-calendar/dist/Calendar.css";
 import styles from './RegistroContainer.module.css';
 import ResumoAula from "./ResumoAula/ResumoAula";
 import Tarefa from "./Tarefa/Tarefa";
+import ListaPresenca from "./ListaPresenca/ListaPresenca";
+
+const LISTA_ALUNOS_EXEMPLO = [
+    { userDto: { nome: "allisson" }, matricula: "128", presenca: true },
+    { userDto: { nome: "pedro" }, matricula: "129", presenca: false },
+    { userDto: { nome: "ana clara" }, matricula: "130", presenca: true },
+    { userDto: { nome: "bruno" }, matricula: "131", presenca: false },
+    { userDto: { nome: "carla" }, matricula: "132", presenca: true },
+];
 
 function RegistroContainer() {
 
@@ -13,6 +22,17 @@ function RegistroContainer() {
     const [resumo, setResumo] = useState(""); 
     const [teveTarefa, setTeveTarefa] = useState(false);
     const [descricao, setDescricao] = useState("");
+    const [listaDeAlunos, setListaDeAlunos] = useState(LISTA_ALUNOS_EXEMPLO);
+
+    const handlePresencaChange = (matricula, novaPresenca) => {
+        setListaDeAlunos(prevAlunos => 
+            prevAlunos.map(aluno => 
+                aluno.matricula === matricula 
+                ? { ...aluno, presenca: novaPresenca } 
+                : aluno
+            )
+        );
+    };
     
     return (
         <div className={styles.container}>
@@ -27,16 +47,22 @@ function RegistroContainer() {
                 </div>
                 <div className={styles.rigthContainer}>
                     <ResumoAula
-                    conteudo={conteudo}
-                    onConteudoChange={(e) => setConteudo(e.target.value)}
-                    resumo={resumo}
-                    onResumoChange={(e) => setResumo(e.target.value)} />
+                        conteudo={conteudo}
+                        onConteudoChange={(e) => setConteudo(e.target.value)}
+                        resumo={resumo}
+                        onResumoChange={(e) => setResumo(e.target.value)} 
+                    />
 
                     <Tarefa
-                    teveTarefa={teveTarefa}
-                    onToggleTarefa={() => setTeveTarefa(!teveTarefa)}
-                    descricao={descricao}
-                    onDescricaoChange={(e) => setDescricao(e.target.value)}
+                        teveTarefa={teveTarefa}
+                        onToggleTarefa={() => setTeveTarefa(!teveTarefa)}
+                        descricao={descricao}
+                        onDescricaoChange={(e) => setDescricao(e.target.value)}
+                    />
+
+                    <ListaPresenca 
+                        alunos={listaDeAlunos}
+                        onPresencaChange={handlePresencaChange}
                     />
                 </div>     
             </div>

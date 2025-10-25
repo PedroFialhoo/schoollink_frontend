@@ -15,9 +15,9 @@ function ContainerAulas() {
         },
     {
             "idHorarioAula": 4,
-            "idDisciplina": 4,
+            "idDisciplina": 2,
             "idProfessor": 3,
-            "nomeDisciplina": "Banco de dados",
+            "nomeDisciplina": "Teste",
             "horarioInicio": "10:00:00",
             "horarioTermino": "12:00:00"
         },

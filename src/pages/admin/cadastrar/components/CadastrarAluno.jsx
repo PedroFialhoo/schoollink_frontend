@@ -28,8 +28,8 @@ function CadastrarAluno() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!nome || !email || !senha) {
-      setMensagem("Preencha pelo menos os campos nome, email e senha.");
+    if (!nome || !email || !senha || !statusMatricula) {
+      setMensagem("Preencha pelo menos os campos nome, email, senha e status matrícula.");
       return;
     }
         const aluno = {

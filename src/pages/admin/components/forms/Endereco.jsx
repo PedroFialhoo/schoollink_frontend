@@ -13,27 +13,27 @@ function Endereco({
 })    
 {    
     useEffect(() => {
-    if (cep && cep.replace(/\D/g, "").length === 8) { 
-      fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Erro ao buscar CEP");
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (!data.erro) {
-            setRua(data.logradouro || "");
-            setCidade(data.localidade || "");
-            setEstado(data.uf || "");
-            setPais("Brasil");
-          } else {
-            console.error("CEP não encontrado");
-          }
-        })
-        .catch(error => console.error("Erro via CEP:", error));
-    }
-  }, [cep]);
+        if (cep && cep.replace(/\D/g, "").length === 8) { 
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro ao buscar CEP");
+            }
+            return response.json();
+            })
+            .then(data => {
+            if (!data.erro) {
+                setRua(data.logradouro || "");
+                setCidade(data.localidade || "");
+                setEstado(data.uf || "");
+                setPais("Brasil");
+            } else {
+                console.error("CEP não encontrado");
+            }
+            })
+            .catch(error => console.error("Erro via CEP:", error));
+        }
+    }, [cep]);
 
     return (
         <>

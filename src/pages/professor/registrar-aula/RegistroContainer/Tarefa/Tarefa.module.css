@@ -1,8 +1,7 @@
-
 .tarefaCard {
   border-radius: 12px;
-  padding: 24px 32px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 18px 32px;
   border: 1px solid #E9ECEF; 
   background-color: #ffffff;
 }

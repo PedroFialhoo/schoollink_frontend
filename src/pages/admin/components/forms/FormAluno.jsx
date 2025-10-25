@@ -114,7 +114,7 @@ function FormAluno({
           onChange={(e) => setStatusMatricula(e.target.value)}
         >
           <option value="">Selecione...</option>
-          <option value="ATIVA">Ativa</option>
+          <option value="ATIVA">ATIVA</option>
           <option value="INATIVA">INATIVA</option>
         </select>
       </div>

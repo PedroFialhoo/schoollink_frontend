@@ -5,9 +5,13 @@ import FormAluno from "../../components/forms/FormAluno";
 import BuscarEntidade from "../../components/buscar/BuscarEntidade";
 
 function EditarAluno() {
+  const [id, setId] = useState("");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [dataNascimento, setDataNascimento] = useState("");
+  const [genero, setGenero] = useState("");
   const [matricula, setMatricula] = useState("");
   const [dataMatricula, setDataMatricula] = useState("");
   const [statusMatricula, setStatusMatricula] = useState("");
@@ -26,11 +30,13 @@ function EditarAluno() {
   const handleResultadoBusca = (dados) => {
       if (dados.length === 0) return;
 
-      const aluno = dados[0]; // só um resultado
-
+      const aluno = dados[0]; 
+      setId(aluno.idAluno || "");
       setNome(aluno.user?.nome || "");
       setEmail(aluno.user?.email || "");
-      setSenha(""); 
+      setDataNascimento(aluno.user?.dataNascimento || "")
+      setCpf(aluno.user?.cpf || "")
+      setGenero(aluno.user?.genero || "")
       setMatricula(aluno.matricula || "");
       setDataMatricula(aluno.dataMatricula || "");
       setStatusMatricula(aluno.statusMatricula || "");
@@ -38,53 +44,59 @@ function EditarAluno() {
       setNomeResponsavel(aluno.nomeResponsavel || "");
       setTelefoneResponsavel(aluno.telefoneResponsavel || "");
 
-      // Endereço
-      if (aluno.endereco) {
-          setCep(aluno.endereco?.cep || "");
-          setPais(aluno.endereco?.pais || "");
-          setEstado(aluno.endereco?.estado || "");
-          setCidade(aluno.endereco?.cidade || "");
-          setRua(aluno.endereco?.rua || "");
-          setNumero(aluno.endereco?.numero || "");
+      if (aluno.user?.endereco) {
+          const end = aluno.user.endereco;
+          setCep(end.cep || "");
+          setPais(end.pais || "");
+          setEstado(end.estado || "");
+          setCidade(end.cidade || "");
+          setRua(end.rua || "");
+          setNumero(end.numero || "");
       } else {
           setCep("");
-          setPais("");  
+          setPais("");
           setEstado("");
           setCidade("");
           setRua("");
           setNumero("");
       }
 
-      setSearchActive("desactive"); // fecha popup
-  };
 
+      setSearchActive("desactive"); 
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
         const aluno = {
-            nome,
-            email,
-            senha,
-            // matricula,
-            // dataMatricula,
-            // statusMatricula,
-            // telefone,
-            // nomeResponsavel,
-            // telefoneResponsavel,
-            // endereco: {
-            //     cep,
-            //     pais,
-            //     estado,
-            //     cidade,
-            //     rua,
-            //     numero
-            // }
-        };
+          idAluno: id,
+          userDto: {
+            nome: nome,
+            email: email,
+            cpf: cpf,
+            telefone: telefone,
+            dataNascimento: dataNascimento, 
+            genero: genero
+          },
+          matricula: matricula,
+          dataMatricula: dataMatricula, 
+          statusMatricula: statusMatricula, 
+          nomeResponsavel: nomeResponsavel,
+          telefoneResponsavel: telefoneResponsavel,
+          enderecoDto: {
+            cep: cep,
+            pais: pais,
+            estado: estado,
+            cidade: cidade,
+            rua: rua,
+            numero: numero
+          }
+        }
 
-        fetch("http://localhost:8080/aluno/cadastrar", {
-            method: "POST",
+        fetch("http://localhost:8080/aluno/editar/verificar", {
+            method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(aluno),
+            credentials: "include",
         })
         .then(response => {
             if (response.ok) {
@@ -94,10 +106,10 @@ function EditarAluno() {
             }
         })
         .then(data => {
-            setMensagem(data.mensagem || "Aluno cadastrado com sucesso!");
+            setMensagem(data.mensagem || "Aluno editado com sucesso!");
         })
         .catch(error => {
-            setMensagem("Erro ao tentar cadastrar. Tente novamente.");
+            setMensagem("Erro ao tentar editar. Tente novamente.");
             console.error(error);
         });
 
@@ -105,6 +117,9 @@ function EditarAluno() {
         setEmail("");
         setSenha("");
         setMatricula("");
+        setDataNascimento("");
+        setCpf("");
+        setGenero("");
         setDataMatricula("");
         setStatusMatricula("");
         setTelefone("");
@@ -131,6 +146,9 @@ function EditarAluno() {
             nome={nome} setNome={setNome}
             email={email} setEmail={setEmail} emailMode="disabled"
             senha={senha} setSenha={setSenha}
+            cpf={cpf} setCpf={setCpf}
+            dataNascimento={dataNascimento} setDataNascimento={setDataNascimento}
+            genero={genero} setGenero={setGenero}
             matricula={matricula} setMatricula={setMatricula}
             dataMatricula={dataMatricula} setDataMatricula={setDataMatricula}
             statusMatricula={statusMatricula} setStatusMatricula={setStatusMatricula}

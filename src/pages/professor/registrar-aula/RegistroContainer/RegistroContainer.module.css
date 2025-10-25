@@ -32,17 +32,18 @@
 .rigthContainer{
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 .botaoSalvar {
     border: none;
     padding: 14px 28px;
-    border-radius: 8px;
+    border-radius: 15px;
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    width: 30%;
+    width: 25%;
     background-color: #1A3A6A; 
     color: white;
     margin-top: 10px;

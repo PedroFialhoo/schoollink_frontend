@@ -92,8 +92,8 @@ const Router = createBrowserRouter([
       }, 
       {
         path: "registrar-aula",
-        element: <RegistrarAula />
-        ,children: [
+        element: <RegistrarAula />,
+        children: [
           {
             path: "materia/:id",
             element: <RegistroContainer />,
