@@ -1,8 +1,6 @@
 import styles from './Form.module.css';
 import PasswordInput from '../../../../components/passwordInput/PasswordInput';
 import InputMask from 'react-input-mask';
-import Select from 'react-select';
-import { useEffect, useState } from 'react';
 
 function FormProfessor({
     nome, setNome,
@@ -14,33 +12,11 @@ function FormProfessor({
     telefone, setTelefone,
     dataContratacao, setDataContratacao,
     formacaoAcademica, setFormacaoAcademica,
-    disciplinas, setDisciplinas,
     registroProfissional, setRegistroProfissional,
-    cargaHorariaSemanal, setCargaHorariaSemanal,
-    turno, setTurno,    
+    cargaHorariaSem, setCargaHorariaSem,
+    turno, setTurno,
     salario, setSalario
 }) {
-    const [opcoesDisciplinas, setOpcoesDisciplinas] = useState([]);
-    const handleDisciplinasChange = (selected) => {
-        setDisciplinas(selected ? selected.map(op => op.value) : []);
-    };
-
-
-   useEffect(() => {
-    fetch("http://localhost:8080/disciplina/buscar-todas")
-        .then(response => response.json())
-        .then(data => {
-        const disciplinasFormatadas = data.map(d => ({
-            value: d.id,
-            label: d.nome
-        }));
-        setOpcoesDisciplinas(disciplinasFormatadas);
-        })
-        .catch(error => {
-        console.error("Erro ao buscar disciplinas:", error);
-        });
-    }, []);
-
 
     return (
         <>
@@ -74,58 +50,57 @@ function FormProfessor({
             </div>
 
             <div className={styles.inputGroup}>
-                    <label htmlFor="telefone">Telefone</label>
-                    <InputMask
-                      mask="(99) 99999-9999"
-                      value={telefone}
-                      onChange={(e) => setTelefone(e.target.value)}
-                    >
-                      {(inputProps) => (
+                <label htmlFor="telefone">Telefone</label>
+                <InputMask
+                    mask="(99) 99999-9999"
+                    value={telefone}
+                    onChange={(e) => setTelefone(e.target.value)}
+                >
+                    {(inputProps) => (
                         <input
-                          {...inputProps}
-                          type="tel"
-                          id="telefone"
-                          placeholder="(12) 98765-4321"
-                          required
+                            {...inputProps}
+                            type="tel"
+                            id="telefone"
+                            placeholder="(12) 98765-4321"
+                            required
                         />
-                      )}
-                    </InputMask>
+                    )}
+                </InputMask>
             </div>
 
             <div className={styles.inputGroup}>
-              <label htmlFor="cpf">CPF</label>
-              <InputMask
-                id="cpf"
-                mask="999.999.999-99"
-                value={cpf}
-                onChange={(e) => setCpf(e.target.value)}
-                placeholder="Digite o CPF"
-              >
-              </InputMask>
+                <label htmlFor="cpf">CPF</label>
+                <InputMask
+                    id="cpf"
+                    mask="999.999.999-99"
+                    value={cpf}
+                    onChange={(e) => setCpf(e.target.value)}
+                    placeholder="Digite o CPF"
+                />
             </div>
-        
+
             <div className={styles.inputGroup}>
-              <label htmlFor="dataNascimento">Data de Nascimento</label>
-              <input
-                type="date"
-                id="dataNascimento"
-                value={dataNascimento}
-                onChange={(e) => setDataNascimento(e.target.value)}
-              />
+                <label htmlFor="dataNascimento">Data de Nascimento</label>
+                <input
+                    type="date"
+                    id="dataNascimento"
+                    value={dataNascimento}
+                    onChange={(e) => setDataNascimento(e.target.value)}
+                />
             </div>
-        
+
             <div className={styles.inputGroup}>
-              <label htmlFor="genero">Genero</label>
-              <select
-                id="genero"
-                value={genero}
-                onChange={(e) => setGenero(e.target.value)}
-              >
-                <option value="">Selecione...</option>
-                <option value="MASCULINO">Masculino</option>
-                <option value="FEMININO">Feminino</option>
-                <option value="OUTRO">Outro</option>
-              </select>
+                <label htmlFor="genero">Gênero</label>
+                <select
+                    id="genero"
+                    value={genero}
+                    onChange={(e) => setGenero(e.target.value)}
+                >
+                    <option value="">Selecione...</option>
+                    <option value="MASCULINO">Masculino</option>
+                    <option value="FEMININO">Feminino</option>
+                    <option value="OUTRO">Outro</option>
+                </select>
             </div>
 
             <div className={styles.inputGroup}>
@@ -151,17 +126,6 @@ function FormProfessor({
                 />
             </div>
 
-            <div >
-                <label htmlFor="disciplinas">Disciplinas que Leciona</label>
-                <Select
-                id="disciplinas"
-                isMulti
-                options={opcoesDisciplinas}
-                value={opcoesDisciplinas.filter(op => disciplinas.includes(op.value))}
-                onChange={handleDisciplinasChange}
-                />
-            </div>
-
             <div className={styles.inputGroup}>
                 <label htmlFor="registroProfissional">Registro Profissional</label>
                 <input
@@ -175,12 +139,12 @@ function FormProfessor({
             </div>
 
             <div className={styles.inputGroup}>
-                <label htmlFor="cargaHorariaSemanal">Carga Horária Semanal (h)</label>
+                <label htmlFor="cargaHorariaSem">Carga Horária Semanal (h)</label>
                 <input
                     type="number"
-                    id="cargaHorariaSemanal"
-                    value={cargaHorariaSemanal}
-                    onChange={(e) => setCargaHorariaSemanal(e.target.value)}
+                    id="cargaHorariaSem"
+                    value={cargaHorariaSem}
+                    onChange={(e) => setCargaHorariaSem(e.target.value)}
                     min="0"
                     required
                 />
@@ -214,10 +178,8 @@ function FormProfessor({
                     required
                 />
             </div>
-
-
         </>
     );
 }
 
-export default FormProfessor
+export default FormProfessor;

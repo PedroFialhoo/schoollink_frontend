@@ -20,6 +20,7 @@ import Editar from "../pages/admin/editar/Editar";
 import CadastrarDisciplina from "../pages/admin/cadastrar/components/CadastrarDisciplina";
 import EditarAluno from "../pages/admin/editar/components/EditarAluno";
 import CadastrarFuncionario from "../pages/admin/cadastrar/components/CadastrarFuncionario";
+import CadastrarTurma from "../pages/admin/cadastrar/components/CadastrarTurma";
 import RegistrarAula from "../pages/professor/registrar-aula/RegistrarAula";
 import HomeProfessor from "../pages/professor/home/HomeProfessor";
 import RegistroContainer from "../pages/professor/registrar-aula/RegistroContainer/RegistroContainer";
@@ -82,14 +83,14 @@ const Router = createBrowserRouter([
         element: <Logout />,
       },
     ],
-  },{
+  }, {
     path: "/professor",
     element: <ProfessorLayout />,
-    children: [  
+    children: [
       {
         path: "home",
         element: <HomeProfessor />,
-      }, 
+      },
       {
         path: "registrar-aula",
         element: <RegistrarAula />,
@@ -99,13 +100,13 @@ const Router = createBrowserRouter([
             element: <RegistroContainer />,
           },
         ],
-      },   
+      },
       {
         path: "sair",
         element: <Logout />,
       },
     ],
-  },{
+  }, {
     path: "/admin",
     element: <AdminLayout />,
     children: [
@@ -122,6 +123,7 @@ const Router = createBrowserRouter([
           { path: "administrador", element: <CadastrarAdmin /> },
           { path: "disciplina", element: <CadastrarDisciplina /> },
           { path: "funcionario", element: <CadastrarFuncionario /> },
+          { path: "turma", element: <CadastrarTurma /> },
         ],
       },
       {
@@ -129,8 +131,8 @@ const Router = createBrowserRouter([
         element: <Editar />,
         children: [
           { path: "aluno", element: <EditarAluno /> },
-        //   { path: "professor", element: <CadastrarProfessor /> },
-        //   { path: "administrador", element: <CadastrarAdmin /> },
+          //   { path: "professor", element: <CadastrarProfessor /> },
+          //   { path: "administrador", element: <CadastrarAdmin /> },
         ],
       },
       // {

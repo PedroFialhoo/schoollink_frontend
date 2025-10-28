@@ -1,8 +1,8 @@
 import ContainerAulas from "../components/ContainerAulas"
 
-function RegistrarAula(){
-    return(
-        <ContainerAulas/>
+function RegistrarAula() {
+    return (
+        <ContainerAulas />
     )
 }
 
