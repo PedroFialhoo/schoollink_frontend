@@ -1,66 +1,53 @@
 import { Outlet, Link } from "react-router-dom";
 import MateriaCard from "../components/CardAula";
-import styles from "./ContainerAulas.module.css"; // Importando o CSS Module
-import { useEffect } from "react";
+import styles from "./ContainerAulas.module.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function ContainerAulas() {
-    const materias = [
-        {
-            "idHorarioAula": 4,
-            "idDisciplina": 4,
-            "idProfessor": 3,
-            "nomeDisciplina": "Banco de dados",
-            "horarioInicio": "10:00:00",
-            "horarioTermino": "12:00:00"
-        },
-    {
-            "idHorarioAula": 4,
-            "idDisciplina": 2,
-            "idProfessor": 3,
-            "nomeDisciplina": "Teste",
-            "horarioInicio": "10:00:00",
-            "horarioTermino": "12:00:00"
-        },
-    {
-            "idHorarioAula": 4,
-            "idDisciplina": 4,
-            "idProfessor": 3,
-            "nomeDisciplina": "Banco de dados",
-            "horarioInicio": "10:00:00",
-            "horarioTermino": "12:00:00"
-        },
-    {
-            "idHorarioAula": 4,
-            "idDisciplina": 4,
-            "idProfessor": 3,
-            "nomeDisciplina": "Banco de dados",
-            "horarioInicio": "10:00:00",
-            "horarioTermino": "12:00:00"
-        }
-    ]
+    const [materias, setMaterias] = useState([]);
 
-    // useEffect(
-    //     fetch("http://localhost:8080/")
-    // )
+    useEffect(() => {
+        const fetchAulas = async () => {
+            try {
+                const response = await axios.get("http://localhost:8080/professor/buscar/aulas", {
+                    withCredentials: true
+                });
+                setMaterias(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar aulas:", error);
+            }
+        };
+
+        fetchAulas();
+    }, []);
 
     return (
         <div>
-        <div className={styles.paginaContainer}>
-            <h1 className={styles.titulo}>📚 Disciplinas</h1>
-            <div className={styles.gridMaterias}>
-                {materias.map((materia) => (
-                    <Link 
-                    key={materia.idDisciplina} 
-                    to={`materia/${materia.idDisciplina}`} 
-                    className={styles.linkMateria}
-                    >
-                    <MateriaCard materia={materia} />
-                    </Link>
-                ))}
+            <div className={styles.paginaContainer}>
+                <h1 className={styles.titulo}>📚 Disciplinas</h1>
+                <div className={styles.gridMaterias}>
+                    {materias.length > 0 ? (
+                        materias.map((materia) => (
+                            <Link
+                                key={materia.idDisciplina}
+                                to={`materia/${materia.idDisciplina}`}
+                                state={{
+                                    idHorarioAula: materia.idHorarioAula,
+                                    idProfessor: materia.idProfessor
+                                }}
+                                className={styles.linkMateria}
+                            >
+                                <MateriaCard materia={materia} />
+                            </Link>
+                        ))
+                    ) : (
+                        <p>Carregando aulas...</p>
+                    )}
+                </div>
             </div>
-        </div>
-        
-        <Outlet/>
+
+            <Outlet />
         </div>
     );
 }
