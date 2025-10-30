@@ -21,6 +21,7 @@ import CadastrarDisciplina from "../pages/admin/cadastrar/components/CadastrarDi
 import EditarAluno from "../pages/admin/editar/components/EditarAluno";
 import CadastrarFuncionario from "../pages/admin/cadastrar/components/CadastrarFuncionario";
 import CadastrarTurma from "../pages/admin/cadastrar/components/CadastrarTurma";
+import CadastrarHorarioFixo from "../pages/admin/cadastrar/components/CadastrarHorarioFixo";
 import RegistrarAula from "../pages/professor/registrar-aula/RegistrarAula";
 import HomeProfessor from "../pages/professor/home/HomeProfessor";
 import RegistroContainer from "../pages/professor/registrar-aula/RegistroContainer/RegistroContainer";
@@ -124,6 +125,7 @@ const Router = createBrowserRouter([
           { path: "disciplina", element: <CadastrarDisciplina /> },
           { path: "funcionario", element: <CadastrarFuncionario /> },
           { path: "turma", element: <CadastrarTurma /> },
+          { path: "horario", element: <CadastrarHorarioFixo /> },
         ],
       },
       {

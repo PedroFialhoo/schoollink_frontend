@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 function ContainerEntidades({ titulo }){
     const entidades = [
-            {type: "aluno" },
-            {type: "professor" },
-            {type: "administrador" },
-            {type: "funcionario" },
-            {type: "turma" },
-            {type: "disciplina" },
-            {type: "horário" },
+            {type: "aluno", nome: "aluno"},
+            {type: "professor", nome: "professor"},
+            {type: "administrador", nome: "administrador"},
+            {type: "funcionario", nome: "funcionário"},
+            {type: "disciplina", nome: "disciplina"},
+            {type: "turma", nome: "turma"},
+            {type: "horario", nome: "horário"}
         ];
 
     return(
@@ -24,7 +24,7 @@ function ContainerEntidades({ titulo }){
                             to={`${entidade.type}`}
                             className={styles.link}
                             >
-                            <Entidade type={entidade.type} />
+                            <Entidade type={entidade.nome} />
                             </Link>
                         ))}
                 </div>

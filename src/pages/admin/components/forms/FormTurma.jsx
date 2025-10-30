@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import styles from "./Form.module.css"
 
 const FormTurma = () => {
     const [nome, setNome] = useState("");
@@ -26,11 +27,11 @@ const FormTurma = () => {
     };
 
     return (
-        <div className="form-container">
+        <div className={styles.form-container}>
             <h2>Cadastrar Turma</h2>
             {mensagem && <p>{mensagem}</p>}
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className={styles.inputGroup}>
                     <label>Nome:</label>
                     <input
                         type="text"
@@ -39,7 +40,7 @@ const FormTurma = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className={styles.inputGroup}>
                     <label>Ano Letivo:</label>
                     <input
                         type="text"
@@ -48,7 +49,7 @@ const FormTurma = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className={styles.inputGroup}>
                     <label>Ano Escolar:</label>
                     <input
                         type="text"

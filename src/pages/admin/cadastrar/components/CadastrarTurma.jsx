@@ -14,6 +14,25 @@ function CadastrarTurma() {
     const [opcoesProfessores, setOpcoesProfessores] = useState([]);
     const [mensagem, setMensagem] = useState("");
 
+    // Adicione isso dentro do seu componente CadastrarTurma
+    const customSelectStyles = {
+    // Estiliza o valor selecionado
+    singleValue: (provided) => ({
+        ...provided,
+        textTransform: "capitalize",
+    }),
+    // Estiliza os itens do menu
+    option: (provided) => ({
+        ...provided,
+        textTransform: "capitalize",
+    }),
+    // Se quiser nos múltiplos valores selecionados
+    multiValueLabel: (provided) => ({
+        ...provided,
+        textTransform: "capitalize",
+    }),
+    };
+
     // Buscar alunos
     useEffect(() => {
         fetch("http://localhost:8080/aluno/buscar-todos")
@@ -168,7 +187,7 @@ function CadastrarTurma() {
                 </div>
 
                 {/* Alunos */}
-                <div className={styles.inputGroup}>
+                <div>
                     <label>Alunos</label>
                     <Select
                         isMulti
@@ -176,11 +195,12 @@ function CadastrarTurma() {
                         value={alunosSelecionados}
                         onChange={setAlunosSelecionados}
                         placeholder="Selecione os alunos..."
+                        styles={customSelectStyles}
                     />
                 </div>
 
                 {/* Disciplinas */}
-                <div className={styles.inputGroup}>
+                <div>
                     <label>Disciplinas</label>
                     <Select
                         isMulti
@@ -188,6 +208,7 @@ function CadastrarTurma() {
                         value={disciplinasSelecionadas}
                         onChange={setDisciplinasSelecionadas}
                         placeholder="Selecione as disciplinas..."
+                        styles={customSelectStyles}
                     />
                 </div>
 
