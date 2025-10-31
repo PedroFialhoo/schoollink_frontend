@@ -15,6 +15,7 @@ function RegistroContainer() {
     const [descricao, setDescricao] = useState("");
     const [listaDeAlunos, setListaDeAlunos] = useState([]);
     const [mensagem, setMensagem] = useState("");
+
     const location = useLocation();
     const { idHorarioAula, idProfessor } = location.state || {};
 
@@ -39,22 +40,31 @@ function RegistroContainer() {
             })
             .then((data) => {
                 if (!data) return;
+
                 const alunosDoBackend = data.map((aluno) => ({
+                    idAluno: aluno.idAluno,
+                    userDto: aluno.userDto,
                     matricula: aluno.matricula,
-                    nome: aluno.userDto?.nome || "Sem nome",
-                    presenca: aluno.presenca ?? false,
+                    dataMatricula: aluno.dataMatricula,
+                    statusMatricula: aluno.statusMatricula,
+                    nomeResponsavel: aluno.nomeResponsavel,
+                    telefoneResponsavel: aluno.telefoneResponsavel,
+                    enderecoDto: aluno.enderecoDto,
+                    presenca: aluno.presenca, // mantém o valor vindo do back
                 }));
+
                 setListaDeAlunos(alunosDoBackend);
+                console.log("Alunos recebidos:", alunosDoBackend);
             })
             .catch((error) => {
                 console.error("Erro na requisição:", error);
             });
     }, [idHorarioAula, idProfessor]);
 
-    const handlePresencaChange = (matricula, novaPresenca) => {
+    const handlePresencaChange = (userId, novaPresenca) => {
         setListaDeAlunos((prevAlunos) =>
             prevAlunos.map((aluno) =>
-                aluno.matricula === matricula
+                aluno.userDto?.userId === userId
                     ? { ...aluno, presenca: novaPresenca }
                     : aluno
             )
@@ -65,13 +75,14 @@ function RegistroContainer() {
         setMensagem("");
 
         const registro = {
-            idHorarioAula, // Corrigido o nome da chave
-            conteudoMinistrado: conteudo,
-            resumoAula: resumo,
-            tarefa: teveTarefa,
+            idHorarioAula,
             descricao,
+            conteudoMinistrado: conteudo,
+            tarefa: teveTarefa,
             alunos: listaDeAlunos,
         };
+
+        console.log("Body enviado:", registro);
 
         try {
             const response = await fetch("http://localhost:8080/professor/realizar/chamada", {
@@ -104,6 +115,7 @@ function RegistroContainer() {
                         locale="pt-BR"
                     />
                 </div>
+
                 <div className={styles.rigthContainer}>
                     <ResumoAula
                         conteudo={conteudo}
@@ -126,7 +138,7 @@ function RegistroContainer() {
                 </div>
             </div>
 
-            <button type="submit" className={styles.botaoSalvar} onClick={onSubmit}>
+            <button type="button" className={styles.botaoSalvar} onClick={onSubmit}>
                 Salvar Registro da Aula
             </button>
 

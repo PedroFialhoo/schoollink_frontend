@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import styles from './ListaPresenca.module.css';
+import { useState } from "react";
+import styles from "./ListaPresenca.module.css";
 
 function ListaPresenca({ alunos, onPresencaChange }) {
     const [fechado, setFechado] = useState(true);
 
-    // Calcula o total de presentes para o resumo
-    const totalPresentes = alunos.filter(aluno => aluno.presenca).length;
+    const totalPresentes = alunos.filter((aluno) => aluno.presenca).length;
     const totalAlunos = alunos.length;
 
     return (
@@ -17,21 +16,26 @@ function ListaPresenca({ alunos, onPresencaChange }) {
                         {totalPresentes} / {totalAlunos} Presentes
                     </span>
                 </div>
-                <i
-                    className={`bi bi-chevron-${fechado ? "down " : "up"}`}
-                ></i>
+                <i className={`bi bi-chevron-${fechado ? "down" : "up"}`}></i>
             </summary>
 
             <div className={styles.listaContainer}>
                 <ul className={styles.listaAlunos}>
                     {alunos.map((aluno) => (
-                        <li key={aluno.matricula} className={styles.alunoItem}>
-                            <span className={styles.alunoNome}>{aluno.nome}</span>
+                        <li
+                            key={aluno.userDto?.userId || aluno.matricula}
+                            className={styles.alunoItem}
+                        >
+                            <span className={styles.alunoNome}>
+                                {aluno.userDto?.nome || "Sem nome"}
+                            </span>
                             <label className={styles.switch}>
                                 <input
                                     type="checkbox"
                                     checked={aluno.presenca}
-                                    onChange={() => onPresencaChange(aluno.matricula, !aluno.presenca)}
+                                    onChange={() =>
+                                        onPresencaChange(aluno.userDto?.userId, !aluno.presenca)
+                                    }
                                 />
                                 <span className={styles.slider}></span>
                             </label>
