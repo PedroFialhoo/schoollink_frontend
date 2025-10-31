@@ -1,39 +1,65 @@
+import { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+import axios from "axios";
 import MateriaCard from "../components/MateriaCard";
-import styles from "./CarregarDisciplinas.module.css"; // Importando o CSS Module
+import styles from "./CarregarDisciplinas.module.css";
 
 function CarregarDisciplinas() {
-    const materias = [
-        { id: 1, nome: "Cálculo I", professor: "Prof. João Silva", icone: "∫" },
-        { id: 2, nome: "Programação Orientada a Objetos", professor: "Profa. Ana Costa", icone: "💻" },
-        { id: 3, nome: "Banco de Dados", professor: "Prof. Carlos Pereira", icone: "💾" },
-        { id: 4, nome: "Engenharia de Requisitos", professor: "Profa. Mariana Souza", icone: "📝" },
-        { id: 5, nome: "Cálculo Numérico", professor: "Prof. Roberto Lima", icone: "🧮" },
-        { id: 6, nome: "Projeto Integrador IV", professor: "Profa. Camila Mendes", icone: "🚀" },
-        { id: 7, nome: "Redes de Computadores", professor: "Prof. Felipe Ramos", icone: "🌐" },
-        { id: 8, nome: "Sistemas Operacionais", professor: "Profa. Juliana Alves", icone: "🐧" },
-        { id: 9, nome: "Inteligência Artificial", professor: "Prof. Marcos Vinicius", icone: "🤖" },
-        { id: 10, nome: "Design de Interfaces", professor: "Profa. Beatriz Nunes", icone: "🎨" },
-    ];
+    const [materias, setMaterias] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMaterias = async () => {
+            try {
+                // Faz a requisição passando a session automaticamente (com cookies)
+                const response = await axios.get("http://localhost:8080/aluno/buscarDisciplinas", {
+                    withCredentials: true, // importante para enviar os cookies da sessão
+                });
+
+                const dadosAdaptados = response.data.map((item) => ({
+                    idDisciplina: item.idDisciplina,
+                    nome: item.nomeDisciplina,
+                    idProfessor: item.idProfessor,
+                    professor: item.nomeProfessor,
+                    icone: "📘",
+                }));
+
+                setMaterias(dadosAdaptados);
+            } catch (error) {
+                console.error("Erro ao buscar disciplinas:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMaterias();
+    }, []);
+
+    if (loading) {
+        return <p className={styles.loading}>Carregando disciplinas...</p>;
+    }
 
     return (
         <div>
-        <div className={styles.paginaContainer}>
-            <h1 className={styles.titulo}>📚 Disciplinas</h1>
-            <div className={styles.gridMaterias}>
-                {materias.map((materia) => (
-                    <Link 
-                    key={materia.id} 
-                    to={`materia/${materia.id}`} 
-                    className={styles.linkMateria}
-                    >
-                    <MateriaCard materia={materia} />
-                    </Link>
-                ))}
+            <div className={styles.paginaContainer}>
+                <h1 className={styles.titulo}>📚 Disciplinas</h1>
+                <div className={styles.gridMaterias}>
+                    {materias.length > 0 ? (
+                        materias.map((materia) => (
+                            <Link
+                                key={materia.id}
+                                to={`materia/${materia.id}`}
+                                className={styles.linkMateria}
+                            >
+                                <MateriaCard materia={materia} />
+                            </Link>
+                        ))
+                    ) : (
+                        <p>Nenhuma disciplina encontrada.</p>
+                    )}
+                </div>
             </div>
-        </div>
-        
-        <Outlet/>
+            <Outlet />
         </div>
     );
 }
