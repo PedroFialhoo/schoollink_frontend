@@ -11,9 +11,8 @@ function CarregarDisciplinas() {
     useEffect(() => {
         const fetchMaterias = async () => {
             try {
-                // Faz a requisição passando a session automaticamente (com cookies)
                 const response = await axios.get("http://localhost:8080/aluno/buscarDisciplinas", {
-                    withCredentials: true, // importante para enviar os cookies da sessão
+                    withCredentials: true,
                 });
 
                 const dadosAdaptados = response.data.map((item) => ({
@@ -21,6 +20,7 @@ function CarregarDisciplinas() {
                     nome: item.nomeDisciplina,
                     idProfessor: item.idProfessor,
                     professor: item.nomeProfessor,
+                    idTurmaDisciplina: item.idTurmaDisciplina,
                     icone: "📘",
                 }));
 
@@ -47,8 +47,8 @@ function CarregarDisciplinas() {
                     {materias.length > 0 ? (
                         materias.map((materia) => (
                             <Link
-                                key={materia.id}
-                                to={`materia/${materia.id}`}
+                                key={materia.idDisciplina}
+                                to={`materia/${materia.idDisciplina}?idTurmaDisciplina=${materia.idTurmaDisciplina}`}
                                 className={styles.linkMateria}
                             >
                                 <MateriaCard materia={materia} />
@@ -62,6 +62,8 @@ function CarregarDisciplinas() {
             <Outlet />
         </div>
     );
+
+
 }
 
 export default CarregarDisciplinas;

@@ -53,3 +53,25 @@
     background-color: #152e55;
     box-shadow: 0 4px 15px rgba(26, 58, 106, 0.3);
 }
+
+
+.mensagemErro,
+.mensagemSucesso {
+    grid-column: 1 / -1;
+    font-size: 0.9rem;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 10px;
+}
+
+.mensagemErro {
+    color: #c92a2a;
+    background-color: #fff5f5;
+    border: 1px solid #ffc9c9;
+}
+
+.mensagemSucesso {
+    color: #187f5d;
+    background-color: #e6fcf5;
+    border: 1px solid #b3f4e2;
+}

@@ -50,7 +50,7 @@ function RegistroContainer() {
                     nomeResponsavel: aluno.nomeResponsavel,
                     telefoneResponsavel: aluno.telefoneResponsavel,
                     enderecoDto: aluno.enderecoDto,
-                    presenca: aluno.presenca, // mantém o valor vindo do back
+                    presenca: aluno.presenca, 
                 }));
 
                 setListaDeAlunos(alunosDoBackend);
@@ -93,14 +93,14 @@ function RegistroContainer() {
             });
 
             if (!response.ok) {
-                setMensagem("❌ Erro ao registrar chamada.");
+                setMensagem("Erro ao registrar chamada.");
                 return;
             }
 
-            setMensagem("✅ Registro da aula salvo com sucesso!");
+            setMensagem("Registro da aula salvo com sucesso!");
         } catch (error) {
             console.error("Erro na requisição:", error);
-            setMensagem("⚠️ Erro na requisição. Tente novamente.");
+            setMensagem("Erro na requisição. Tente novamente.");
         }
     };
 
