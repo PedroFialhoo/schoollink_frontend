@@ -14,7 +14,7 @@ function RegistroContainer() {
     const [teveTarefa, setTeveTarefa] = useState(false);
     const [descricao, setDescricao] = useState("");
     const [listaDeAlunos, setListaDeAlunos] = useState([]);
-
+    const [mensagem, setMensagem] = useState("");
     const location = useLocation();
     const { idHorarioAula, idProfessor } = location.state || {};
 
@@ -39,15 +39,12 @@ function RegistroContainer() {
             })
             .then((data) => {
                 if (!data) return;
-
                 const alunosDoBackend = data.map((aluno) => ({
                     matricula: aluno.matricula,
                     nome: aluno.userDto?.nome || "Sem nome",
                     presenca: aluno.presenca ?? false,
                 }));
-
                 setListaDeAlunos(alunosDoBackend);
-                console.log("Alunos recebidos do backend:", alunosDoBackend);
             })
             .catch((error) => {
                 console.error("Erro na requisição:", error);
@@ -62,6 +59,38 @@ function RegistroContainer() {
                     : aluno
             )
         );
+    };
+
+    const onSubmit = async () => {
+        setMensagem("");
+
+        const registro = {
+            idHorarioAula, // Corrigido o nome da chave
+            conteudoMinistrado: conteudo,
+            resumoAula: resumo,
+            tarefa: teveTarefa,
+            descricao,
+            alunos: listaDeAlunos,
+        };
+
+        try {
+            const response = await fetch("http://localhost:8080/professor/realizar/chamada", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify(registro),
+            });
+
+            if (!response.ok) {
+                setMensagem("❌ Erro ao registrar chamada.");
+                return;
+            }
+
+            setMensagem("✅ Registro da aula salvo com sucesso!");
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            setMensagem("⚠️ Erro na requisição. Tente novamente.");
+        }
     };
 
     return (
@@ -96,9 +125,22 @@ function RegistroContainer() {
                     />
                 </div>
             </div>
-            <button type="submit" className={styles.botaoSalvar}>
+
+            <button type="submit" className={styles.botaoSalvar} onClick={onSubmit}>
                 Salvar Registro da Aula
             </button>
+
+            {mensagem && (
+                <p
+                    className={
+                        mensagem.includes("sucesso")
+                            ? styles.mensagemSucesso
+                            : styles.mensagemErro
+                    }
+                >
+                    {mensagem}
+                </p>
+            )}
         </div>
     );
 }
