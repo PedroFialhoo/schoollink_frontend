@@ -22,10 +22,12 @@ import EditarAluno from "../pages/admin/editar/components/EditarAluno";
 import EditarTurma from "../pages/admin/editar/components/EditarTurma";
 import CadastrarFuncionario from "../pages/admin/cadastrar/components/CadastrarFuncionario";
 import CadastrarTurma from "../pages/admin/cadastrar/components/CadastrarTurma";
+import CadastrarHorarioFixo from "../pages/admin/cadastrar/components/CadastrarHorarioFixo";
 import RegistrarAula from "../pages/professor/registrar-aula/RegistrarAula";
 import HomeProfessor from "../pages/professor/home/HomeProfessor";
+import CriarProva from "../pages/professor/prova/CriarProva";
 import RegistroContainer from "../pages/professor/registrar-aula/RegistroContainer/RegistroContainer";
-// import HomeAdmin from "../pages/admin/home/Home";
+import HomeAdmin from "../pages/admin/home/HomeAdmin";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
 const Router = createBrowserRouter([
@@ -93,6 +95,10 @@ const Router = createBrowserRouter([
         element: <HomeProfessor />,
       },
       {
+        path: "prova",
+        element: <CriarProva />,
+      },
+      {
         path: "registrar-aula",
         element: <RegistrarAula />,
         children: [
@@ -111,10 +117,10 @@ const Router = createBrowserRouter([
     path: "/admin",
     element: <AdminLayout />,
     children: [
-      // {
-      //   path: "home",
-      //   element: <HomeProfessor />,
-      // },
+      {
+        path: "home",
+        element: <HomeAdmin />,
+      },
       {
         path: "cadastrar",
         element: <Cadastrar />,
@@ -125,6 +131,7 @@ const Router = createBrowserRouter([
           { path: "disciplina", element: <CadastrarDisciplina /> },
           { path: "funcionario", element: <CadastrarFuncionario /> },
           { path: "turma", element: <CadastrarTurma /> },
+          { path: "horario", element: <CadastrarHorarioFixo /> },
         ],
       },
       {
