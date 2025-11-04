@@ -14,6 +14,7 @@ function ContainerAulas() {
                     withCredentials: true
                 });
                 setMaterias(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Erro ao buscar aulas:", error);
             }

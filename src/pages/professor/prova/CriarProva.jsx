@@ -10,7 +10,7 @@ function CriarProva() {
   const [nomeProva, setNomeProva] = useState("");
   const [tipoProva, setTipoProva] = useState("");
   const [bimestre, setBimestre] = useState("");
-  const [materiaId, setMateriaId] = useState("");
+  const [idTurmaDisciplina, setIdTurmaDisciplina] = useState("");
   const [turmaId, setTurmaId] = useState("");
   const [mensagem, setMensagem] = useState("");
   const [tipoMensagem, setTipoMensagem] = useState(""); // 'sucesso' ou 'erro'
@@ -42,7 +42,7 @@ function CriarProva() {
   useEffect(() => {
     if (!turmaId) {
       setMaterias([]);
-      setMateriaId("");
+      setIdTurmaDisciplina("");
       return;
     }
 
@@ -69,29 +69,39 @@ function CriarProva() {
     e.preventDefault();
     setMensagem("");
 
-    if (!nomeProva || !tipoProva || !bimestre || !materiaId || !turmaId) {
+    if (!nomeProva || !tipoProva || !bimestre || !idTurmaDisciplina || !turmaId) {
       setMensagem("Por favor, preencha todos os campos.");
       setTipoMensagem("erro");
       return;
     }
 
-    const novaProva = {
-      turmaId: Number(turmaId),
-      materiaId: Number(materiaId),
+    const novaProva = { 
+      idTurmaDisciplina: Number(idTurmaDisciplina),
       nome: nomeProva,
-      tipo: tipoProva,
-      bimestre,
+      bimestre: bimestre,
+      tipoProva: tipoProva,
     };
 
     console.log("Enviando prova:", novaProva);
-
-    setMensagem("Prova criada com sucesso!");
-    setTipoMensagem("sucesso");
+    fetch("http://localhost:8080/prova/cadastrar",{
+      method: "POST",
+      headers: {
+                "Content-Type": "application/json",                
+            },
+      body: JSON.stringify(novaProva),
+    })
+    .then(response => {
+      if(response.ok){
+        setMensagem("Prova criada com sucesso!");
+        setTipoMensagem("sucesso");
+      }
+    })
+    .catch(error => console.log("Erro ao enviar prova:", error))
 
     setNomeProva("");
     setTipoProva("");
     setBimestre("");
-    setMateriaId("");
+    setIdTurmaDisciplina("");
     setTurmaId("");
   };
 
@@ -122,16 +132,16 @@ function CriarProva() {
             <label htmlFor="materia">Matéria</label>
             <select
               id="materia"
-              value={materiaId}
-              onChange={(e) => setMateriaId(e.target.value)}
+              value={idTurmaDisciplina}
+              onChange={(e) => setIdTurmaDisciplina(e.target.value)}
               disabled={!turmaId}
             >
               <option value="">
                 {turmaId ? "Selecione a matéria..." : "Selecione uma turma primeiro"}
               </option>
               {materias.map((materia) => (
-                <option key={materia.id} value={materia.id}>
-                  {materia.nome}
+                <option key={materia.idTurmaDisciplina} value={materia.idTurmaDisciplina}>
+                  {materia.disciplinaDto.nome}
                 </option>
               ))}
             </select>
@@ -149,7 +159,6 @@ function CriarProva() {
             />
           </div>
 
-          {/* Tipo */}
           <div className={styles.inputGroup}>
             <label htmlFor="tipoProva">Tipo da Prova</label>
             <select
@@ -165,7 +174,6 @@ function CriarProva() {
             </select>
           </div>
 
-          {/* Bimestre */}
           <div className={styles.inputGroup}>
             <label htmlFor="bimestre">Bimestre</label>
             <select
@@ -174,14 +182,13 @@ function CriarProva() {
               onChange={(e) => setBimestre(e.target.value)}
             >
               <option value="">Selecione o bimestre...</option>
-              <option value="1B">1º Bimestre</option>
-              <option value="2B">2º Bimestre</option>
-              <option value="3B">3º Bimestre</option>
-              <option value="4B">4º Bimestre</option>
+              <option value="PRIMEIRO_BIMESTRE">1º Bimestre</option>
+              <option value="SEGUNDO_BIMESTRE">2º Bimestre</option>
+              <option value="TERCEIRO_BIMESTRE">3º Bimestre</option>
+              <option value="QUARTO_BIMESTRE">4º Bimestre</option>
             </select>
           </div>
 
-          {/* Mensagem */}
           {mensagem && (
             <p
               className={`${styles.mensagem} ${
