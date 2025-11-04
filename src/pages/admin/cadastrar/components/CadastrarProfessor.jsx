@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Cadastrar.module.css";
 import Endereco from "../../components/forms/Endereco";
 import FormProfessor from "../../components/forms/FormProfessor";
+import Rfid from "../../components/forms/Rfid";
 
 function CadastrarProfessor() {
   const [nome, setNome] = useState("");
@@ -23,6 +24,7 @@ function CadastrarProfessor() {
   const [cidade, setCidade] = useState("");
   const [rua, setRua] = useState("");
   const [numero, setNumero] = useState("");
+  const [rfid, setRfid] = useState("");
 
   const [mensagem, setMensagem] = useState("");
 
@@ -57,7 +59,8 @@ function CadastrarProfessor() {
         cidade,
         rua,
         numero
-      }
+      },
+      rfid: rfid
     };
 
     fetch("http://localhost:8080/professor/cadastrar", {
@@ -126,6 +129,11 @@ function CadastrarProfessor() {
           cidade={cidade} setCidade={setCidade}
           rua={rua} setRua={setRua}
           numero={numero} setNumero={setNumero}
+        />
+
+        <Rfid 
+          rfid={rfid}
+          setRfid={setRfid}
         />
 
         {mensagem && (

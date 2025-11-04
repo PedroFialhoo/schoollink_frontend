@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Cadastrar.module.css";
 import Endereco from "../../components/forms/Endereco";
 import FormFuncionario from "../../components/forms/FormFuncionario";
+import Rfid from "../../components/forms/Rfid";
 
 function CadastrarFuncionario() {
   const [nome, setNome] = useState("");
@@ -20,6 +21,7 @@ function CadastrarFuncionario() {
   const [cidade, setCidade] = useState("");
   const [rua, setRua] = useState("");
   const [numero, setNumero] = useState("");
+  const [rfid, setRfid] = useState("");
 
   const [mensagem, setMensagem] = useState("");
 
@@ -49,7 +51,8 @@ function CadastrarFuncionario() {
             cidade: cidade,
             rua: rua,
             numero: numero
-          }
+          },
+        rfid: rfid
     };
     
     fetch("http://localhost:8080/funcionario/cadastrar", {
@@ -120,6 +123,11 @@ function CadastrarFuncionario() {
           setRua={setRua}
           numero={numero}
           setNumero={setNumero}
+        />
+
+        <Rfid 
+          rfid={rfid}
+          setRfid={setRfid}
         />
 
         {mensagem && (

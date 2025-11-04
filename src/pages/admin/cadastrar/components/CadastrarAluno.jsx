@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Cadastrar.module.css";
 import Endereco from "../../components/forms/Endereco";
 import FormAluno from "../../components/forms/FormAluno";
+import Rfid from "../../components/forms/Rfid";
 
 function CadastrarAluno() {
   const [nome, setNome] = useState("");
@@ -22,6 +23,7 @@ function CadastrarAluno() {
   const [cidade, setCidade] = useState("");
   const [rua, setRua] = useState("");
   const [numero, setNumero] = useState("");
+  const [rfid, setRfid] = useState("");
 
   const [mensagem, setMensagem] = useState("");
 
@@ -54,7 +56,8 @@ function CadastrarAluno() {
             cidade: cidade,
             rua: rua,
             numero: numero
-          }
+          },
+          rfid: rfid
         }
         console.log("Telefone:", telefone, "Gênero:", genero, "DataNascimento:", dataNascimento);
 
@@ -130,6 +133,11 @@ function CadastrarAluno() {
           setRua={setRua}
           numero={numero}
           setNumero={setNumero}
+        />
+
+        <Rfid 
+          rfid={rfid}
+          setRfid={setRfid}
         />
 
         {mensagem && (
