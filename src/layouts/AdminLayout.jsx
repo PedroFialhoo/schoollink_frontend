@@ -7,6 +7,7 @@ function AdminLayout() {
     { to: "/admin/home", icon: "bi bi-house-fill", label: "Home" },
     { to: "/admin/cadastrar", icon: "bi bi-plus-square", label: "Cadastrar" },
     { to: "/admin/editar", icon: "bi bi-pencil-square", label: "Editar" },
+    { to: "/admin/gerar-aula", icon: "bi bi-calendar-week", label: "Gerar Aula" },
     { to: "/admin/configuracoes", icon: "bi bi-gear-fill", label: "Configurações" },
     { to: "/admin/sair", icon: "bi bi-box-arrow-right", label: "Sair" },
   ]

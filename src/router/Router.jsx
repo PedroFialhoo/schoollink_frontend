@@ -28,6 +28,7 @@ import HomeProfessor from "../pages/professor/home/HomeProfessor";
 import CriarProva from "../pages/professor/prova/CriarProva";
 import RegistroContainer from "../pages/professor/registrar-aula/RegistroContainer/RegistroContainer";
 import HomeAdmin from "../pages/admin/home/HomeAdmin";
+import GerarAulas from "../pages/admin/GerarAulas/GerarAulas";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
 const Router = createBrowserRouter([
@@ -148,6 +149,10 @@ const Router = createBrowserRouter([
       //   path: "configuracoes",
       //   element: <ConfigAdmin />,
       // },
+      {
+        path: "gerar-aula",
+        element: <GerarAulas />
+      },
       {
         path: "sair",
         element: <Logout />,

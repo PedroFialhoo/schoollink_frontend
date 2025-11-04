@@ -2,33 +2,6 @@
 import { useEffect, useState } from 'react';
 import styles from './CriarProva.module.css';
 
-// Mock de turmas (viria da API)
-const TURMAS_EXEMPLO = [
-  { id: 1, nome: "1A" },
-  { id: 2, nome: "2A" },
-  { id: 3, nome: "3A" },
-  { id: 4, nome: "4A" },
-];
-
-// Mock de matérias por turma (simulando o backend)
-const MATERIAS_POR_TURMA = {
-  1: [
-    { id: 1, nome: "Matemática Básica" },
-    { id: 2, nome: "Português I" },
-  ],
-  2: [
-    { id: 3, nome: "Cálculo I" },
-    { id: 4, nome: "Programação Orientada a Objetos" },
-  ],
-  3: [
-    { id: 5, nome: "Banco de Dados" },
-    { id: 6, nome: "Engenharia de Software" },
-  ],
-  4: [
-    { id: 7, nome: "Inteligência Artificial" },
-    { id: 8, nome: "Redes de Computadores" },
-  ],
-};
 
 function CriarProva() {
   const [turmas, setTurmas] = useState([]);
@@ -42,13 +15,30 @@ function CriarProva() {
   const [mensagem, setMensagem] = useState("");
   const [tipoMensagem, setTipoMensagem] = useState(""); // 'sucesso' ou 'erro'
 
-  // Buscar turmas (simulação de API)
   useEffect(() => {
-    // Aqui você faria: axios.get("/api/turmas")
-    setTurmas(TURMAS_EXEMPLO);
-  }, []);
 
-  // Buscar matérias da turma selecionada
+  fetch(`http://localhost:8080/turma/listar/professor/`,
+    {
+      credentials: "include",
+    }
+  )
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Erro ao buscar turmas");
+      }
+      return response.json();
+    })
+    .then(data => {
+      const turmasUnicas = [...new Map(data.map((t) => [t.id, t])).values()];
+      console.log("Turmas", turmasUnicas)
+      setTurmas(turmasUnicas);
+    })
+    .catch(error => {
+      console.error(error);
+      setTurmas([]);
+    });
+}, []);
+
   useEffect(() => {
     if (!turmaId) {
       setMaterias([]);
@@ -56,15 +46,23 @@ function CriarProva() {
       return;
     }
 
-    // Aqui seria a requisição real:
-    // axios.get(`/api/materias/turma/${turmaId}`)
-    //      .then(res => setMaterias(res.data))
-    //      .catch(() => setMaterias([]));
-
-    // Simulação com mock
-    const materiasTurma = MATERIAS_POR_TURMA[turmaId] || [];
-    setMaterias(materiasTurma);
-    setMateriaId("");
+    fetch(`http://localhost:8080/disciplina/buscar/turma/${turmaId}`, {
+      credentials: "include",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao buscar matérias");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setMaterias(data), 
+        console.log("Materias recebidas",materias)
+      })
+      .catch((error) => {
+        console.error("erro", error);
+        setMaterias([]);
+      });
   }, [turmaId]);
 
   const handleSubmit = (e) => {
@@ -104,7 +102,6 @@ function CriarProva() {
 
         <form className={styles.formGrid} onSubmit={handleSubmit}>
           
-          {/* Turma */}
           <div className={styles.inputGroup}>
             <label htmlFor="turma">Turma</label>
             <select
@@ -121,7 +118,6 @@ function CriarProva() {
             </select>
           </div>
 
-          {/* Matéria */}
           <div className={styles.inputGroup}>
             <label htmlFor="materia">Matéria</label>
             <select
