@@ -1,0 +1,16 @@
+/* src/components/ContainerCards/ContainerCards.module.css */
+.listaContainer {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 16px; /* Espaço entre os cards */
+}
+
+.feedback {
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  color: #6c757d;
+  background-color: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px dashed #dee2e6;
+}

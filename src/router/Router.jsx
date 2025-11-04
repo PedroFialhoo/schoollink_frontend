@@ -29,6 +29,7 @@ import CriarProva from "../pages/professor/prova/CriarProva";
 import RegistroContainer from "../pages/professor/registrar-aula/RegistroContainer/RegistroContainer";
 import HomeAdmin from "../pages/admin/home/HomeAdmin";
 import GerarAulas from "../pages/admin/GerarAulas/GerarAulas";
+import RegistrarNota from "../pages/professor/registrar-nota/RegistrarNota";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
 const Router = createBrowserRouter([
@@ -98,6 +99,10 @@ const Router = createBrowserRouter([
       {
         path: "prova",
         element: <CriarProva />,
+      },
+      {
+        path: "notas",
+        element: <RegistrarNota />,
       },
       {
         path: "registrar-aula",

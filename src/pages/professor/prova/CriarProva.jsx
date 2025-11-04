@@ -13,7 +13,7 @@ function CriarProva() {
   const [idTurmaDisciplina, setIdTurmaDisciplina] = useState("");
   const [turmaId, setTurmaId] = useState("");
   const [mensagem, setMensagem] = useState("");
-  const [tipoMensagem, setTipoMensagem] = useState(""); // 'sucesso' ou 'erro'
+  const [tipoMensagem, setTipoMensagem] = useState(""); 
 
   useEffect(() => {
 
