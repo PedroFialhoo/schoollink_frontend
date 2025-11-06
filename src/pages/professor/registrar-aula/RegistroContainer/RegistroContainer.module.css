@@ -75,3 +75,62 @@
     background-color: #e6fcf5;
     border: 1px solid #b3f4e2;
 }
+
+.selectHorarioContainer {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaço entre o label e o select */
+    width: 100%; /* Ocupa a largura total do container pai */
+}
+
+.selectHorarioContainer label {
+    font-weight: 500;
+    color: #495047;
+}
+
+.selectHorarioContainer select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid #E9ECEF; 
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    
+    /* Remove a aparência padrão */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Adiciona a seta personalizada */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem; /* Espaço para a seta não sobrepor o texto */
+}
+
+.selectHorarioContainer select:focus {
+    outline: none;
+    border-color: #1A3A6A; /* Azul da marca SchoolLink */
+    box-shadow: 0 0 0 3px rgba(26, 58, 106, 0.2);
+}
+
+.selectHorarioContainer select:hover {
+  background-color: #f8f9fa;
+}
+
+.mensagemAviso {
+  text-align: center;
+  color: #686868;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-top: 2rem;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+}

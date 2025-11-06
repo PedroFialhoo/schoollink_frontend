@@ -8,7 +8,8 @@ import Tarefa from "./Tarefa/Tarefa";
 import ListaPresenca from "./ListaPresenca/ListaPresenca";
 
 function RegistroContainer() {
-    const { idTurmaDisciplina } = useParams();
+    const { id } = useParams();
+    const idTurmaDisciplina = id;
     const [dataSelecionada, setDataSelecionada] = useState(new Date());
     const [conteudo, setConteudo] = useState("");
     const [resumo, setResumo] = useState("");
@@ -16,14 +17,38 @@ function RegistroContainer() {
     const [descricao, setDescricao] = useState("");
     const [listaDeAlunos, setListaDeAlunos] = useState([]);
     const [mensagem, setMensagem] = useState("");
-    const [idHorarioAula, setIdHorarioAula] = useState(null)
+    const [idHorarioAula, setIdHorarioAula] = useState("")
     const location = useLocation();
+    const [listaAula, setListaAula] = useState([])
     const { idProfessor } = location.state || {};
 
+
     useEffect(() =>{
-        fetch("http://localhost:8080/professor/buscar/aulas/dia")
+        if(!idProfessor || !idTurmaDisciplina || !dataSelecionada){
+            console.log("Ids inválidos:", {idProfessor, idTurmaDisciplina, dataSelecionada})
+            return
+        }
+        const diaFormatado = new Date(dataSelecionada).toISOString().split("T")[0];
+        fetch("http://localhost:8080/professor/buscar/aulas/dia",{
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({             
+                "dia": diaFormatado,
+                idTurmaDisciplina
+            })
+        })
         .then((response) => response.json())
-    },[idTurmaDisciplina])
+        .then((data) => {
+            setListaAula(data)
+            console.log(data)
+        })
+        .catch(error => {
+            console.error("Erro na requisição:", error);
+        });
+    },[idTurmaDisciplina, dataSelecionada])
 
 
     useEffect(() => {
@@ -66,7 +91,7 @@ function RegistroContainer() {
             .catch((error) => {
                 console.error("Erro na requisição:", error);
             });
-    }, [idHorarioAula, idProfessor]);
+    }, [idHorarioAula, idProfessor, dataSelecionada]);
 
     const handlePresencaChange = (userId, novaPresenca) => {
         setListaDeAlunos((prevAlunos) =>
@@ -120,10 +145,31 @@ function RegistroContainer() {
                         onChange={setDataSelecionada}
                         value={dataSelecionada}
                         locale="pt-BR"
-                    />
+                    />                    
                 </div>
 
+
                 <div className={styles.rigthContainer}>
+                    {listaAula.length > 0 ? (
+                    <>
+                    <div className={styles.selectHorarioContainer}>
+                        <label htmlFor="horarioSelect">Selecione o horário:</label>
+                        <select
+                        id="horarioSelect"
+                        value={idHorarioAula || ""}
+                        onChange={(e) => setIdHorarioAula(e.target.value)}
+                        >
+                        <option value="">-- Escolha o horário --</option>
+                        {[...listaAula]
+                        .sort((a, b) => a.horarioInicio.localeCompare(b.horarioInicio))
+                        .map((aula) => (
+                            <option key={aula.idHorarioAula} value={aula.idHorarioAula}>
+                            {aula.horarioInicio.slice(0, 5)} - {aula.nomeDisciplina}
+                            </option>
+                        ))}
+                        </select>
+                    </div>
+                    
                     <ResumoAula
                         conteudo={conteudo}
                         onConteudoChange={(e) => setConteudo(e.target.value)}
@@ -142,6 +188,8 @@ function RegistroContainer() {
                         alunos={listaDeAlunos}
                         onPresencaChange={handlePresencaChange}
                     />
+                    </>
+                    ) : (<p className={styles.mensagemAviso}>Nenhuma aula cadastrada neste dia 📅</p>)}
                 </div>
             </div>
 
