@@ -2,15 +2,14 @@
 import { useState, useEffect } from 'react';
 import CardProva from './CardProva';
 import styles from './ContainerCards.module.css';
-// import { useNavigate } from 'react-router-dom'; // Para uso real
+import { useNavigate } from 'react-router-dom'
 
 function ContainerCards() {
   const [provas, setProvas] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Busca as provas do professor
     fetch("http://localhost:8080/prova/buscar/professor", {
       credentials: "include",
     })
@@ -21,12 +20,11 @@ function ContainerCards() {
         return response.json();
       })
       .then(data => {
-        // Mapeia os dados retornados do backend para o formato esperado pelo CardProva
         const provasMapeadas = data.map(prova => ({
           id: prova.idProva,
           nome: prova.nome,
-          materia: prova.nomeDisciplina, // ou outro campo, se quiser exibir diferente
-          turma: prova.nomeTurma,    // aqui você pode ajustar o texto exibido no card
+          materia: prova.nomeDisciplina, 
+          turma: prova.nomeTurma,    
           bimestre: prova.bimestre,
         }));
         setProvas(provasMapeadas);
@@ -38,9 +36,7 @@ function ContainerCards() {
   }, []);
 
   const handleProvaClick = (provaId) => {
-    // Em uma aplicação real:
-    // navigate(`/professor/registrar-nota/${provaId}`);
-    alert(`Navegando para registrar notas da prova ID: ${provaId}`);
+     navigate(`/professor/notas/${provaId}`);
   };
 
   if (loading) {

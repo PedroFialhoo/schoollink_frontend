@@ -11,8 +11,8 @@ function CardAula({ materia }) {
             <h3 className={styles.nomeMateria}>
                 {materia.nomeDisciplina }
             </h3>
-            <p className={styles.horario}>
-                {materia.horarioInicio.slice(0, -3)} - {materia.horarioTermino.slice(0, -3)}
+            <p className={styles.nomeTurma}>
+                {materia.nomeTurma}
             </p>
         </div>
     );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import styles from "./RegistroContainer.module.css";
@@ -8,6 +8,7 @@ import Tarefa from "./Tarefa/Tarefa";
 import ListaPresenca from "./ListaPresenca/ListaPresenca";
 
 function RegistroContainer() {
+    const { idTurmaDisciplina } = useParams();
     const [dataSelecionada, setDataSelecionada] = useState(new Date());
     const [conteudo, setConteudo] = useState("");
     const [resumo, setResumo] = useState("");
@@ -15,9 +16,15 @@ function RegistroContainer() {
     const [descricao, setDescricao] = useState("");
     const [listaDeAlunos, setListaDeAlunos] = useState([]);
     const [mensagem, setMensagem] = useState("");
-
+    const [idHorarioAula, setIdHorarioAula] = useState(null)
     const location = useLocation();
-    const { idHorarioAula, idProfessor } = location.state || {};
+    const { idProfessor } = location.state || {};
+
+    useEffect(() =>{
+        fetch("http://localhost:8080/professor/buscar/aulas/dia")
+        .then((response) => response.json())
+    },[idTurmaDisciplina])
+
 
     useEffect(() => {
         if (!idHorarioAula || !idProfessor) {

@@ -30,6 +30,7 @@ import RegistroContainer from "../pages/professor/registrar-aula/RegistroContain
 import HomeAdmin from "../pages/admin/home/HomeAdmin";
 import GerarAulas from "../pages/admin/GerarAulas/GerarAulas";
 import RegistrarNota from "../pages/professor/registrar-nota/RegistrarNota";
+import ListaAlunos from "../pages/professor/registrar-nota/components/ListaAlunos";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
 const Router = createBrowserRouter([
@@ -103,6 +104,12 @@ const Router = createBrowserRouter([
       {
         path: "notas",
         element: <RegistrarNota />,
+        children: [
+          {
+            path: ":id",
+            element: <ListaAlunos />,
+          }
+        ]
       },
       {
         path: "registrar-aula",

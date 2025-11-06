@@ -10,7 +10,7 @@ function ContainerAulas() {
     useEffect(() => {
         const fetchAulas = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/professor/buscar/aulas", {
+                const response = await axios.get("http://localhost:8080/professor/buscar/turmasDisciplinas", {
                     withCredentials: true
                 });
                 setMaterias(response.data);
@@ -32,9 +32,8 @@ function ContainerAulas() {
                         materias.map((materia) => (
                             <Link
                                 key={materia.idDisciplina}
-                                to={`materia/${materia.idDisciplina}`}
+                                to={`materia/${materia.idTurmaDisciplina}`}
                                 state={{
-                                    idHorarioAula: materia.idHorarioAula,
                                     idProfessor: materia.idProfessor
                                 }}
                                 className={styles.linkMateria}
