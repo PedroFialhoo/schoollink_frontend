@@ -1,92 +1,103 @@
-// src/pages/ListaAlunos.jsx
 import { useState, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import styles from './ListaAlunos.module.css';
-// import { useParams } from 'react-router-dom'; // Em um app real
-
-// --- Simulação de Dados ---
-// Em um app real, você usaria o ID da URL (useParams) para buscar estes dados
-const PROVA_ATUAL = {
-  id: 1,
-  nome: "P1 de Cálculo",
-  materia: "Cálculo I",
-  turma: "ES4A"
-};
-
-const ALUNOS_SIMULADOS = [
-  { id: 1, matricula: "128", nome: "Allisson Castilho", nota: null },
-  { id: 2, matricula: "129", nome: "Pedro Fialho", nota: 8.5 },
-  { id: 3, matricula: "130", nome: "Ana Clara", nota: 9.0 },
-  { id: 4, matricula: "131", nome: "Bruno Almeida", nota: null },
-  { id: 5, matricula: "132", nome: "Carla Souza", nota: 7.0 },
-  { id: 6, matricula: "133", nome: "Diogo Barroso", nota: 10.0 },
-  { id: 7, matricula: "134", nome: "Elisa Fernandes", nota: null },
-  { id: 8, matricula: "135", nome: "Fábio Gomes", nota: null },
-];
-// --- Fim da Simulação ---
 
 function ListaAlunos() {
-  // O estado 'notas' armazena as notas. Usamos um objeto (Map)
-  // onde a chave é a matrícula do aluno.
+  const [alunos, setAlunos] = useState([]);
   const [notas, setNotas] = useState({});
   const [loading, setLoading] = useState(true);
-  const [mensagem, setMensagem] = useState("");
+  const [mensagem, setMensagem] = useState('');
+  
+  const location = useLocation();
+  const { id } = useParams();
+  const { prova } = location.state || {};
 
-  // Efeito para carregar as notas iniciais (da simulação)
   useEffect(() => {
-    // Transforma o array de alunos em um objeto de notas
-    const notasIniciais = ALUNOS_SIMULADOS.reduce((acc, aluno) => {
-      acc[aluno.matricula] = aluno.nota || ''; // Usa a nota existente ou string vazia
-      return acc;
-    }, {});
-    
-    setNotas(notasIniciais);
-    setLoading(false);
-  }, []);
+    const provaId = id || prova?.id;
+    if (!provaId) return;
 
-  // Atualiza o estado quando o professor digita uma nota
-  const handleNotaChange = (matricula, valor) => {
-    // Remove mensagens de sucesso anteriores
-    setMensagem(""); 
+    fetch(`http://localhost:8080/prova/buscar/AlunoProva/${provaId}`, {
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Erro ao buscar alunos');
+        return res.json();
+      })
+      .then((data) => {
+        setAlunos(data);
+        const notasIniciais = data.reduce((acc, aluno) => {
+          acc[aluno.idAluno] = aluno.nota ?? '';
+          return acc;
+        }, {});
+        setNotas(notasIniciais);
+      })
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, [id, prova]);
 
-    // Limita o valor entre 0 e 10
+  const handleNotaChange = (idAluno, valor) => {
+    setMensagem('');
     let nota = parseFloat(valor);
     if (isNaN(nota)) nota = '';
     if (nota > 10) nota = 10;
     if (nota < 0) nota = 0;
-
-    setNotas(prevNotas => ({
-      ...prevNotas,
-      [matricula]: nota
-    }));
+    setNotas((prev) => ({ ...prev, [idAluno]: nota }));
   };
 
-  // Simula o envio das notas para a API
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Salvando notas:", notas);
-    // Aqui você faria a chamada para a API (ex: PUT /api/provas/1/notas)
-    
-    setMensagem("Notas salvas com sucesso!");
-    // Esconde a mensagem após 3 segundos
-    setTimeout(() => setMensagem(""), 3000);
+
+    if (!alunos.length || !prova?.id) {
+      setMensagem('Nenhum aluno ou prova selecionada.');
+      return;
+    }
+    const notasParaEnviar = alunos.map((aluno) => ({
+      idAluno: aluno.idAluno, 
+      idProva: prova.id,
+      nota: parseFloat(notas[aluno.idAluno]) || 0
+    }));
+
+    fetch('http://localhost:8080/prova/lancar-notas/turma', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(notasParaEnviar),
+      credentials: 'include',
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Erro ao salvar notas');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log('Resposta do servidor:', data);
+        setMensagem('✅ Notas salvas com sucesso!');
+        setTimeout(() => setMensagem(''), 3000);
+      })
+      .catch((err) => {
+        console.error(err);
+        setMensagem('❌ Erro ao salvar notas. Tente novamente.');
+        setTimeout(() => setMensagem(''), 3000);
+      });
   };
+
 
   if (loading) {
     return <h1 className={styles.feedback}>Carregando lista de alunos...</h1>;
   }
 
   return (
-    <div className={styles.paginaContainer}>      
+    <div className={styles.paginaContainer}>
       <form className={styles.listaCard} onSubmit={handleSubmit}>
         <div className={styles.cardHeader}>
-          <h2 className={styles.nomeProva}>{PROVA_ATUAL.nome}</h2>
+          <h2 className={styles.nomeProva}>{prova?.nome || 'Prova'}</h2>
           <p className={styles.infoTurma}>
-            {PROVA_ATUAL.materia} — <strong>Turma: {PROVA_ATUAL.turma}</strong>
+            {prova?.materia} — <strong>Turma: {prova?.turma}</strong>
           </p>
         </div>
 
         <div className={styles.listaContainer}>
-          {ALUNOS_SIMULADOS.map((aluno) => (
+          {alunos.map((aluno) => (
             <div key={aluno.matricula} className={styles.alunoItem}>
               <div className={styles.alunoInfo}>
                 <span className={styles.alunoNome}>{aluno.nome}</span>
@@ -99,8 +110,8 @@ function ListaAlunos() {
                   max="10"
                   step="0.1"
                   className={styles.notaInput}
-                  value={notas[aluno.matricula] || ''}
-                  onChange={(e) => handleNotaChange(aluno.matricula, e.target.value)}
+                  value={notas[aluno.idAluno] ?? ''}
+                  onChange={(e) => handleNotaChange(aluno.idAluno, e.target.value)}
                   placeholder="-"
                 />
               </div>

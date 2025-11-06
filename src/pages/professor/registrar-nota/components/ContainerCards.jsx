@@ -35,8 +35,8 @@ function ContainerCards() {
       .finally(() => setLoading(false));
   }, []);
 
-  const handleProvaClick = (provaId) => {
-     navigate(`/professor/notas/${provaId}`);
+  const handleProvaClick = (prova) => {
+     navigate(`/professor/notas/${prova.id}`, { state: { prova } });
   };
 
   if (loading) {
@@ -53,7 +53,7 @@ function ContainerCards() {
         <CardProva
           key={prova.id}
           prova={prova}
-          onClick={() => handleProvaClick(prova.id)}
+          onClick={() => handleProvaClick(prova)}
         />
       ))}
     </div>

@@ -214,7 +214,7 @@ function CadastrarTurma() {
 
                 {/* Professores vinculados às disciplinas */}
                 {disciplinasSelecionadas.length > 0 && (
-                    <div className={styles.inputGroup}>
+                    <div>
                         <label>Vincular Professores às Disciplinas</label>
                         {disciplinasSelecionadas.map((disciplina) => {
                             const professorVinculado = disciplinasProfessores.find(
