@@ -112,6 +112,7 @@ function RegistroContainer() {
             conteudoMinistrado: conteudo,
             tarefa: teveTarefa,
             alunos: listaDeAlunos,
+            resumoAula: resumo,
         };
 
         console.log("Body enviado:", registro);
