@@ -44,6 +44,11 @@ function RegistroContainer() {
         .then((data) => {
             setListaAula(data)
             console.log(data)
+            if (data.length === 1) {
+            setIdHorarioAula(data[0].idHorarioAula);
+            } else {
+                setIdHorarioAula("");
+            }
         })
         .catch(error => {
             console.error("Erro na requisição:", error);
