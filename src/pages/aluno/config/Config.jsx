@@ -1,22 +1,42 @@
 import styles from './Config.module.css';
 import MudarFoto from './components/MudarFoto';
 import MudarSenha from './components/MudarSenha';
+import { useState, useEffect } from 'react';
 
 function Config() {
-    
-    const usuarioLogado = {
-    nome: "Pedro",
-    email: "pedro@email.com",
-    avatarUrl: "https://i.pravatar.cc/150?u=pedro"
-    };
+    const [userName, setUserName] = useState("Usuário");
+    const [email, setEmail] = useState("");
+    useEffect(() => {
+            fetch(`http://localhost:8080/aluno/me`, {
+              method: "GET",
+              credentials: "include",
+            })
+              .then((response) =>
+                response.json().then((data) => ({
+                  status: response.status,
+                  body: data,
+                }))
+              )
+              .then(({ status, body }) => {
+                if (status === 200 && body !== null) {
+                  setUserName(body.nome);
+                  setEmail(body.email);
+                } else {
+                  setMessage("Erro inesperado. Tente novamente.");
+                }
+              })
+              .catch((error) => {
+                setMessage("Erro ao tentar buscar dados. Tente novamente.");
+                console.error(error);
+              });
+          }, []);
 
     return (
         <div className={styles.paginaContainer}>
 
             <MudarFoto
-                avatarUrl={usuarioLogado.avatarUrl}
-                nome={usuarioLogado.nome}
-                email={usuarioLogado.email}
+                nome={userName}
+                email={email}
             />
 
             <MudarSenha />

@@ -14,7 +14,7 @@ function MudarFoto({ avatarUrl, nome, email }) {
             <div className={styles.settingsCard}>
                 <h2 className={styles.cardTitulo}>Foto de Perfil</h2>
                 <div className={styles.perfilContainer}>
-                    <img src={avatarUrl} alt="Avatar atual" className={styles.avatar} />
+                    <img src="/src/assets/images/favicon.ico" alt="Avatar atual" className={styles.avatar} />
                     <div className={styles.perfilInfo}>
                         <p className={styles.nomeUsuario}>{nome}</p>
                         <p className={styles.emailUsuario}>{email}</p>

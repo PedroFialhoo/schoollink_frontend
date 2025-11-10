@@ -1,22 +1,141 @@
-.container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 1200px; 
-    background-color: #ffffff; 
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.192); 
-    border: 1px solid #E9ECEF; 
-    position: relative;
-    margin: 50px auto 0;
+/* Wrapper para centralizar o card na página */
+.pageWrapper {
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
-.paginaContainer {
-    padding: 20px;
+
+/* O card principal com sombra (o seu '.container' original) */
+.mainCardContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Alinha no topo, não no centro */
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+  border: 1px solid #E9ECEF;
+  margin: 0 auto; /* Centraliza o card */
+  overflow: hidden; /* Mantém os cantos arredondados */
+}
+
+/* --- Coluna da Esquerda (Calendário) --- */
+/* Seu '.paginaContainer' original virou a coluna da esquerda */
+.leftColumn {
+  padding: 24px;
+  border-right: 1px solid #e9ecef;
+  flex-shrink: 0; /* Impede o calendário de encolher */
 }
 
 .titulo {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #212529;
-    margin-bottom: 40px;
+  font-size: 1.5rem; /* Título menor para caber no card */
+  font-weight: 700;
+  color: #212529;
+  margin: 0 0 16px 0; /* Margem ajustada */
+}
+
+/* --- Coluna da Direita (Conteúdo) --- */
+.rightColumn {
+  flex-grow: 1; /* Ocupa o resto do espaço */
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Estilos que Faltavam --- */
+
+.listaHorarios {
+  margin-bottom: 24px;
+}
+
+.subtitulo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #343A40;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.horarioBtn {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  color: #343A40;
+  transition: all 0.2s ease;
+}
+
+.horarioBtn span {
+  font-weight: 700;
+  color: #1A3A6A; /* Azul da marca */
+}
+
+.horarioBtn:hover {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+/* Estilo do botão ativo (selecionado) */
+.horarioBtnActive {
+  background-color: #e7f5ff;
+  border-color: #1A3A6A;
+  box-shadow: 0 0 0 2px rgba(26, 58, 106, 0.2);
+  color: #1A3A6A;
+}
+
+.erro {
+  color: #c92a2a;
+  background-color: #fff5f5;
+  border: 1px solid #ffc9c9;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin: 0 0 16px 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.feedback {
+  font-size: 1rem;
+  color: #6c757d;
+  text-align: center;
+  padding: 20px;
+}
+
+.semRegistros {
+  text-align: center;
+  color: #6c757d;
+  background-color: #f8f9fa;
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px dashed #dee2e6;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 950px) {
+  .mainCardContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .leftColumn {
+    border-right: none;
+    border-bottom: 1px solid #e9ecef;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .rightColumn {
+    padding-top: 24px;
+  }
 }

@@ -1,41 +1,41 @@
-import styles from './Registro.module.css';
+import styles from "./Registro.module.css";
 
 function Registro({ registrosDoDia, dataSelecionada }) {
   const dataFormatada = dataSelecionada.toLocaleDateString("pt-BR", {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
+    day: "numeric",
+    month: "long",
+    year: "numeric",
   });
 
   return (
     <div className={styles.paginaContainer}>
-      <h2 className={styles.titulo}>Aulas do dia {dataFormatada}</h2>
+      <h2 className={styles.titulo}>Aula do dia {dataFormatada}</h2>
 
       {registrosDoDia.length === 0 ? (
-        <p className={styles.semRegistros}>Nenhuma aula registrada para esta data.</p>
+        <p className={styles.semRegistros}>
+          Nenhum registro encontrado para esta data.
+        </p>
       ) : (
-        <div className={styles.listaRegistros}>
-          {registrosDoDia.map((registro) => (
-            <div key={registro.id} className={styles.registroCard}>
-              <div className={styles.cardHeader}>
-                <h3 className={styles.materiaNome}>{registro.materiaNome}</h3>
-                <p className={styles.professor}>{registro.professor}</p>
-              </div>
-              
-              <div className={styles.cardBody}>
-                <p><strong>Conteúdo:</strong> {registro.conteudo}</p>
-                
-                {registro.teveTarefa && (
-                  <div className={styles.tarefaInfo}>
-                    <p><strong>📝 Tarefa:</strong> {registro.tarefa}</p>
-                  </div>
-                )}
+        registrosDoDia.map((registro) => (
+          <div key={registro.id} className={styles.registroCard}>
+            <div className={styles.cardBody}>
+              <p>
+                <strong>Conteúdo ministrado:</strong> {registro.conteudoMinistrado?.trim() || "-"}
+              </p>
+              <p>
+                <strong>Resumo:</strong> {registro.resumoAula?.trim() || "-"}
+              </p>
 
-                <p><strong>Resumo:</strong> {registro.resumo}</p>
-              </div>
+              {registro.descricaoTarefa && (
+                <div className={styles.tarefaInfo}>
+                  <p>
+                    <strong>📝 Tarefa:</strong> {registro.descricaoTarefa}
+                  </p>
+                </div>
+              )}
             </div>
-          ))}
-        </div>
+          </div>
+        ))
       )}
     </div>
   );
