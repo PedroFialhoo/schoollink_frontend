@@ -10,22 +10,21 @@ function MudarSenha() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (novaSenha !== confirmarSenha) {
-        //     setMensagem("As senhas não coincidem.");
-        //     return;
-        // }
+        if (novaSenha !== confirmarSenha) {
+            setMensagem("As senhas não coincidem.");
+            return;
+        }
 
-        fetch("http://localhost:8080/aluno/editar", {
-            method: "PUT",
+        fetch("http://localhost:8080/auth/alterarSenha", {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             credentials: "include",
             body: JSON.stringify({ 
-                user:{
-                    nome: senhaAtual
-                },
-                statusMatricula : novaSenha
+                "userId":null,
+                "senhaAtual": senhaAtual,
+                "novaSenha" : novaSenha
             }),
         })
         .then(response => {
@@ -62,6 +61,7 @@ function MudarSenha() {
                     Salvar Alterações
                 </button>
             </form>
+            <p>{mensagem}</p>
         </div>
     )
 }
