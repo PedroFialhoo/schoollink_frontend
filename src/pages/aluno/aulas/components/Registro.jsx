@@ -26,10 +26,10 @@ function Registro({ registrosDoDia, dataSelecionada }) {
                 <strong>Resumo:</strong> {registro.resumoAula?.trim() || "-"}
               </p>
 
-              {registro.descricaoTarefa && (
+              {registro.tarefa && (
                 <div className={styles.tarefaInfo}>
                   <p>
-                    <strong>📝 Tarefa:</strong> {registro.descricaoTarefa}
+                    <strong>📝 Tarefa:</strong> {registro.descricaoTarefa?.trim() || "-"}
                   </p>
                 </div>
               )}

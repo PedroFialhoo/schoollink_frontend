@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 import PasswordInput from "../../../components/passwordInput/PasswordInput";
 
@@ -68,7 +68,8 @@ function LoginForm({ userType }) {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                 />                
-                <span className={styles.message}>{message}</span>
+                <Link to="/forgot-password" className={styles.esqueceuSenha}>Esqueceu a senha?  </Link>
+                {message && <span className={styles.message}>{message}</span>}
                 <button type="button" className={styles.loginBtn} onClick={login}>
                     Entrar
                 </button>

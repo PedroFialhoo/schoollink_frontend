@@ -31,6 +31,7 @@ import HomeAdmin from "../pages/admin/home/HomeAdmin";
 import GerarAulas from "../pages/admin/GerarAulas/GerarAulas";
 import RegistrarNota from "../pages/professor/registrar-nota/RegistrarNota";
 import ListaAlunos from "../pages/professor/registrar-nota/components/ListaAlunos";
+import RedefinirSenha from "../pages/redefinirSenha/RedefinirSenha";
 // import ConfigAdmin from "../pages/admin/config/Config";
 
 const Router = createBrowserRouter([
@@ -170,6 +171,10 @@ const Router = createBrowserRouter([
         element: <Logout />,
       },
     ],
+  },
+  {
+    path: "forgot-password",
+    element: <RedefinirSenha />,
   },
   {
     path: "*",

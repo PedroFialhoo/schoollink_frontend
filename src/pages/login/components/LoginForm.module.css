@@ -29,18 +29,27 @@ input{
     height: 50px;
     padding: 15px;
     font-size: 20px;
-    border-radius: 50px; 
-    background-color: #ececec;
+    border-radius: 30px; 
+    background-color: #ececec !important;
 }
 
 .loginBtn{
-    width: 25%;
-    height: 50px;
-    background-color: #FFD24D;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 30%;
+    margin-top: 8px;
+    background-color: #1A3A6A; 
+    color: white;
 }
 
 .loginBtn:hover{
-    background-color: #D9940F;
+    background-color: #f0b001;
+    box-shadow: 0px 0px 20px #ffd0009a;
 }
 
 .email:hover, .password:hover{
@@ -55,7 +64,18 @@ input{
 .message{
     color: red;
     font-size: 14px;
-    margin: -10px 0 2px 20px;
+    margin: -10px 0 2px 5px;
     height: 14px;
 }
 
+.esqueceuSenha{
+    border: none;
+    background-color: transparent;
+    align-self: flex-start;
+    color: #747474;
+    text-decoration: none;
+}
+
+.esqueceuSenha:hover{
+    color: rgb(0, 0, 44);
+}

@@ -142,6 +142,38 @@ function RegistroContainer() {
         }
     };
 
+    useEffect(() => {
+        setConteudo("");
+        setResumo("");
+        setTeveTarefa(false);
+        setDescricao("");
+
+        fetch(`http://localhost:8080/historicoAula/buscar/historicoAula/${idHorarioAula}`,
+        { credentials: "include" }
+        )
+        .then((res) => {
+            if (!res.ok) {
+            throw new Error("Sem registro de aula.");
+            }
+            return res.json();
+        })
+        .then((registro) => {            
+            setConteudo(registro.conteudoMinistrado || "");
+            setResumo(registro.resumoAula || "");
+            setTeveTarefa(registro.tarefa || false);
+            setDescricao(registro.descricaoTarefa || "");
+            console.log("Registro encontrado:", registro);
+            console.log("Horario aula:", idHorarioAula);
+        })
+        .catch((error) => {
+            console.error("Erro:", error);
+            setErro("Sem registro de aula.");
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+    }, [idHorarioAula]);
+
     return (
         <div className={styles.container}>
             <div className={styles.subContainer}>

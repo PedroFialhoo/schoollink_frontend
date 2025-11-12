@@ -33,18 +33,19 @@ function CadastrarTurma() {
     }),
     };
 
-    // Buscar alunos
     useEffect(() => {
         fetch("http://localhost:8080/aluno/buscar-todos")
             .then((res) => res.json())
-            .then((data) =>
-                setOpcoesAlunos(
-                    data.map((a) => ({
+            .then((data) => {
+                const alunosSemTurma = data
+                    .filter((a) => !a.turma) 
+                    .map((a) => ({
                         value: a.id,
                         label: a.nome,
-                    }))
-                )
-            )
+                    }));
+
+                setOpcoesAlunos(alunosSemTurma);
+            })
             .catch((err) => console.error("Erro ao buscar alunos:", err));
     }, []);
 

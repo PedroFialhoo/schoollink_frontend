@@ -1,0 +1,138 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo {
+    max-width: 150px;
+    margin-bottom: 30px;
+}
+
+.resetCard {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 32px 40px;
+    border: 1px solid #E9ECEF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px;
+}
+
+.cardHeader {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.titulo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #212529;
+    margin: 0 0 8px 0;
+}
+
+.subtitulo {
+    font-size: 1rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputGroup label {
+    font-weight: 500;
+    color: #495047;
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputGroup input:focus {
+    outline: none;
+    border-color: #1A3A6A; /* Azul da marca */
+    box-shadow: 0 0 0 3px rgba(26, 58, 106, 0.2);
+}
+
+.mensagem {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin: 0;
+    text-align: center;
+}
+
+.mensagemErro {
+    color: #c92a2a;
+    background-color: #fff5f5;
+    border: 1px solid #ffc9c9;
+}
+
+.mensagemSucesso {
+    color: #187f5d;
+    background-color: #e6fcf5;
+    border: 1px solid #b3f4e2;
+}
+
+.botaoSalvar {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    margin-top: 8px;
+    background-color: #1A3A6A; 
+    color: white;
+}
+
+.botaoSalvar:hover {
+    background-color: #152e55;
+    box-shadow: 0 4px 15px rgba(26, 58, 106, 0.3);
+}
+
+.botaoSalvar:disabled {
+    background-color: #CED4DA;
+    color: #868E96;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.footerLink {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.footerLink a {
+    color: #1A3A6A; /* Azul da marca */
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.footerLink a:hover {
+    text-decoration: underline;
+}

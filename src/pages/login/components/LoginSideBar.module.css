@@ -16,13 +16,13 @@
 }
 
 .option {
-    border: none;
     font-size: large;
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 10px;
     width: 200px;
     border: 1px solid #374151;
     cursor: pointer;
+    color: white;
 }
 
 .optionSelect {
@@ -37,15 +37,15 @@
 }
 
 .aluno {
-    background-color: #aec6ff;
-}
-
-.professor {
     background-color: #7998D6;
 }
 
-.admin {
+.professor {
     background-color: #4C6AA6;
+}
+
+.admin {
+    background-color: #1A3A6A;
 }
 
 

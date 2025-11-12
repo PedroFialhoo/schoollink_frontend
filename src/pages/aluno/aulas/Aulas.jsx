@@ -59,7 +59,7 @@ function Aulas() {
     setErro(null);
     setRegistroSelecionado(null);
 
-    fetch(`http://localhost:8080/aluno/buscar/historicoAula/${idHorarioAula}`,
+    fetch(`http://localhost:8080/historicoAula/buscar/historicoAula/${idHorarioAula}`,
       { credentials: "include" }
     )
       .then((res) => {
