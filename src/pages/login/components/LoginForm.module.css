@@ -61,12 +61,27 @@ input{
     outline: none;
 }
 
-.message{
+.erro{
     color: red;
     font-size: 14px;
     margin: -10px 0 2px 5px;
     height: 14px;
 }
+
+.loading{
+    color: #1A3A6A;
+    font-size: 14px;
+    margin: -10px 0 2px 5px;
+    height: 14px;
+}
+
+.sucesso{
+    color: green;
+    font-size: 14px;
+    margin: -10px 0 2px 5px;
+    height: 14px;
+}
+
 
 .esqueceuSenha{
     border: none;

@@ -3,14 +3,20 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import styles from './RedefinirSenha.module.css';
 import logo from "/src/assets/images/logo.png"; 
+import PasswordInput from '../../components/passwordInput/PasswordInput';
+import { useNavigate } from 'react-router-dom';
 
 function RedefinirSenha() {
     const [code, setCode] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const navigate = useNavigate();
     
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState(""); 
+    
+    const query = new URLSearchParams(location.search);
+    const email = query.get("email"); 
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,6 +31,31 @@ function RedefinirSenha() {
             setMessageType("erro");
             return;
         }
+
+        fetch("http://localhost:8080/password/alterarSenhaPeloCodigo", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, codigo: code, novaSenha: newPassword }),
+        })
+        .then((response) => {
+            return response.text().then((text) => {
+                if (response.ok) {
+                    setMessage("Senha redefinida com sucesso!");
+                    setMessageType("sucesso");
+                    setTimeout(() => navigate("/"), 2000);
+                } else {
+                    setMessage(text || "Erro ao redefinir a senha.");
+                    setMessageType("erro");
+                }
+            });
+        })
+        .catch((error) => {
+            console.error("Erro na requisição:", error);
+            setMessage("Erro de conexão. Tente novamente.");
+            setMessageType("erro");
+        });
     };
 
     return (
@@ -53,8 +84,7 @@ function RedefinirSenha() {
                     
                     <div className={styles.inputGroup}>
                         <label htmlFor="newPassword">Nova Senha</label>
-                        <input
-                            type="password"
+                        <PasswordInput
                             id="newPassword"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
@@ -63,8 +93,7 @@ function RedefinirSenha() {
                     
                     <div className={styles.inputGroup}>
                         <label htmlFor="confirmPassword">Confirme a Nova Senha</label>
-                        <input
-                            type="password"
+                        <PasswordInput
                             id="confirmPassword"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
