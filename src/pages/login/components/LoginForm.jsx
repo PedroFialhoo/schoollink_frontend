@@ -35,7 +35,7 @@ function LoginForm({ userType }) {
             )
             .then(({ status, body }) => {
                 if (status === 200) {
-                    navigate(`/${userType}`, { state: body });
+                    navigate(`/${userType}/home`, { state: body });
                 } else if (status === 401) {
                     setMessage(body.message || "Email ou senha inválidos");
                     setMessageType("erro");

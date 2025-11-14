@@ -3,6 +3,10 @@
     margin: 20px auto;
 }
 
+.nome{
+    text-transform: capitalize;
+}
+
 .home {
     width: 80%;
 }

@@ -52,9 +52,9 @@
     border-color: #DEE2E6;
 }
 
-.professor {
+.autor {
     display: block; 
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 700; 
     color: #343A40;
     margin-bottom: 8px;

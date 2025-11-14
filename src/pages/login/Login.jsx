@@ -8,8 +8,8 @@ function Login() {
 
     return (
         <div className={styles.container}>
-            <LoginForm userType={userType} />
             <LoginSideBar userType={userType} setUserType={setUserType} />
+            <LoginForm userType={userType} />
         </div>
     );
 }

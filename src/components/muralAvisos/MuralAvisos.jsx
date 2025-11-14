@@ -9,7 +9,7 @@ function MuralAvisos({ avisos }) {
                     <ul className={styles.listaAvisos}>
                         {avisos.map((aviso) => (
                             <li key={aviso.id} className={styles.aviso}>
-                                <strong className={styles.professor}>{aviso.professor}</strong>
+                                <strong className={styles.autor}>{aviso.autor}</strong>
                                 <p className={styles.mensagem}>{aviso.mensagem}</p>
                             </li>
                         ))}
