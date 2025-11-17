@@ -1,8 +1,36 @@
-.welcome{
-    text-align: center;
-    margin: 20px auto;
+.home {
+  width: 80%;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.welcome {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.welcome .nome {
+  color: #1A3A6A;
+  text-align: center;
 }
 
 .nome{
-    text-transform: capitalize;
+  text-transform: capitalize;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .welcome {
+    font-size: 2rem;
+  }
 }

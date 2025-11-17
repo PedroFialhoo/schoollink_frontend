@@ -39,6 +39,7 @@
 }
 
 .aviso {
+    position: relative;
     background-color: #F8F9FA; 
     border-radius: 12px;
     padding: 16px 20px;
@@ -100,4 +101,24 @@
 .conteudoAvisos {
     scrollbar-width: thin;
     scrollbar-color: #D9940F transparent;
+}
+
+.acoes {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column; /* um em cima do outro */
+    gap: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.acoes i {
+    color: #6c757d;
+    transition: 0.2s ease;
+}
+
+.acoes i:hover {
+    color: #1A3A6A;
 }

@@ -9,8 +9,8 @@ function HomeProfessor(){
     const [message, setMessage] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [turmas, setTurmas] = useState([]);
+    const [userId, setUserId] = useState(null);
 
-    // Buscar nome do professor
     useEffect(() => {
         fetch("http://localhost:8080/professor/me", {
             method: "GET",
@@ -25,6 +25,7 @@ function HomeProfessor(){
         .then(({ status, body }) => {
             if (status === 200 && body !== null) {
                 setUserName(body.nome);
+                setUserId(body.userId);
             } else {
                 setMessage("Erro inesperado. Tente novamente.");
             }
@@ -35,7 +36,6 @@ function HomeProfessor(){
         });
     }, []);  
 
-    // Buscar avisos
     function fetchAvisos(){
         fetch("http://localhost:8080/mural/buscarAvisos", {
             method: "GET",
@@ -53,6 +53,7 @@ function HomeProfessor(){
                     id: a.id,
                     autor: a.nomeProfessor ? a.nomeProfessor : "Coordenação",
                     mensagem: a.mensagem,
+                    userId: a.userDto ? a.userDto.userId : null
                 }));
 
                 setAvisos(avisosConvertidos.reverse());
@@ -70,7 +71,6 @@ function HomeProfessor(){
         fetchAvisos();
     }, []);
 
-    // Buscar turmas do professor
     useEffect(() => {
         fetch("http://localhost:8080/turma/listar/professor/", {
             method: "GET",
@@ -141,7 +141,7 @@ function HomeProfessor(){
                 </h1>
             </div>
 
-            <MuralAvisos avisos={avisos} />
+            <MuralAvisos avisos={avisos} userId={userId}/>
 
             <button
                 className={styles.botaoCriarAviso}

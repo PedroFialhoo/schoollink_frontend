@@ -64,10 +64,16 @@ function HomeAluno() {
   }, []);
 
   return (
-    <div className={styles.home}>
-      <h1 className={styles.welcome}>Bem-vindo, <span className={styles.nome}>{userName}</span>!</h1>      
-      <MuralAvisos avisos={avisos} />
-    </div>
+     <div className={styles.home}>
+         <div className={styles.header}>
+             <h1 className={styles.welcome}>
+                 Bem-vindo, <span className={styles.nome}>{userName}</span>!
+             </h1>
+         </div>
+
+         <MuralAvisos avisos={avisos} userId={""}/>
+
+     </div>
   );
 }
 

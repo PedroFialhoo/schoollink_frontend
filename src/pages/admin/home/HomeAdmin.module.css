@@ -1,8 +1,56 @@
-.welcome{
-    text-align: center;
-    margin: 20px auto;
+.home {
+  width: 80%;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.home {
-    width: 80%;
+.header {
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.welcome {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.welcome .nome {
+  color: #1A3A6A;
+  text-align: center;
+}
+
+.nome{
+  text-transform: capitalize;
+}
+
+.botaoCriarAviso {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: #1A3A6A; 
+  color: white;
+  width: 200px;
+  margin-right: 50px;
+  align-self: flex-end;
+}
+
+.botaoCriarAviso:hover {
+  background-color: #152e55;
+  box-shadow: 0 4px 15px rgba(26, 58, 106, 0.3);
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .welcome {
+    font-size: 2rem;
+  }
 }
