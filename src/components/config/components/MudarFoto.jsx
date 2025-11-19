@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './MudarFoto.module.css';
 
 function MudarFoto({ avatarUrl, nome, email }) {
@@ -6,6 +6,21 @@ function MudarFoto({ avatarUrl, nome, email }) {
     const fileInputRef = useRef(null);
     const [fotoAtual, setFotoAtual] = useState(avatarUrl);
     const [mensagem, setMensagem] = useState("");
+
+    useEffect(() => {
+        setFotoAtual(avatarUrl);
+    }, [avatarUrl]);
+
+    useEffect(() => {
+        if (!mensagem) return;
+
+        const timer = setTimeout(() => {
+            setMensagem("");
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [mensagem]);
+
 
     const handleAlterarFotoClick = () => {
         fileInputRef.current.click();
@@ -33,6 +48,7 @@ function MudarFoto({ avatarUrl, nome, email }) {
                 const caminho = texto.replace("Salvo em: ", "").trim();
 
                 setFotoAtual(caminho);
+                console.log("Caminho da nova foto:", caminho);
             } else {
                 setMensagem("Erro ao enviar foto");
             }
@@ -67,13 +83,12 @@ function MudarFoto({ avatarUrl, nome, email }) {
 
                     <button onClick={handleAlterarFotoClick} className={styles.botao}>
                         Alterar Foto
-                    </button>
-
-                    {mensagem && (
-                        <p className={styles.mensagem}>{mensagem}</p>
-                    )}
-                </div>
+                    </button>                    
+                </div>                
             </div>
+            {mensagem && (
+                <p className={styles.mensagem}>{mensagem}</p>
+            )}
         </div>
     );
 }

@@ -28,42 +28,36 @@ function EditarAluno() {
   const [searchActive, setSearchActive] = useState("active");
 
   const handleResultadoBusca = (dados) => {
-      if (dados.length === 0) return;
+    if (dados.length === 0) return;
 
-      const aluno = dados[0]; 
-      setId(aluno.idAluno || "");
-      setNome(aluno.user?.nome || "");
-      setEmail(aluno.user?.email || "");
-      setDataNascimento(aluno.user?.dataNascimento || "")
-      setCpf(aluno.user?.cpf || "")
-      setGenero(aluno.user?.genero || "")
-      setMatricula(aluno.matricula || "");
-      setDataMatricula(aluno.dataMatricula || "");
-      setStatusMatricula(aluno.statusMatricula || "");
-      setTelefone(aluno.user?.telefone || "");
-      setNomeResponsavel(aluno.nomeResponsavel || "");
-      setTelefoneResponsavel(aluno.telefoneResponsavel || "");
+    const aluno = dados[0]; 
+    const u = aluno.userDto || {};
+    const end = aluno.enderecoDto || {};
 
-      if (aluno.user?.endereco) {
-          const end = aluno.user.endereco;
-          setCep(end.cep || "");
-          setPais(end.pais || "");
-          setEstado(end.estado || "");
-          setCidade(end.cidade || "");
-          setRua(end.rua || "");
-          setNumero(end.numero || "");
-      } else {
-          setCep("");
-          setPais("");
-          setEstado("");
-          setCidade("");
-          setRua("");
-          setNumero("");
-      }
+    setId(aluno.idAluno || "");
+    setNome(u.nome || "");
+    setEmail(u.email || "");
+    setDataNascimento(u.dataNascimento || "");
+    setCpf(u.cpf || "");
+    setGenero(u.genero || "");
+    setTelefone(u.telefone || "");
 
+    setMatricula(aluno.matricula || "");
+    setDataMatricula(aluno.dataMatricula || "");
+    setStatusMatricula(aluno.statusMatricula || "");
+    setNomeResponsavel(aluno.nomeResponsavel || "");
+    setTelefoneResponsavel(aluno.telefoneResponsavel || "");
 
-      setSearchActive("desactive"); 
+    setCep(end.cep || "");
+    setPais(end.pais || "");
+    setEstado(end.estado || "");
+    setCidade(end.cidade || "");
+    setRua(end.rua || "");
+    setNumero(end.numero || "");
+
+    setSearchActive("desactive");
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -132,6 +126,7 @@ function EditarAluno() {
         setRua("");
         setNumero("");
     };
+    
 
   return (
     <>

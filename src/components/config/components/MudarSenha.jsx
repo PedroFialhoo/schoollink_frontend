@@ -1,4 +1,4 @@
-import PasswordInput from '../../../../components/passwordInput/passwordInput';
+import PasswordInput from '../../passwordInput/passwordInput';
 import styles from './MudarSenha.module.css';
 import { useState } from 'react';
 

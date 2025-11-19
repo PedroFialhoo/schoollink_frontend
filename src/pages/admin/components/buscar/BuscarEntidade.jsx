@@ -110,7 +110,7 @@ function BuscarEntidade({ entidade, searchActive, setSearchActive, onResultado }
                 >
                 {entidade === "aluno" && (
                     <>
-                    <strong>{item.user?.nome}</strong> — Matrícula: {item.matricula}
+                    <strong>{item.userDto?.nome}</strong> — Matrícula: {item.matricula}
                     </>
                 )}
                 {entidade === "professor" && (

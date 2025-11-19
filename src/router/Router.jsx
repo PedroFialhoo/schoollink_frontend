@@ -6,7 +6,7 @@ import Notas from "../pages/aluno/notas/Notas";
 import Presenca from "../pages/aluno/presenca/Presenca";
 import Aulas from "../pages/aluno/aulas/Aulas";
 import Horarios from "../pages/aluno/horarios/Horarios";
-import Config from "../pages/aluno/config/Config";
+import Config from "../components/config/Config";
 import Logout from "../components/logout/Logout";
 import CarregarDisciplinas from "../pages/aluno/components/CarregarDisciplinas";
 import ProfessorLayout from "../layouts/ProfessorLayout";
@@ -125,6 +125,10 @@ const Router = createBrowserRouter([
       {
         path: "sair",
         element: <Logout />,
+      },
+      {
+        path: "configuracoes",
+        element: <Config />,
       },
     ],
   }, {

@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 
 function Logout() {
     const location = useLocation();
-    const partes = location.pathname.split("/"); // divide por "/"
-    console.log(partes); // ["", "tipo de usuario", "sair"]
+    const partes = location.pathname.split("/"); 
+    console.log(partes); 
     
     const tipo = partes[1]; 
     
@@ -17,7 +17,8 @@ function Logout() {
     const handleCancelar = () => {
         navigate(`/${tipo}/home`)
     };
-    const [userName, setUserName] = useState("Usuário");
+    const [userName, setUserName] = useState("Admin");
+    const [foto, setFoto] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:8080/${tipo}/me`, {
@@ -33,6 +34,7 @@ function Logout() {
           .then(({ status, body }) => {
             if (status === 200 && body !== null) {
               setUserName(body.nome);
+              setFoto(body.caminhoFoto);
             } else {
               setMessage("Erro inesperado. Tente novamente.");
             }
@@ -48,7 +50,7 @@ function Logout() {
         <div className={styles.painelContainer}>
             <div className={styles.usuarioInfo}>
                 <img 
-                    src="/src/assets/images/favicon.ico"
+                    src={foto ? "http://localhost:8080/" + foto : "/src/assets/images/favicon.ico"}
                     alt="Avatar do usuário" 
                     className={styles.avatar} 
                 />
