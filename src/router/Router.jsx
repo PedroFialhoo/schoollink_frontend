@@ -32,7 +32,9 @@ import GerarAulas from "../pages/admin/GerarAulas/GerarAulas";
 import RegistrarNota from "../pages/professor/registrar-nota/RegistrarNota";
 import ListaAlunos from "../pages/professor/registrar-nota/components/ListaAlunos";
 import RedefinirSenha from "../pages/redefinirSenha/RedefinirSenha";
-// import ConfigAdmin from "../pages/admin/config/Config";
+
+// 👉 IMPORTANTE: importe sua página de chat
+import ChatPage from "../pages/aluno/chat/ChatPage";
 
 const Router = createBrowserRouter([
   {
@@ -43,98 +45,70 @@ const Router = createBrowserRouter([
     path: "/aluno",
     element: <AlunoLayout />,
     children: [
+      { path: "home", element: <HomeAluno /> },
+
+      // CHAT DO ALUNO (NOVO)
       {
-        path: "home",
-        element: <HomeAluno />,
+        path: "chat/:idConversa",
+        element: <ChatPage />,
       },
+
       {
         path: "notas",
         element: <CarregarDisciplinas />,
         children: [
-          {
-            path: "materia/:id",
-            element: <Notas />,
-          },
+          { path: "materia/:id", element: <Notas /> },
         ],
       },
       {
         path: "presenca",
         element: <CarregarDisciplinas />,
         children: [
-          {
-            path: "materia/:id",
-            element: <Presenca />,
-          },
+          { path: "materia/:id", element: <Presenca /> },
         ],
       },
       {
         path: "registro-aulas",
         element: <CarregarDisciplinas />,
         children: [
-          {
-            path: "materia/:id",
-            element: <Aulas />,
-          },
+          { path: "materia/:id", element: <Aulas /> },
         ],
       },
-      {
-        path: "horarios",
-        element: <Horarios />,
-      },
-      {
-        path: "configuracoes",
-        element: <Config />,
-      },
-      {
-        path: "sair",
-        element: <Logout />,
-      },
+      { path: "horarios", element: <Horarios /> },
+      { path: "configuracoes", element: <Config /> },
+      { path: "sair", element: <Logout /> },
     ],
-  }, {
+  },
+
+  {
     path: "/professor",
     element: <ProfessorLayout />,
     children: [
-      {
-        path: "home",
-        element: <HomeProfessor />,
-      },
-      {
-        path: "prova",
-        element: <CriarProva />,
-      },
+      { path: "home", element: <HomeProfessor /> },
+      { path: "prova", element: <CriarProva /> },
       {
         path: "notas",
         element: <RegistrarNota />,
         children: [
-          {
-            path: ":id",
-            element: <ListaAlunos />,
-          }
-        ]
+          { path: ":id", element: <ListaAlunos /> },
+        ],
       },
       {
         path: "registrar-aula",
         element: <RegistrarAula />,
         children: [
-          {
-            path: "materia/:id",
-            element: <RegistroContainer />,
-          },
+          { path: "materia/:id", element: <RegistroContainer /> },
         ],
       },
-      {
-        path: "sair",
-        element: <Logout />,
-      },
+      { path: "sair", element: <Logout /> },
     ],
-  }, {
+  },
+
+  {
     path: "/admin",
     element: <AdminLayout />,
     children: [
-      {
-        path: "home",
-        element: <HomeAdmin />,
-      },
+      { path: "home", element: <HomeAdmin /> },
       {
         path: "cadastrar",
         element: <Cadastrar />,
@@ -154,32 +128,15 @@ const Router = createBrowserRouter([
         children: [
           { path: "aluno", element: <EditarAluno /> },
           { path: "turma", element: <EditarTurma /> },
-          //   { path: "professor", element: <CadastrarProfessor /> },
-          //   { path: "administrador", element: <CadastrarAdmin /> },
         ],
       },
-      // {
-      //   path: "configuracoes",
-      //   element: <ConfigAdmin />,
-      // },
-      {
-        path: "gerar-aula",
-        element: <GerarAulas />
-      },
-      {
-        path: "sair",
-        element: <Logout />,
-      },
+      { path: "gerar-aula", element: <GerarAulas /> },
+      { path: "sair", element: <Logout /> },
     ],
   },
-  {
-    path: "forgot-password",
-    element: <RedefinirSenha />,
-  },
-  {
-    path: "*",
-    element: <NotFound />,
-  }
+
+  { path: "forgot-password", element: <RedefinirSenha /> },
+  { path: "*", element: <NotFound /> },
 ]);
 
 export default Router;
