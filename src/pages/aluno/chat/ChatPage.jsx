@@ -10,9 +10,6 @@ export default function ChatPage() {
   const [mensagens, setMensagens] = useState([]);
   const [texto, setTexto] = useState("");
 
-  // ----------------------------
-  // 1) Buscar dados do aluno logado
-  // ----------------------------
   useEffect(() => {
     axios
       .get("http://localhost:8080/aluno/me", { withCredentials: true })
@@ -25,9 +22,6 @@ export default function ChatPage() {
       });
   }, []);
 
-  // ----------------------------
-  // 2) Buscar id da conversa
-  // ----------------------------
   useEffect(() => {
     axios
       .get("http://localhost:8080/conversa/buscarConversaAluno", {
@@ -41,9 +35,6 @@ export default function ChatPage() {
       });
   }, []);
 
-  // ----------------------------
-  // 3) Buscar mensagens da conversa
-  // ----------------------------
   useEffect(() => {
     if (!idConversa) return;
 
@@ -59,9 +50,6 @@ export default function ChatPage() {
       });
   }, [idConversa]);
 
-  // ----------------------------
-  // 4) Enviar mensagem
-  // ----------------------------
   const enviarMensagem = () => {
     if (texto.trim() === "" || !idAluno) return;
 
@@ -89,7 +77,7 @@ export default function ChatPage() {
   return (
     <div className="chat-container">
       <h1 className="chat-title">
-        {idConversa ? `Conversa #${idConversa}` : "Iniciar Conversa"}
+        Secretária
       </h1>
 
       <div className="chat-box">

@@ -46,10 +46,8 @@ const Router = createBrowserRouter([
     element: <AlunoLayout />,
     children: [
       { path: "home", element: <HomeAluno /> },
-
-      // CHAT DO ALUNO (NOVO)
       {
-        path: "chat/:idConversa",
+        path: "chat",
         element: <ChatPage />,
       },
 
