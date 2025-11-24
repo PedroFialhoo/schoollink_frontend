@@ -32,50 +32,50 @@ import GerarAulas from "../pages/admin/GerarAulas/GerarAulas";
 import RegistrarNota from "../pages/professor/registrar-nota/RegistrarNota";
 import ListaAlunos from "../pages/professor/registrar-nota/components/ListaAlunos";
 import RedefinirSenha from "../pages/redefinirSenha/RedefinirSenha";
-import ChatPage from "../pages/aluno/chat/ChatPage";
+
+// *** Chat aluno ***
+import ChatPageAluno from "../pages/aluno/chat/ChatPage";
+
+// *** NOVO: Chat da diretoria ***
+import ChatPageAdmin from "../pages/admin/chat/ChatPage";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
   },
+
+  // ========= ROTAS DO ALUNO =========
   {
     path: "/aluno",
     element: <AlunoLayout />,
     children: [
       { path: "home", element: <HomeAluno /> },
-      {
-        path: "chat",
-        element: <ChatPage />,
-      },
+      { path: "chat", element: <ChatPageAluno /> },
 
       {
         path: "notas",
         element: <CarregarDisciplinas />,
-        children: [
-          { path: "materia/:id", element: <Notas /> },
-        ],
+        children: [{ path: "materia/:id", element: <Notas /> }],
       },
       {
         path: "presenca",
         element: <CarregarDisciplinas />,
-        children: [
-          { path: "materia/:id", element: <Presenca /> },
-        ],
+        children: [{ path: "materia/:id", element: <Presenca /> }],
       },
       {
         path: "registro-aulas",
         element: <CarregarDisciplinas />,
-        children: [
-          { path: "materia/:id", element: <Aulas /> },
-        ],
+        children: [{ path: "materia/:id", element: <Aulas /> }],
       },
+
       { path: "horarios", element: <Horarios /> },
       { path: "configuracoes", element: <Config /> },
       { path: "sair", element: <Logout /> },
     ],
   },
 
+  // ========= ROTAS DO PROFESSOR =========
   {
     path: "/professor",
     element: <ProfessorLayout />,
@@ -85,33 +85,28 @@ const Router = createBrowserRouter([
       {
         path: "notas",
         element: <RegistrarNota />,
-        children: [
-          { path: ":id", element: <ListaAlunos /> },
-        ],
+        children: [{ path: ":id", element: <ListaAlunos /> }],
       },
       {
         path: "registrar-aula",
         element: <RegistrarAula />,
-        children: [
-          { path: "materia/:id", element: <RegistroContainer /> },
-        ],
+        children: [{ path: "materia/:id", element: <RegistroContainer /> }],
       },
-      {
-        path: "sair",
-        element: <Logout />,
-      },
-      {
-        path: "configuracoes",
-        element: <Config />,
-      }
+      { path: "sair", element: <Logout /> },
+      { path: "configuracoes", element: <Config /> },
     ],
   },
 
+  // ========= ROTAS DO ADMIN =========
   {
     path: "/admin",
     element: <AdminLayout />,
     children: [
       { path: "home", element: <HomeAdmin /> },
+
+      // ---- NOVA ROTA DO CHAT ----
+      { path: "chat", element: <ChatPageAdmin /> },
+
       {
         path: "cadastrar",
         element: <Cadastrar />,
@@ -125,6 +120,7 @@ const Router = createBrowserRouter([
           { path: "horario", element: <CadastrarHorarioFixo /> },
         ],
       },
+
       {
         path: "editar",
         element: <Editar />,
@@ -133,6 +129,7 @@ const Router = createBrowserRouter([
           { path: "turma", element: <EditarTurma /> },
         ],
       },
+
       { path: "gerar-aula", element: <GerarAulas /> },
       { path: "sair", element: <Logout /> },
     ],
