@@ -10,6 +10,7 @@ function AlunoLayout() {
     { to: "/aluno/presenca", icon: "bi bi-clipboard2-check-fill", label: "Presença" },
     { to: "/aluno/registro-aulas", icon: "bi bi-person-workspace", label: "Registro de Aulas" },
     { to: "/aluno/horarios", icon: "bi bi-clock-fill", label: "Horários" },
+    { to: "/aluno/chat", icon: "bi bi-chat-fill", label: "Chat" },
     { to: "/aluno/configuracoes", icon: "bi bi-gear-fill", label: "Configurações" },
     { to: "/aluno/sair", icon: "bi bi-box-arrow-right", label: "Sair" },
   ]
