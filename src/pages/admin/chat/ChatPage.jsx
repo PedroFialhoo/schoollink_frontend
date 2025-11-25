@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./ChatPage.css";
+import styles from "./ChatPageAdmin.module.css";
 
 export default function ChatDiretoriaPage() {
   const [conversas, setConversas] = useState([]);
@@ -26,7 +26,7 @@ export default function ChatDiretoriaPage() {
   const selecionarConversa = (conversa) => {
     setIdConversa(conversa.idConversa);
     setNomeAluno(conversa.nomeAluno);
-    setIdAluno(conversa.idAluno); // 🔥 vem direto da API
+    setIdAluno(conversa.idAluno); 
 
     axios
       .get(`http://localhost:8080/conversa/buscarMensagens/${conversa.idConversa}`, {
@@ -39,6 +39,21 @@ export default function ChatDiretoriaPage() {
         console.error("Erro ao buscar mensagens:", err);
       });
   };
+  
+  useEffect(() => {
+    if (!idConversa) return;
+    axios
+      .get(`http://localhost:8080/conversa/buscarMensagens/${conversa.idConversa}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setMensagens([]);
+        setMensagens(res.data || []);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar mensagens:", err);
+      });
+  }, []);
 
   const enviarMensagem = () => {
     if (texto.trim() === "" || !idAluno || !idConversa) return;
@@ -57,8 +72,6 @@ export default function ChatDiretoriaPage() {
       })
       .then(() => {
         setTexto("");
-
-        // 🔥 RECARREGAR MENSAGENS APÓS ENVIAR
         axios
           .get(
             `http://localhost:8080/conversa/buscarMensagens/${idConversa}`,
@@ -73,73 +86,76 @@ export default function ChatDiretoriaPage() {
       });
   };
 
+  
+
+
   return (
-    <div className="chat-container-admin">
-      {/* SIDEBAR */}
-      <div className="sidebar">
-        <h2 className="sidebar-title">Conversas</h2>
+      <div className={styles['chat-container-admin']}> 
+        {/* SIDEBAR */}
+        <div className={styles.sidebar}>
+          <h2 className={styles['sidebar-title']}>Conversas</h2>
 
-        {conversas.length === 0 ? (
-          <p className="nenhuma-msg">Nenhuma conversa</p>
-        ) : (
-          conversas.map((c) => (
-            <div
-              key={c.idConversa}
-              className={`sidebar-item ${
-                idConversa === c.idConversa ? "selected" : ""
-              }`}
-              onClick={() => selecionarConversa(c)}
-            >
-              {c.nomeAluno}
-            </div>
-          ))
-        )}
-      </div>
-
-      {/* ÁREA DO CHAT */}
-      <div className="chat-area">
-        {idConversa ? (
-          <>
-            <h1 className="chat-title">Chat com {nomeAluno}</h1>
-
-            <div className="chat-box">
-              {mensagens.length === 0 ? (
-                <p className="nenhuma-msg">Nenhuma mensagem encontrada</p>
-              ) : (
-                mensagens.map((msg, index) => (
-                  <div
-                    key={index}
-                    className={`msg-item ${
-                      msg.tipo === "ADMIN" ? "msg-diretoria" : "msg-aluno"
-                    }`}
-                  >
-                    {msg.mensagem}
-                  </div>
-                ))
-              )}
-            </div>
-
-            <div className="chat-input-area">
-              <input
-                type="text"
-                value={texto}
-                onChange={(e) => setTexto(e.target.value)}
-                placeholder="Digite sua mensagem..."
-                className="chat-input"
-              />
-              <button
-                className="chat-btn"
-                onClick={enviarMensagem}
-                disabled={!idAluno}
+          {conversas.length === 0 ? (
+            <p className={styles['nenhuma-msg']}>Nenhuma conversa</p>
+          ) : (
+            conversas.map((c) => (
+              <div
+                key={c.idConversa}
+                className={`${styles['sidebar-item']} ${
+                  idConversa === c.idConversa ? styles.selected : ""
+                }`}
+                onClick={() => selecionarConversa(c)}
               >
-                Enviar
-              </button>
-            </div>
-          </>
-        ) : (
-          <h2 className="placeholder-select">Selecione um aluno ao lado</h2>
-        )}
+                {c.nomeAluno}
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* ÁREA DO CHAT */}
+        <div className={styles['chat-area']}>
+          {idConversa ? (
+            <>
+              <h1 className={styles['chat-title']}>Chat com {nomeAluno}</h1>
+
+              <div className={styles['chat-box']}>
+                {mensagens.length === 0 ? (
+                  <p className={styles['nenhuma-msg']}>Nenhuma mensagem encontrada</p>
+                ) : (
+                  mensagens.map((msg, index) => (
+                    <div
+                      key={index}
+                      className={`${styles['msg-item']} ${
+                        msg.tipo === "ADMIN" ? styles['msg-diretoria'] : styles['msg-aluno']
+                      }`}
+                    >
+                      {msg.mensagem}
+                    </div>
+                  ))
+                )}
+              </div>
+
+              <div className={styles['chat-input-area']}>
+                <input
+                  type="text"
+                  value={texto}
+                  onChange={(e) => setTexto(e.target.value)}
+                  placeholder="Digite sua mensagem..."
+                  className={styles['chat-input']}
+                />
+                <button
+                  className={styles['chat-btn']}
+                  onClick={enviarMensagem}
+                  disabled={!idAluno}
+                >
+                  Enviar
+                </button>
+              </div>
+            </>
+          ) : (
+            <h2 className={styles['placeholder-select']}>Selecione um aluno ao lado</h2>
+          )}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }

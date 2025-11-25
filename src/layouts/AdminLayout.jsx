@@ -5,6 +5,7 @@ import styles from "./Layout.module.css";
 function AdminLayout() {
     const adminLinks = [
     { to: "/admin/home", icon: "bi bi-house-fill", label: "Home" },
+    { to: "/admin/chat", icon: "bi bi-chat-fill", label: "Chat" },
     { to: "/admin/cadastrar", icon: "bi bi-plus-square", label: "Cadastrar" },
     { to: "/admin/editar", icon: "bi bi-pencil-square", label: "Editar" },
     { to: "/admin/gerar-aula", icon: "bi bi-calendar-week", label: "Gerar Aula" },

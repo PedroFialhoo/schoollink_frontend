@@ -52,35 +52,42 @@
   }
   
   /* ===== CAIXA DE MENSAGENS ===== */
-  .chat-box {
+.chat-box {
     flex: 1;
     background: #fafafa;
     border-radius: 10px;
     padding: 20px;
     overflow-y: auto;
     border: 1px solid #ddd;
+    /* 🔥 NOVO: Define como contêiner flexível vertical */
+    display: flex;
+    flex-direction: column;
   }
-  
+
   /* Mensagens */
   .msg-item {
     max-width: 60%;
-    padding: 12px;
-    border-radius: 12px;
+    padding: 12px;    
     margin-bottom: 15px;
+    width: fit-content;       
+    min-width: 60px;        
+    max-width: 70%;            
+    word-wrap: break-word; 
   }
-  
+
   /* Mensagem do aluno */
   .msg-aluno {
     background: #ffe1c9;
     align-self: flex-start;
+    border-radius: 18px 18px 18px 0px;
   }
-  
+
   /* Mensagem da diretoria */
   .msg-diretoria {
     background: #c9eaff;
-    align-self: flex-end;
+    align-self: flex-end; /* 🔥 Move para a direita */
+    border-radius: 18px 28px 0px 18px;
   }
-  
   /* ===== INPUT DE MENSAGEM ===== */
   .chat-input-area {
     display: flex;
@@ -99,7 +106,7 @@
   
   .chat-btn {
     padding: 12px 20px;
-    background: #4b74ff;
+    background: #1A3A6A;
     color: white;
     border: none;
     border-radius: 10px;
