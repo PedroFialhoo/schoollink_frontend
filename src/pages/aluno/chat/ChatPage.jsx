@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./ChatPage.css";
+import styles from "./ChatPage.module.css";
 
 export default function ChatPage() {
 
@@ -50,6 +50,20 @@ export default function ChatPage() {
       });
   }, [idConversa]);
 
+  useEffect(() => {
+    if (!idConversa) return;
+    axios
+      .get(`http://localhost:8080/conversa/buscarMensagens/${idConversa}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setMensagens(res.data || []);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar mensagens:", err);
+      });
+  }, []);
+
   const enviarMensagem = () => {
     if (texto.trim() === "" || !idAluno) return;
 
@@ -75,43 +89,50 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="chat-container">
-      <h1 className="chat-title">
-        Secretária
-      </h1>
+      <div className={styles['chat-container']}> 
+        <h1 className={styles['chat-title']}>
+          Secretária
+        </h1>
 
-      <div className="chat-box">
-        {mensagens.length === 0 ? (
-          <p className="nenhuma-msg">Nenhuma mensagem encontrada</p>
-        ) : (
-          mensagens.map((msg, index) => (
-            <div
-              key={index}
-              className={`msg-item ${
-                msg.idRemetente === msg.idAluno
-                  ? "msg-aluno"
-                  : "msg-diretoria"
-              }`}
-            >
-              {msg.mensagem}
-            </div>
-          ))
-        )}
-      </div>
+        <div className={styles['chat-box']}>
+          {mensagens.length === 0 ? (
+            <p className={styles['nenhuma-msg']}>Nenhuma mensagem encontrada</p>
+          ) : (
+            mensagens.map((msg, index) => (
+              <div
+                key={index}
+                className={`${styles['msg-item']} ${
+                  // Mensagem do Aluno: se idRemetente for igual ao idAluno
+                  msg.idRemetente === msg.idAluno
+                    ? styles['msg-aluno']
+                    // Mensagem da Diretoria (Secretaria): caso contrário
+                    : styles['msg-diretoria'] 
+                }`}
+              >
+                {msg.mensagem}
+              </div>
+            ))
+          )}
+        </div>
 
-      {/* Campo enviar mensagem */}
-      <div className="chat-input-area">
-        <input
-          type="text"
-          value={texto}
-          onChange={(e) => setTexto(e.target.value)}
-          placeholder="Digite sua mensagem..."
-          className="chat-input"
-        />
-        <button className="chat-btn" onClick={enviarMensagem}>
-          Enviar
-        </button>
+        {/* Campo enviar mensagem */}
+        <div className={styles['chat-input-area']}>
+          <input
+            type="text"
+            value={texto}
+            onChange={(e) => setTexto(e.target.value)}
+            placeholder="Digite sua mensagem..."
+            className={styles['chat-input']}
+          />
+          <button 
+            className={styles['chat-btn']} 
+            onClick={enviarMensagem}
+            // Desabilita se não tiver ID do aluno (ainda carregando)
+            disabled={!idAluno} 
+          >
+            Enviar
+          </button>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
