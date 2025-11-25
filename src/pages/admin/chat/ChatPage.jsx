@@ -106,7 +106,13 @@ export default function ChatDiretoriaPage() {
                 }`}
                 onClick={() => selecionarConversa(c)}
               >
-                <img src={`http://localhost:8080/${c.caminhoFoto}`} alt="" />
+                <img
+                src={`http://localhost:8080/${c.caminhoFoto}`}
+                onError={(e) => {
+                  e.currentTarget.src = "/src/assets/images/favicon.ico";
+                }}
+                alt=""
+              />
                 <p>{c.nomeAluno}</p>
               </div>
             ))
@@ -117,8 +123,6 @@ export default function ChatDiretoriaPage() {
         <div className={styles['chat-area']}>
           {idConversa ? (
             <>
-              <h1 className={styles['chat-title']}>Chat com {nomeAluno}</h1>
-
               <div className={styles['chat-box']}>
                 {mensagens.length === 0 ? (
                   <p className={styles['nenhuma-msg']}>Nenhuma mensagem encontrada</p>
