@@ -8,6 +8,7 @@ function ProfessorLayout() {
     { to: "/professor/prova", icon: "bi bi-file-earmark-medical", label: "Criar prova" },
     { to: "/professor/notas", icon: "bi bi-list-columns-reverse", label: "Registrar Nota" },
     { to: "/professor/registrar-aula", icon: "bi bi-person-workspace", label: "Registrar Aula" },
+    { to: "/professor/ponto", icon: "bi bi-clipboard-check-fill", label: "Verificar pontos" },
     { to: "/professor/configuracoes", icon: "bi bi-gear-fill", label: "Configurações" },
     { to: "/professor/sair", icon: "bi bi-box-arrow-right", label: "Sair" },
   ]

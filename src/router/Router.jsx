@@ -39,6 +39,9 @@ import ChatPageAluno from "../pages/aluno/chat/ChatPage";
 // *** NOVO: Chat da diretoria ***
 import ChatPageAdmin from "../pages/admin/chat/ChatPage";
 
+// *** NOVO: Tela de pontos do professor ***
+import ProfessorPontosPage from "../pages/professor/ponto/ProfessorPontosPage";
+
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -94,6 +97,9 @@ const Router = createBrowserRouter([
       },
       { path: "sair", element: <Logout /> },
       { path: "configuracoes", element: <Config /> },
+
+      // NOVA ROTA: Tela de pontos do professor
+      { path: "ponto", element: <ProfessorPontosPage /> },
     ],
   },
 

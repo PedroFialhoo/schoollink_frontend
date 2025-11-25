@@ -86,60 +86,66 @@ function Notas() {
   const statusFinal = getStatusNota(mediaFinal);
 
   return (
-    <details
-      ref={detalhesRef}
-      onToggle={verificarOpen}
-      className={styles.painelContainer}
-      open
-    >
-      <summary className={styles.cabecalho}>
-        <span className={styles.nomeMateria}>Notas</span>
-        <i
-          className={`${`bi bi-arrow-bar-${aberto ? "up" : "down"}`} ${
-            styles.arrow
-          }`}
-        ></i>
-        <div className={styles.mediaFinalContainer}>
-          <span>Média Final</span>
-          <strong className={`${styles.mediaTag} ${styles[statusFinal]}`}>
-            {mediaFinal.toFixed(1)}
-          </strong>
-        </div>
-      </summary>
+    <>
+      <a className={styles.btnPDF} href={`http://localhost:8080/alunos/${id}/historico/pdf`} target="_blank" rel="noopener noreferrer">
+        Baixar boletim
+        <i class="bi bi-download"></i>
+      </a>
+      <details
+        ref={detalhesRef}
+        onToggle={verificarOpen}
+        className={styles.painelContainer}
+        open
+      >
+        <summary className={styles.cabecalho}>
+          <span className={styles.nomeMateria}>Notas</span>
+          <i
+            className={`${`bi bi-arrow-bar-${aberto ? "up" : "down"}`} ${
+              styles.arrow
+            }`}
+          ></i>
+          <div className={styles.mediaFinalContainer}>
+            <span>Média Final</span>
+            <strong className={`${styles.mediaTag} ${styles[statusFinal]}`}>
+              {mediaFinal.toFixed(1)}
+            </strong>
+          </div>
+        </summary>
 
-      <div className={styles.corpoDetalhes}>
-        {Object.keys(notasPorBimestre).map((bimestre) => {
-          const notasDoBimestre = notasPorBimestre[bimestre];
-          const media = calcularMedia(notasDoBimestre);
-          const status = getStatusNota(media);
+        <div className={styles.corpoDetalhes}>
+          {Object.keys(notasPorBimestre).map((bimestre) => {
+            const notasDoBimestre = notasPorBimestre[bimestre];
+            const media = calcularMedia(notasDoBimestre);
+            const status = getStatusNota(media);
 
-          return (
-            <div key={bimestre} className={styles.periodoCard}>
-              <div className={styles.periodoHeader}>
-                <h4>{bimestre.replace("_", " ").toLowerCase()}</h4>
-                <strong className={`${styles.mediaTag} ${styles[status]}`}>
-                  Média: {media.toFixed(1)}
-                </strong>
+            return (
+              <div key={bimestre} className={styles.periodoCard}>
+                <div className={styles.periodoHeader}>
+                  <h4>{bimestre.replace("_", " ").toLowerCase()}</h4>
+                  <strong className={`${styles.mediaTag} ${styles[status]}`}>
+                    Média: {media.toFixed(1)}
+                  </strong>
+                </div>
+                <ul className={styles.listaNotas}>
+                  {notasDoBimestre.map((nota, i) => (
+                    <li key={i} className={styles.notaItem}>
+                      <span>{nota.tipo}</span>
+                      <span
+                        className={`${styles[getStatusNota(nota.nota)]} ${
+                          styles.nota
+                        }`}
+                      >
+                        {nota.nota.toFixed(1)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className={styles.listaNotas}>
-                {notasDoBimestre.map((nota, i) => (
-                  <li key={i} className={styles.notaItem}>
-                    <span>{nota.tipo}</span>
-                    <span
-                      className={`${styles[getStatusNota(nota.nota)]} ${
-                        styles.nota
-                      }`}
-                    >
-                      {nota.nota.toFixed(1)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
-      </div>
-    </details>
+            );
+          })}
+        </div>
+      </details>
+    </>
   );
 }
 
