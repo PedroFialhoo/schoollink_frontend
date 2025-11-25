@@ -106,7 +106,8 @@ export default function ChatDiretoriaPage() {
                 }`}
                 onClick={() => selecionarConversa(c)}
               >
-                {c.nomeAluno}
+                <img src={`http://localhost:8080/${c.caminhoFoto}`} alt="" />
+                <p>{c.nomeAluno}</p>
               </div>
             ))
           )}
