@@ -3,18 +3,15 @@ import styles from "./BuscarEntidade.module.css";
 
 const FILTROS_CONFIG = {
   aluno: [
-    { id: "email", label: "Email", type: "email" },
     { id: "nome", label: "Nome do Aluno", type: "text" },
+    { id: "email", label: "Email", type: "email" },
     { id: "matricula", label: "Matrícula", type: "text" },
   ],
   professor: [
     { id: "nome", label: "Nome do Professor", type: "text" },
-    { id: "cpf", label: "CPF", type: "text" },
-    { id: "disciplina", label: "Disciplina", type: "text" },
   ],
   funcionario: [
     { id: "nome", label: "Nome do Funcionário", type: "text" },
-    { id: "setor", label: "Setor", type: "text" },
   ],
 };
 
@@ -33,7 +30,6 @@ function BuscarEntidade({ entidade, searchActive, setSearchActive, onResultado }
     setErro("");
   }, [entidade]);
 
-  // Atualiza os campos do formulário dinamicamente
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -57,7 +53,7 @@ function BuscarEntidade({ entidade, searchActive, setSearchActive, onResultado }
         return response.json();
         })
         .then((data) => {
-        setResultados(Array.isArray(data) ? data : [data]); // garante que seja array
+        setResultados(Array.isArray(data) ? data : [data]); 
         })
         .catch((error) => {
         console.error(error);
@@ -115,7 +111,7 @@ function BuscarEntidade({ entidade, searchActive, setSearchActive, onResultado }
                 )}
                 {entidade === "professor" && (
                     <>
-                    <strong>{item.nome}</strong> — Disciplina: {item.disciplina}
+                    <strong>{item.userDto?.nome}</strong> — email: {item.userDto?.email}
                     </>
                 )}
                 {entidade === "funcionario" && (

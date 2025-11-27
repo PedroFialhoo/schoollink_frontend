@@ -14,3 +14,49 @@
   border-radius: 12px;
   border: 1px dashed #dee2e6;
 }
+
+/* Container do input para dar espaçamento */
+.searchContainer {
+  margin-bottom: 20px;
+}
+
+/* Estilo do Input de Pesquisa */
+.searchInput {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid #CED4DA;
+  border-radius: 8px; /* Bordas arredondadas padrão do projeto */
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+/* Efeito ao clicar no input */
+.searchInput:focus {
+  outline: none;
+  border-color: #1A3A6A; /* Azul da marca */
+  box-shadow: 0 0 0 3px rgba(26, 58, 106, 0.15);
+}
+
+.searchInput::placeholder {
+  color: #ADB5BD;
+}
+
+/* Mantendo seus estilos existentes... */
+.listaContainer {
+  /* ... seu css anterior ... */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedback {
+  text-align: center;
+  color: #6c757d;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px dashed #dee2e6;
+}

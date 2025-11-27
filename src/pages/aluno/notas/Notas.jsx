@@ -16,6 +16,7 @@ const getStatusNota = (nota) => {
 
 function Notas() {
   const { id } = useParams(); // id do aluno vindo pela rota
+  const [idAluno, setIdAluno] = useState(null);
   const [notas, setNotas] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
@@ -30,6 +31,30 @@ function Notas() {
       setAberto(detalhesRef.current.open);
     }
   };
+  useEffect(() => {
+    fetch("http://localhost:8080/aluno/me", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) =>
+        response.json().then((data) => ({
+          status: response.status,
+          body: data,
+        }))
+      )
+      .then(({ status, body }) => {
+        if (status === 200 && body !== null) {
+            setIdAluno(body.idAluno);
+            console.log("ID do aluno:", body.idAluno);
+        } else {
+          setMessage("Erro inesperado. Tente novamente.");
+        }
+      })
+      .catch((error) => {
+        setMessage("Erro ao tentar buscar dados. Tente novamente.");
+        console.error(error);
+      });
+  }, []);  
 
   useEffect(() => {
     async function carregarNotas() {
@@ -87,7 +112,7 @@ function Notas() {
 
   return (
     <>
-      <a className={styles.btnPDF} href={`http://localhost:8080/alunos/${id}/historico/pdf`} target="_blank" rel="noopener noreferrer">
+      <a className={styles.btnPDF} href={`http://localhost:8080/alunos/${idAluno}/historico/pdf`} target="_blank" rel="noopener noreferrer">
         Baixar boletim
         <i class="bi bi-download"></i>
       </a>

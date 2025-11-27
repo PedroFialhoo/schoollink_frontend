@@ -4,7 +4,7 @@ import InputMask from 'react-input-mask';
 
 function FormProfessor({
     nome, setNome,
-    email, setEmail,
+    email, setEmail, emailMode,
     senha, setSenha,
     cpf, setCpf,
     dataNascimento, setDataNascimento,
@@ -30,13 +30,14 @@ function FormProfessor({
                 />
             </div>
 
-            <div className={styles.inputGroup}>
+            <div className={`${styles.inputGroup} ${emailMode === 'disabled' ? styles.disabled : ''}`}>
                 <label htmlFor="email">Email</label>
                 <input
                     type="email"
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="off"
                 />
             </div>
 
@@ -46,6 +47,7 @@ function FormProfessor({
                     id="senha"
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
+                    autoComplete="new-password"
                 />
             </div>
 

@@ -32,15 +32,10 @@ import GerarAulas from "../pages/admin/GerarAulas/GerarAulas";
 import RegistrarNota from "../pages/professor/registrar-nota/RegistrarNota";
 import ListaAlunos from "../pages/professor/registrar-nota/components/ListaAlunos";
 import RedefinirSenha from "../pages/redefinirSenha/RedefinirSenha";
-
-// *** Chat aluno ***
 import ChatPageAluno from "../pages/aluno/chat/ChatPage";
-
-// *** NOVO: Chat da diretoria ***
 import ChatPageAdmin from "../pages/admin/chat/ChatPage";
-
-// *** NOVO: Tela de pontos do professor ***
 import ProfessorPontosPage from "../pages/professor/ponto/ProfessorPontosPage";
+import EditarProfessor from "../pages/admin/editar/components/EditarProfessor";
 
 const Router = createBrowserRouter([
   {
@@ -132,11 +127,13 @@ const Router = createBrowserRouter([
         element: <Editar />,
         children: [
           { path: "aluno", element: <EditarAluno /> },
+          { path: "professor", element: <EditarProfessor /> },
           { path: "turma", element: <EditarTurma /> },
         ],
       },
 
       { path: "gerar-aula", element: <GerarAulas /> },
+      { path: "configuracoes", element: <Config /> },
       { path: "sair", element: <Logout /> },
     ],
   },

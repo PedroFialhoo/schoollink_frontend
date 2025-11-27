@@ -1,3 +1,4 @@
+import { use } from 'react';
 import styles from './Config.module.css';
 import MudarFoto from './components/MudarFoto';
 import MudarSenha from './components/MudarSenha';
@@ -44,11 +45,13 @@ function Config() {
 
   return (
     <div className={styles.paginaContainer}>
-      <MudarFoto
-        nome={userName}
-        email={email}
-        avatarUrl={foto} 
-      />
+      {userType !== "admin" && 
+        <MudarFoto
+          nome={userName}
+          email={email}
+          avatarUrl={foto} 
+        />
+      }      
       <MudarSenha />
     </div>
   );
