@@ -40,14 +40,18 @@ export default function ProfessorPontosPage() {
         "http://localhost:8080/professor/buscarPontos-semana",
         { withCredentials: true }
       );
-      setSemana(response.data.pontos);
-      setTotalSemanal(response.data.totalHoras);
+
+      setSemana(response.data?.pontos ?? []);
+      setTotalSemanal(response.data?.totalHoras ?? null);
+
     } catch (e) {
       console.error(e);
+      setSemana([]); 
     } finally {
       setLoadingSemana(false);
     }
   };
+
 
   const buscarPorDia = async (data) => {
     setInfoDia(null);
