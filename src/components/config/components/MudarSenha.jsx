@@ -15,32 +15,32 @@ function MudarSenha() {
             return;
         }
 
-        fetch("http://localhost:8080/auth/alterarSenha", {
-            method: "POST",
+        fetch("http://localhost:8080/password/alterarSenha", {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             credentials: "include",
-            body: JSON.stringify({ 
-                "userId":null,
+            body: JSON.stringify({
+                "userId": null,
                 "senhaAtual": senhaAtual,
-                "novaSenha" : novaSenha
+                "novaSenha": novaSenha
             }),
         })
-        .then(response => {
-            if (response.ok) {
-                setMensagem("Senha alterada com sucesso.");
-            } else {
+            .then(response => {
+                if (response.ok) {
+                    setMensagem("Senha alterada com sucesso.");
+                } else {
+                    setMensagem("Erro ao alterar a senha.");
+                }
+            })
+            .catch(error => {
+                console.error("Erro:", error);
                 setMensagem("Erro ao alterar a senha.");
-            }
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-            setMensagem("Erro ao alterar a senha.");
-        });
+            });
     }
 
-    return(
+    return (
         <div className={styles.settingsCard}>
             <h2 className={styles.cardTitulo}>Alterar Senha</h2>
             <form className={styles.senhaForm}>
@@ -57,7 +57,7 @@ function MudarSenha() {
                     <PasswordInput id="confirmar-senha" value={confirmarSenha} onChange={(e) => setConfirmarSenha(e.target.value)} />
                 </div>
 
-                <button className={`${styles.botao} ${styles.botaoSalvar}`} onClick={handleSubmit}> 
+                <button className={`${styles.botao} ${styles.botaoSalvar}`} onClick={handleSubmit}>
                     Salvar Alterações
                 </button>
             </form>
