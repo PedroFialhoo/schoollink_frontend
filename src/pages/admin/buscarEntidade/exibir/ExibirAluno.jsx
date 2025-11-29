@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import styles from "./ExibirAluno.module.css";
 import { useEffect, useState } from "react";
+import defaultFoto from "../../../../assets/images/profile.png";
 
 const formatarData = (dataISO) => {
   if (!dataISO) return "-";
@@ -31,7 +32,7 @@ function ExibirAluno() {
       {/* --- Cabeçalho com Foto e Nome --- */}
       <div className={styles.header}>
         <img
-          src={aluno.userDto?.caminhoFoto ? `${baseUrl}${aluno.userDto?.caminhoFoto}` : "src/assets/logo.png"}
+          src={aluno.userDto?.caminhoFoto ? `${baseUrl}${aluno.userDto?.caminhoFoto}` : defaultFoto}
           alt="Foto do Aluno"
           className={styles.foto}
           onError={(e) => { e.target.src = "https://via.placeholder.com/150"; }}
