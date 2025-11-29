@@ -36,6 +36,11 @@ import ChatPageAluno from "../pages/aluno/chat/ChatPage";
 import ChatPageAdmin from "../pages/admin/chat/ChatPage";
 import ProfessorPontosPage from "../pages/professor/ponto/ProfessorPontosPage";
 import EditarProfessor from "../pages/admin/editar/components/EditarProfessor";
+import PontosAdminPage from "../pages/admin/verificarPontos/PontosAdminPage";
+import VerificarPontos from "../pages/admin/verificarPontos/VerificarPontos";
+import BuscarEntidade from "../pages/admin/buscarEntidade/BuscarEntidade";
+import ExibirAluno from "../pages/admin/buscarEntidade/exibir/ExibirAluno";
+import ExibirFuncionario from "../pages/admin/buscarEntidade/exibir/ExibirFuncionario";
 
 const Router = createBrowserRouter([
   {
@@ -92,8 +97,6 @@ const Router = createBrowserRouter([
       },
       { path: "sair", element: <Logout /> },
       { path: "configuracoes", element: <Config /> },
-
-      // NOVA ROTA: Tela de pontos do professor
       { path: "ponto", element: <ProfessorPontosPage /> },
     ],
   },
@@ -104,10 +107,7 @@ const Router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { path: "home", element: <HomeAdmin /> },
-
-      // ---- NOVA ROTA DO CHAT ----
       { path: "chat", element: <ChatPageAdmin /> },
-
       {
         path: "cadastrar",
         element: <Cadastrar />,
@@ -121,7 +121,26 @@ const Router = createBrowserRouter([
           { path: "horario", element: <CadastrarHorarioFixo /> },
         ],
       },
-
+      {
+        path: "buscar-entidade",
+        element: <BuscarEntidade />
+      },
+      {
+        path: "buscar-entidade/aluno/:id",
+        element: <ExibirAluno />
+      },
+      {
+        path: "buscar-entidade/funcionario/:id",
+        element: <ExibirFuncionario />
+      },
+      {
+        path: "verificar-pontos",
+        element: <PontosAdminPage />
+      },
+      {
+        path: "verificar-pontos/:idFuncionario",
+        element: <VerificarPontos />
+      },
       {
         path: "editar",
         element: <Editar />,

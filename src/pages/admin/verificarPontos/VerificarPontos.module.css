@@ -1,0 +1,213 @@
+.pageContainer {
+    font-family: 'Inter', sans-serif;
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.tituloPrincipal {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #212529;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.nomeFunc {
+    color: #1A3A6A;
+}
+
+.subtitulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #343A40;
+    margin-bottom: 20px;
+    border-left: 5px solid #FFD24D; /* Dourado da Marca */
+    padding-left: 15px;
+}
+
+/* --- SEÇÃO SEMANA (GRID DE CARDS) --- */
+.sectionSemana {
+    margin-bottom: 50px;
+}
+
+.gridSemana {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.diaCard {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #E9ECEF;
+    transition: transform 0.2s ease;
+}
+
+.diaCard:hover {
+    transform: translateY(-3px);
+}
+
+/* Bordas coloridas baseadas no status */
+.presente { border-bottom: 4px solid #20C997; }
+.ausente { border-bottom: 4px solid #FA5252; opacity: 0.8; }
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.cardHeader strong {
+    color: #1A3A6A; /* Azul da Marca */
+    font-size: 0.95rem;
+}
+
+.badgeOk {
+    background-color: #E6FCF5;
+    color: #0CA678;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-weight: 700;
+}
+
+.badgeMiss {
+    background-color: #FFF5F5;
+    color: #FA5252;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-weight: 700;
+}
+
+.horarioRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    color: #495057;
+}
+
+/* --- SEÇÃO CONSULTA (CALENDÁRIO + DETALHES) --- */
+.consultaContainer {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    border: 1px solid #E9ECEF;
+}
+
+/* Coluna Esquerda */
+.calendarioWrapper {
+    flex-shrink: 0;
+}
+
+/* Coluna Direita */
+.detalhesWrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px; /* Altura mínima para alinhar com o calendário */
+}
+
+/* Card de Detalhe Grande */
+.detalheCard {
+    width: 100%;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+.borderGreen { border-top: 5px solid #20C997; }
+.borderRed { border-top: 5px solid #FA5252; }
+
+.detalheTitulo {
+    font-size: 1.5rem;
+    color: #1A3A6A;
+    margin-bottom: 10px;
+}
+.detalheTitulo small {
+    display: block;
+    font-size: 1rem;
+    color: #868E96;
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+.statusGeral {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: #495057;
+}
+
+.textGreen { color: #20C997; font-weight: 700; }
+.textRed { color: #FA5252; font-weight: 700; }
+
+.horariosBig {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.timeBox {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.timeBox span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #868E96;
+}
+
+.clock {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #212529;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.divider {
+    width: 1px;
+    height: 60px;
+    background-color: #dee2e6;
+}
+
+.emptyState {
+    text-align: center;
+    color: #6c757d;
+}
+
+/* Responsividade */
+@media (max-width: 850px) {
+    .consultaContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .calendarioWrapper, .detalhesWrapper {
+        width: 100%;
+    }
+    .detalheCard {
+        margin-top: 20px;
+    }
+}

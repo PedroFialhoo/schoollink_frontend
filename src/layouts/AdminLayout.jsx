@@ -6,6 +6,8 @@ function AdminLayout() {
     const adminLinks = [
     { to: "/admin/home", icon: "bi bi-house-fill", label: "Home" },
     { to: "/admin/chat", icon: "bi bi-chat-fill", label: "Chat" },
+    { to: "/admin/verificar-pontos", icon: "bi bi-clock-fill", label: "Verificar Pontos" },
+    { to: "/admin/buscar-entidade", icon: "bi bi-search", label: "Buscar" },
     { to: "/admin/cadastrar", icon: "bi bi-plus-square", label: "Cadastrar" },
     { to: "/admin/editar", icon: "bi bi-pencil-square", label: "Editar" },
     { to: "/admin/gerar-aula", icon: "bi bi-calendar-week", label: "Gerar Aula" },
