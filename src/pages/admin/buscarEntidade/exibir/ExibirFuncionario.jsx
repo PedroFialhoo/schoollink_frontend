@@ -36,7 +36,7 @@ function ExibirFuncionario() {
     <div className={styles.cardContainer}>
         <div className={styles.header}>
             <img
-                src={funcionario.userDto?.caminhoFoto ? `${baseUrl}${funcionario.userDto.caminhoFoto}` : defaultFoto}
+                src={funcionario.caminhoFoto ? `${baseUrl}${funcionario.caminhoFoto}` : defaultFoto}
                 alt="Foto do Funcionário"
                 className={styles.foto}
             />
